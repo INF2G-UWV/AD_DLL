@@ -10,6 +10,7 @@ namespace INF2G_DLL
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }
