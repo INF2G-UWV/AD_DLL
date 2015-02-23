@@ -8,7 +8,7 @@ namespace StringsH7
 {
     internal class Program
     {
-        //Fields:
+        //Fields
         private static int threadCount;
         private static readonly Process proc = Process.GetCurrentProcess();
         private static readonly Object threadLock = new object();
