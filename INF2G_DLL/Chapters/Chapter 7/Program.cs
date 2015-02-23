@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Management;
 using System.Text;
 using DLL;
 
-namespace INF2G_DLL
+namespace StringsH7
 {
-    internal class Chapter7
+    internal class Program
     {
         //Fields:
         private static int threadCount;
@@ -120,6 +121,34 @@ namespace INF2G_DLL
         }
 
         /// <summary>
+        ///     Get current CPU clock frequency.
+        /// </summary>
+        /// <returns>uint clockspeed in hertz</returns>
+        public static uint GetCurrentCPUSpeed()
+        {
+            uint currentSpeed;
+            using (var Mo = new ManagementObject("Win32_Processor.DeviceID='CPU0'"))
+            {
+                currentSpeed = (uint) (Mo["CurrentClockSpeed"]);
+            }
+            return currentSpeed;
+        }
+
+        /// <summary>
+        ///     Get maximum cpu clock frequency.
+        /// </summary>
+        /// <returns>uint clockspeed in hertz</returns>
+        public static uint GetMaxCPUSpeed()
+        {
+            uint maxSpeed;
+            using (var Mo = new ManagementObject("Win32_Processor.DeviceID='CPU0'"))
+            {
+                maxSpeed = (uint) (Mo["MaxClockSpeed"]);
+            }
+            return maxSpeed;
+        }
+
+        /// <summary>
         ///     Feature to stabilize CPU clockspeed.
         ///     Many modern processors have power-saving features
         ///     that decrease clockspeed when cpu-utilization is low.
@@ -128,11 +157,15 @@ namespace INF2G_DLL
         public static void CPUWarmUp()
         {
             Console.Write("> Warming up CPU...");
-            for (var i = 0; i < 1000000000; i++)
+
+            while (GetCurrentCPUSpeed() < GetMaxCPUSpeed())
             {
+                var rnd = new Random(122);
                 var val1 = Math.PI*Math.PI;
-                var val2 = val1*(Math.PI/122);
+                var val2 = val1*(Math.PI/rnd.Next(2, 255));
+                var val3 = Math.Round(val2/Math.PI)*rnd.Next(1, 10);
             }
+
             Console.WriteLine("Done.");
             Console.WriteLine();
         }
