@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DLL
+﻿namespace DLL
 {
     public class CollectionBase<T>
     {
-        private CollectionBase<T> collection = new CollectionBase<T>();
+        private readonly CollectionBase<T> collection = new CollectionBase<T>();
 
         public void Add(T item)
         {
@@ -20,12 +14,12 @@ namespace DLL
             collection.Remove(item);
         }
 
-        private new void Clear()
+        private void Clear()
         {
             collection.Clear();
         }
 
-        public new int Count()
+        public int Count()
         {
             return collection.Count();
         }
