@@ -157,17 +157,43 @@ namespace StringsH7
         public static void CPUWarmUp()
         {
             Console.Write("> Warming up CPU...");
-
+            long nthPrime = 0;
             while (GetCurrentCPUSpeed() < GetMaxCPUSpeed())
             {
-                var rnd = new Random(122);
-                var val1 = Math.PI*Math.PI;
-                var val2 = val1*(Math.PI/rnd.Next(2, 255));
-                var val3 = Math.Round(val2/Math.PI)*rnd.Next(1, 10);
+                nthPrime = FindPrimeNumber(10000001); //set higher value for more time
             }
-
+            Console.WriteLine(nthPrime);
             Console.WriteLine("Done.");
             Console.WriteLine();
+        }
+
+        /// <summary>
+        /// Find prime number.
+        /// </summary>
+        /// <param name="n">integer number</param>
+        /// <returns>long prime</returns>
+        public static long FindPrimeNumber(int n)
+        {
+            int count = 0;
+            long a = 2;
+            while (count < n)
+            {
+                long b = 2;
+                int prime = 1;// to check if found a prime
+                while (b * b <= a)
+                {
+                    if (a % b == 0)
+                    {
+                        prime = 0;
+                        break;
+                    }
+                    b++;
+                }
+                if (prime > 0)
+                    count++;
+                a++;
+            }
+            return (--a);
         }
     }
 }
