@@ -24,7 +24,7 @@ namespace StringsH7
         // Helper variables
         private static double SBDuration, SDuration;
         //Methods:
-        private static void Main(string[] args)
+        private static void Run(string[] args)
         {
             WriteIntroduction();
             CPUWarmUp();

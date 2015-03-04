@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayList.cs" />
     <Compile Include="CollectionBase.cs" />
     <Compile Include="dll.cs" />
     <Compile Include="HighResolutionTimer.cs" />
