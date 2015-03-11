@@ -7,7 +7,7 @@ using DLL;
 
 namespace INF2G_DLL.Chapters.Chapter_3
 {
-    internal class Program
+    internal class BinarySearch
     {
         public static void Run(string[] args)
         {
