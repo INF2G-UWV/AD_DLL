@@ -7,7 +7,7 @@ namespace INF2G_DLL
     {
         private static void Main(string[] args)
         {
-            ArrayListTest.Run(args);
+            INF2G_DLL.Chapters.Chapter_3.Program.Run(args);
         }
     }
 }

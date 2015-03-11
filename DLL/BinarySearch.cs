@@ -25,13 +25,13 @@ namespace DLL
                 index = ~index;
 
                 // If the value/item couldn't be found in the Array[] index;
-                Console.WriteLine("Not found. Searching between: ");
+                Console.Write("Not found. Searching between: ");
                 
                 // When the Array[] index is empty, 
                 // it searches at the beginning of the array;
                 if (index == 0)
                 {
-                    Console.WriteLine("beginning of array and ");
+                    Console.Write("beginning of array and ");
                 }
                 // Prints out the value/item where it stopped searching.
                 // This is all done with ascending order in the Array[];
