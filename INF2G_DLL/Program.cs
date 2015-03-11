@@ -10,7 +10,7 @@ namespace INF2G_DLL
         private static void Main(string[] args)
         {
             //TestArrayList();
-            Chapters.Chapter_3.Program.Run(args);
+            Chapters.Chapter_3.Sort.Run(args);
         }
 
         public static void TestArrayList()
