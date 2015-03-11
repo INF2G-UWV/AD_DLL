@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DLL
 {
@@ -15,7 +11,7 @@ namespace DLL
         public void Search<T>(T[] array, int index)
         {
             // Create a timer
-            HighResolutionTimer timer = new HighResolutionTimer(true);
+            var timer = new HighResolutionTimer(true);
 
             timer.Start();
             // If the Array[] index is negative;
@@ -26,7 +22,7 @@ namespace DLL
 
                 // If the value/item couldn't be found in the Array[] index;
                 Console.Write("Not found. Searching between: ");
-                
+
                 // When the Array[] index is empty, 
                 // it searches at the beginning of the array;
                 if (index == 0)
@@ -37,9 +33,9 @@ namespace DLL
                 // This is all done with ascending order in the Array[];
                 else
                 {
-                    Console.Write("{0} and ", array[index-1]);
+                    Console.Write("{0} and ", array[index - 1]);
                 }
-                
+
 
                 // When the index equals Array[], 
                 // it searches at the end of the array;

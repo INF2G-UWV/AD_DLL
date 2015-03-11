@@ -1,5 +1,4 @@
-﻿using INF2G_DLL.Chapters.Chapter2;
-using DLL;
+﻿using INF2G_DLL.Chapters.Chapter_3;
 
 namespace INF2G_DLL
 {
@@ -7,7 +6,7 @@ namespace INF2G_DLL
     {
         private static void Main(string[] args)
         {
-            INF2G_DLL.Chapters.Chapter_3.Sort.Run(args);
+            Sort.Run(args);
         }
     }
 }

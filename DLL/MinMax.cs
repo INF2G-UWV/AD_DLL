@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DLL
 {
     /// <summary>
     ///     Custom MinMax class.
-    ///     Chapter 4 search 
+    ///     Chapter 4 search
     /// </summary>
     /// <typeparam name="T">Generic Type</typeparam>
     public class MinMax<T> where T : IComparable
     {
+        private readonly T[] max;
         //Fields MinMax
-        private T[] min;
-        private T[] max;
-
+        private readonly T[] min;
         //Constructor MinMax expects generics objects
         public MinMax(T[] min, T[] max)
         {
@@ -29,15 +25,13 @@ namespace DLL
          * Returns the minimum value
          * Generic type method
          */
+
         public T FindMinimum()
         {
-            T minimum = min[0];
-            for (int i = 0; i < min.Length; i++)
+            var minimum = min[0];
+            foreach (var t in min.Where(t => t.CompareTo(minimum) < 0))
             {
-                if (min[i].CompareTo(minimum) < 0)
-                {
-                    minimum = min[i];
-                }
+                minimum = t;
             }
             return minimum;
         }
@@ -47,15 +41,13 @@ namespace DLL
          * Returns the maximum value
          * Generic type method
          */
+
         public T FindMaximum()
         {
-            T maximum = max[0];
-            for (int i = 0; i < max.Length; i++)
+            var maximum = max[0];
+            foreach (var t in max.Where(t => t.CompareTo(maximum) > 0))
             {
-                if (max[i].CompareTo(maximum) > 0)
-                {
-                    maximum = max[i];
-                }
+                maximum = t;
             }
             return maximum;
         }
