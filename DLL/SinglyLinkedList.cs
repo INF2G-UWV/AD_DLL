@@ -185,7 +185,11 @@ namespace DLL
             return returnString.ToString();
         }
 
-        public void InsertAtFrond(T item)
+        /// <summary>
+        /// Operation inserts item at the front of the list
+        /// </summary>
+        /// <param name="item"></param>
+        public void InsertAtFront(T item)
         {
             lock (this)
             {
@@ -201,17 +205,353 @@ namespace DLL
             }
         }
 
-        public void Add(T item)
+        /// <summary>
+        /// Operations inserts item at the back of the list
+        /// </summary>
+        /// <param name="item"></param>
+        public void InsertAtBack(T item)
         {
-            throw new NotImplementedException();
+            lock (this)
+            {
+                if (IsEmpty)
+                {
+                    firstNode = lastNode = new ListNode<T>(item);
+                }
+                else
+                {
+                    lastNode = lastNode.Next = new ListNode<T>(item);
+                }
+            }
         }
 
+        /// <summary>
+        /// Operation removes item from the front of the list
+        /// </summary>
+        /// <returns></returns>
+        public object RemoveFromFront()
+        {
+            lock (this)
+            {
+                if (IsEmpty)
+                {
+                    throw new ApplicationException("List is empty!");
+                }
+                object removedData = firstNode.Item;
+                if (firstNode == lastNode)
+                {
+                    firstNode = lastNode = null;
+                }
+                else
+                {
+                    firstNode = firstNode.Next;
+                }
+                count--;
+                return removedData;
+            }
+        }
+
+
+        /// <summary>
+        /// Operation removes item from the back of the list
+        /// </summary>
+        /// <returns></returns>
+        public object RemoveFromBack()
+        {
+            lock (this)
+            {
+                if (IsEmpty)
+                {
+                    throw new ApplicationException("List is empty!");
+                }
+                object removedData = lastNode.Item;
+                if (firstNode == lastNode)
+                {
+                    firstNode = lastNode = null;
+                }
+                else
+                {
+                    ListNode<T> currentNode = firstNode;
+                    while (currentNode.Next != lastNode)
+                    {
+                        currentNode = currentNode.Next;
+                    }
+                    lastNode = currentNode;
+                    currentNode.Next = null;
+                }
+                count--;
+                return removedData;
+            }
+        }
+
+        /// <summary>
+        /// Operation inserts item at the specified index in the list
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="item"></param>
+        public void InsertAt(int index, T item)
+        {
+            lock (this)
+            {
+                if (index > count || index < 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                if (index == 0)
+                {
+                    InsertAtFront(item);
+                }
+                else if (index == (count - 1))
+                {
+                    InsertAtBack(item);
+                }
+                else
+                {
+                    ListNode<T> currentNode = firstNode;
+                    for (int i = 0; i < index; i++)
+                    {
+                        currentNode = currentNode.Next;
+                    }
+                    ListNode<T> newNode = new ListNode<T>(item, currentNode.Next);
+                    currentNode.Next = newNode;
+                    count++;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Operation removes item from the specified index in the list
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public object RemoveAt(int index)
+        {
+            lock (this)
+            {
+                if (index > count || index < 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                object removedData;
+                if (index == 0)
+                {
+                    removedData = RemoveFromFront();
+                }
+                else if (index == (count - 1))
+                {
+                    removedData = RemoveFromBack();
+                }
+                else
+                {
+                    ListNode<T> currentNode = firstNode;
+                    for (int i = 0; i < index; i++)
+                    {
+                        currentNode = currentNode.Next;
+                    }
+                    removedData = currentNode.Item;
+                    currentNode.Next = currentNode.Next.Next;
+                    count--;
+                }
+                return removedData;
+            }
+        }
+
+        /// <summary>
+        /// Removes the input if exists and returns true else false
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool Remove(T item)
+        {
+            if (firstNode.Item.ToString().Equals(item.ToString()))
+            {
+                RemoveFromFront();
+                return true;
+            }
+            else if (lastNode.Item.ToString().Equals(item.ToString()))
+            {
+                RemoveFromBack();
+                return true;
+            }
+            else
+            {
+                ListNode<T> currentNode = firstNode;
+                while (currentNode.Next != null)
+                {
+                    if (currentNode.Next.Item.ToString().Equals(item.ToString()))
+                    {
+                        currentNode.Next = currentNode.Next.Next;
+                        count--;
+                        if (currentNode.Next == null)
+                        {
+                            lastNode = currentNode;
+                        }
+                        return true;
+                    }
+                    currentNode = currentNode.Next;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Operation updates an item provided as an input with a new item
+        /// (also provided as an input)
+        /// </summary>
+        /// <param name="oldItem"></param>
+        /// <param name="newItem"></param>
+        /// <returns></returns>
+        public bool Update(T oldItem, T newItem)
+        {
+            lock (this)
+            {
+                ListNode<T> currentNode = firstNode;
+                while (currentNode != null)
+                {
+                    if (currentNode.ToString().Equals(oldItem.ToString()))
+                    {
+                        currentNode.Item = newItem;
+                        return true;
+                    }
+                    currentNode = currentNode.Next;
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Returns true if list contains the input item else false
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool Contains(T item)
+        {
+            lock (this)
+            {
+                ListNode<T> currentNode = firstNode;
+                while (currentNode != null)
+                {
+                    if (currentNode.Item.ToString().Equals(item.ToString()))
+                    {
+                        return true;
+                    }
+                    currentNode = currentNode.Next;
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Operation resets the list and clears all its contents
+        /// </summary>
         public void Clear()
         {
-            throw new NotImplementedException();
+            firstNode = lastNode = null;
+            count = 0;
         }
 
-        public bool Contains(T item)
+        /// <summary>
+        /// Operation to reverse the contents of the linked list
+        /// by resetting the pointers and swapping the contents
+        /// </summary>
+        public void Reverse()
+        {
+            if (firstNode == null || firstNode.Next == null)
+            {
+                return;
+            }
+            lastNode = firstNode;
+            ListNode<T> prevNode = null;
+            ListNode<T> currentNode = firstNode;
+            ListNode<T> nextNode = firstNode.Next;
+
+            while (currentNode != null)
+            {
+                currentNode.Next = prevNode;
+                if (nextNode == null)
+                {
+                    break;
+                }
+                prevNode = currentNode;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
+            }
+            firstNode = currentNode;
+        }
+
+        /// <summary>
+        /// Operation to find if the linked list contains a circular loop
+        /// </summary>
+        /// <returns></returns>
+        public bool HasCycle()
+        {
+            ListNode<T> currentNode = firstNode;
+            ListNode<T> iteratorNode = firstNode;
+            for (;
+                iteratorNode != null && iteratorNode.Next != null;
+                iteratorNode = iteratorNode.Next)
+            {
+                if (currentNode.Next == null || currentNode.Next.Next == null)
+                {
+                    return false;
+                }
+                if (currentNode.Next == iteratorNode || currentNode.Next.Next == iteratorNode)
+                {
+                    return true;
+                }
+                currentNode = currentNode.Next.Next;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Operation to find the midpoint of a list
+        /// </summary>
+        /// <returns></returns>
+        public ListNode<T> GetMiddleItem()
+        {
+            ListNode<T> currentNode = firstNode;
+            ListNode<T> iteratorNode = firstNode;
+            for (;
+                iteratorNode != null && iteratorNode.Next != null;
+                iteratorNode = iteratorNode.Next)
+            {
+                if (currentNode.Next == null || currentNode.Next.Next == null)
+                {
+                    return iteratorNode;
+                }
+                if (currentNode.Next == iteratorNode || currentNode.Next.Next == iteratorNode)
+                {
+                    return null;
+                }
+                currentNode = currentNode.Next.Next;
+            }
+            return firstNode;
+        }
+
+        #region IEnumarable<T> Members
+
+        public IEnumerator<T> GetEnumerator() 
+        {
+            ListNode<T> currentNode = firstNode;
+            while (currentNode != null)
+            {
+                yield return currentNode.Item;
+                currentNode = currentNode.Next;
+            }
+        }
+
+        #endregion
+
+        #region IEnumerable Members
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
+        public void Add(T item)
         {
             throw new NotImplementedException();
         }
@@ -226,19 +566,6 @@ namespace DLL
             get { throw new NotImplementedException(); }
         }
 
-        public bool Remove(T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
