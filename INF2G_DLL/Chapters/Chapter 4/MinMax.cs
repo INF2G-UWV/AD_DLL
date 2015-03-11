@@ -8,7 +8,7 @@ using DLL;
 
 namespace INF2G_DLL.Chapters.Chapter_4
 {
-    internal class Program
+    internal class MinMax
     {
         public static void Run(string[] args)
         {
