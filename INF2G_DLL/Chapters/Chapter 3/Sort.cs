@@ -18,15 +18,25 @@ namespace INF2G_DLL.Chapters.Chapter_3
 
         public static void SortingProgram()
         {
-            ArrayList RandomString = new ArrayList();
-
+            // String met letters en cijfers
             string strings = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+
+            // Lege string
             string EmptyString = "";
+
+            // De orginele array met strings
             string[] stringArray = new string[10];
+
+            // Array waar de orginele array naar toe wordt gekopieerd
             string[] sortedArray = new string[10];
+
+            // Random wordt gebruikt om random strings te kunnen maken
             Random random = new Random(100);
+
+            // De sorting class wordt gebruikt om de arrays te sorteren
             Sorting<string> sort = new Sorting<string>(stringArray);
 
+            // Een dubbele loop om 10 random strings automatisch te genereren
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j <= 8; j++)
@@ -37,8 +47,10 @@ namespace INF2G_DLL.Chapters.Chapter_3
                 EmptyString = "";
             }
 
+            // Kopie van de orginele array
             stringArray.CopyTo(sortedArray, 0);
 
+            // Zolang het programma true is (dus het programma is draaiende) laat dan het volgende zien
             while (true)
             {
                 Console.WriteLine();
@@ -52,12 +64,19 @@ namespace INF2G_DLL.Chapters.Chapter_3
                 Console.WriteLine();
                 Console.WriteLine();
 
+                // Het lezen van invoer
                 string choice = Console.ReadLine();
+
+                // De invoer omzetten naar kleine letter
                 choice = choice.ToLower();
+
+                // De kleine letters in een char array toevoegen
                 char[] oneChar = choice.ToCharArray();
 
+                // Switch statement voor het uitvoeren van de verschillende codes
                 switch (oneChar[0])
                 {
+                        // Printen van de orginele array
                     case 'p':
                         Console.WriteLine();
                         Console.WriteLine("An unsorted list");
@@ -67,6 +86,8 @@ namespace INF2G_DLL.Chapters.Chapter_3
                             Console.WriteLine(singleString);
                         }
                         break;
+
+                        // Sorteren van de gekopieerde array met de BubbleSort()
                     case 'b':
                         Console.WriteLine();
                         Console.WriteLine("List sorted by the BubbleSort");
@@ -77,6 +98,8 @@ namespace INF2G_DLL.Chapters.Chapter_3
                             Console.WriteLine(singleString);
                         }
                         break;
+
+                        // Sorteren van de gekopieerde array met de InsertionSort()
                     case 'i':
                         Console.WriteLine();
                         Console.WriteLine("List sorted by the InsertionSort");
@@ -87,9 +110,13 @@ namespace INF2G_DLL.Chapters.Chapter_3
                             Console.WriteLine(singleString);
                         }
                         break;
+
+                        // Leegmaken van de console op de codes na
                     case 'c':
                         Console.Clear();
                         break;
+
+                        // Afsluiten van het programma
                     case 'x':
                         Environment.Exit(0);
                         break;

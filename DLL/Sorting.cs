@@ -13,12 +13,22 @@ namespace DLL
 
         private Comparer comparer;
 
+        /// <summary>
+        /// Het aanmaken van een sorting class. Een array moet als parameter meegegeven worden.
+        /// Het maakt niet uit van welk type object, doordat de class generiek is.
+        /// </summary>
+        /// <param name="array"></param>
         public Sorting(T[] array)
         {
             this.array = array;
             comparer = Comparer.Default;
         }
 
+        /// <summary>
+        /// Het sorteren van een Array op alfabetische volgorde. Alle mogelijke objecten kunnen erin.
+        /// Van strings tot integers.
+        /// </summary>
+        /// <param name="array"></param>
         public void BubbleSort(T[] array)
         {
             for (int outer = array.Length - 1; outer > 1; outer--)
@@ -36,6 +46,11 @@ namespace DLL
             }
         }
 
+        /// <summary>
+        /// Het sorteren van een Array op alfabetische volgorde. Alle mogelijke objecten kunnen erin.
+        /// Van strings tot integers.
+        /// </summary>
+        /// <param name="array"></param>
         public void InsertionSort(T[] array)
         {
             int inner;
