@@ -6,7 +6,7 @@ namespace DLL
     ///     BinarySearch Class
     ///     Chapter 3
     /// </summary>
-    public class BinarySearch<T>
+    public class Queue<T>
     {
         public void Search<T>(T[] array, int index)
         {

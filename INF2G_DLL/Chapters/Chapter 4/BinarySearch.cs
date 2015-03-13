@@ -16,7 +16,7 @@ namespace INF2G_DLL.Chapters.Chapter_4
             };
 
             // Create a Generic BinarySearch;
-            var bsearch = new BinarySearch<string>();
+            var bsearch = new Queue<string>();
 
             // Sort the above array ascending;
             Array.Sort(rndWords);
