@@ -17,8 +17,12 @@
         private bool Search<T>(T[] arr, T sValue)
         {
             for (var index = 0; index < arr.Length - 1; index++)
+            {
                 if (arr[index].Equals(sValue))
+                {
                     return true;
+                }
+            }
             return false;
         }
     }
