@@ -45,8 +45,9 @@
     <Compile Include="Chapters\Chapter 3\Sort.cs" />
     <Compile Include="Chapters\Chapter 4\BinarySearch.cs" />
     <Compile Include="Chapters\Chapter 4\MinMax.cs" />
+    <Compile Include="Chapters\Chapter 5\Queue.cs" />
     <Compile Include="Chapters\Chapter 7\Strings.cs" />
-    <Compile Include="Chapters\Chapter2\ArrayListTest.cs" />
+    <Compile Include="Chapters\Chapter 2\ArrayListTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
