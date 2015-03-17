@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DLL
 {
@@ -6,7 +8,7 @@ namespace DLL
     ///     BinarySearch Class
     ///     Chapter 3
     /// </summary>
-    public class BinarySearch<T>
+    public class BinarySearch<T> where T : IComparable<T>
     {
         public void Search<T>(T[] array, int index)
         {
@@ -35,7 +37,6 @@ namespace DLL
                 {
                     Console.Write("{0} and ", array[index - 1]);
                 }
-
 
                 // When the index equals Array[], 
                 // it searches at the end of the array;

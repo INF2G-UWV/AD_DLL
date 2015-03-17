@@ -11,49 +11,73 @@ namespace DLL
     public class Queue<T> where T : IComparable<T>
     {
         // Make a List to store all the items in it;
-        private List<T> pqList;
-        
+        private LinkedList<T> qList;
+
         public Queue()
         {
-            pqList = new List<T>();
+            qList = new LinkedList<T>();
         }
 
-        // Add items to the queue. Add new items as the first Queue (First in, First out);
+        // If the list is empty, add an item in the first index
+        // Add items to the queue. Add new items as the first index (First in, First out);
+        // Else, add all items as the last index
         public void Enqueue(T item)
         {
-            pqList.Insert(0, item);
-        }
+            if (IsEmpty)
+            {
+                qList.AddFirst(item);
+                return;
+            }
+            LinkedListNode<T> existingItem = qList.First;
 
+            while (existingItem != null && existingItem.Value.CompareTo(item) < 0)
+            {
+                existingItem = existingItem.Next;
+            }
+        }
+        
+        // Get the first item in the Queue
         // Delete the first item from the Queue. (First in, First Out);
+        // return the new first item in the Queue after deletion
         public T Dequeue()
         {
-            T frontItem = pqList[0];
+            T value = qList.First.Value;
+            qList.RemoveFirst();
+            return value;
+
+            /*T temp = pqList[0];
             pqList.RemoveAt(0);
-            return frontItem;
+            return temp;*/
         }
 
-        // Look at the next item in the Queue;
+        // Look at the first item in the Queue;
         public T Peek()
         {
-            return pqList.First();
+            return qList.First.Value;
         }
 
         // The total Queue's that are left in the Queue;
         public int Count()
         {
-            return pqList.Count;
+            return qList.Count;
         }
 
         // Empty the list;
         public void Clear()
         {
-            pqList.Clear();
+            qList.Clear();
         }
 
         // Checks for items in the Queue. If it does - return TRUE | If it doesn't - return false;
         public bool Contains(T item)
         {
-            return pqList.Contains(item);
+            return qList.Contains(item);
+        }
+
+        // Check for Empty list
+        public bool IsEmpty
+        {
+            get { return qList.Count == 0; }
         }
     }
 
