@@ -462,11 +462,11 @@ namespace DLL
         public void ShowList()
         {
             ListNode<T> current = firstNode;
-            while (!(current == null))
+            do
             {
                 Console.WriteLine(current.Item);
                 current = current.Next;
-            }
+            } while (!(current == null));
         }
 
         /// <summary>
