@@ -65,6 +65,15 @@ namespace DLL
         }
     }
 
+    public class InsertBeforeHeaderException : System.ApplicationException
+    {
+        public InsertBeforeHeaderException(string message)
+            : base(message)
+        {
+
+        }
+    }
+
     /// <summary>
     /// SinglyLinkedList class for generic implementation of LinkedList.
     /// Again, avoiding boxing unboxing here and using ICollection interface members.
@@ -450,6 +459,16 @@ namespace DLL
             count = 0;
         }
 
+        public void ShowList()
+        {
+            ListNode<T> current = firstNode;
+            do
+            {
+                Console.WriteLine(current.Item);
+                current = current.Next;
+            } while (!(current == null));
+        }
+
         /// <summary>
         /// Operation to reverse the contents of the linked list
         /// by resetting the pointers and swapping the contents
@@ -551,19 +570,42 @@ namespace DLL
         }
 
         #endregion
-        public void Add(T item)
+        void ICollection<T>.Add(T item)
         {
-            throw new NotImplementedException();
+            InsertAtBack(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if (array == null)
+            {
+                throw new ArgumentNullException("Empty Array");
+            }
+
+            if (arrayIndex < 0 || arrayIndex > array.Length)
+            {
+                throw new ArgumentOutOfRangeException("Buiten de array index");
+            }
+
+            if (array.Length - arrayIndex < Count)
+            {
+                throw new ArgumentException();
+            }
+
+            ListNode<T> node = firstNode;
+            if (node != null)
+            {
+                do
+                {
+                    array[arrayIndex++] = node.Item;
+                    node = node.Next;
+                } while (node != null);
+            }
         }
 
-        public bool IsReadOnly
+        bool ICollection<T>.IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { return false; }
         }
 
         
