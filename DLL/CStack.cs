@@ -116,8 +116,6 @@ namespace DLL
             return temp;
         }
 
-
-
         /// <summary>
         /// Get all stack items
         /// </summary>
