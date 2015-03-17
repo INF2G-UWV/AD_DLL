@@ -7,7 +7,7 @@ using DLL;
 
 namespace INF2G_DLL.Chapters.Chapter_5
 {
-    internal class StackTest
+    internal class stackTest
     {
         public static void Run(string[] args)
         {
