@@ -14,12 +14,14 @@ namespace INF2G_DLL.Chapters.Chapter_5
 
         public static void QueueTest2()
         {
-            // Create a Generic Queue and Timer
+            // Create a Generic Queue and Timer;
             NormalQueue<string> rndWords = new NormalQueue<string>();
             HighResolutionTimer timer = new HighResolutionTimer(true);
 
+            // Two variables which choice stores the command pressed, and value typed in the input;
             string choice, value1;
-            
+
+            // Commands that are available;
             Console.WriteLine("\nCommand to follow!");
             Console.WriteLine("(1) Enqueue");
             Console.WriteLine("(2) Dequeue");
@@ -27,71 +29,50 @@ namespace INF2G_DLL.Chapters.Chapter_5
             Console.WriteLine("(4) Contains");
             Console.WriteLine("(5) Print Queue list");
             Console.WriteLine("(6) Clear");
+            Console.WriteLine("(7) Exit");
 
-            while (true)
+            // While the console applications runs, the commands can be executed;
+            bool runProgram = true;
+            while (runProgram)
             {
                 Console.Write("\nSelect command: ");
                 choice = Console.ReadLine();
                 choice = choice.ToLower();
 
-                if (choice == "1")
+                if (choice == "1")                          // If pressed 1, add item to the Queue;
                 {
                     Console.WriteLine();
                     Console.Write("Enter item to Enqeue: ");
                     value1 = Console.ReadLine();
-                    rndWords.EnqueueT(value1);
+                    rndWords.Enqueue(value1);
                 }
-                else if (choice == "2")
-                {
-                    if (!(rndWords.IsEmpty))
-                    {
-                        Console.WriteLine();
-                        Console.Write("Dequeueing the first item in the Queue: '{0}'", rndWords.Dequeue());
-                        Console.WriteLine();
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("There is no item to Dequeue");
-                    }
-                }
-                else if (choice == "3")
-                {
-                    if (!(rndWords.IsEmpty))
-                    {
-                        Console.WriteLine();
-                        Console.Write("Peek at the first item in the Queue: '{0}'", rndWords.Peek());
-                        Console.WriteLine();
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nThere is no item to Peek at");
-                    }
-                }
-                else if (choice == "4")
-                {
-                    if (!(rndWords.IsEmpty))
-                    {
-                        Console.WriteLine();
-                        Console.Write("Enter item to check if it Contains in the List: ");
-                        value1 = Console.ReadLine();
-                        Console.Write(rndWords.Contains(value1)
-                            ? "Item is found in the index"
-                            : "Item is not found in the index");
-                        Console.WriteLine();
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nThere is no item to check for");
-                    }
-                }
-                else if (choice == "5")
+                else if (choice == "2")                     // If pressed 2, delete first item in the Queue;
                 {
                     Console.WriteLine();
-                    Console.Write("Items in the Queue: " + rndWords.Count() + " item(s)");
+                    Console.Write("Dequeueing the first item in the Queue: '{0}'", rndWords.Dequeue());
                     Console.WriteLine();
                 }
-                else if (choice == "6")
+                else if (choice == "3")                     // If pressed 3, peek at the first item in the Queue;
+                {
+                    Console.WriteLine();
+                    Console.Write("Peek at the first item in the Queue: '{0}'", rndWords.Peek());
+                    Console.WriteLine();
+                }
+                else if (choice == "4")                     // If pressed 4, check if the item Contains in the list;
+                {
+                    Console.WriteLine();
+                    Console.Write("Enter item to check if it Contains in the List: ");
+                    value1 = Console.ReadLine();
+                    Console.Write(rndWords.Contains(value1) ? "Item is found in the index" : "Item is not found in the index");
+                    Console.WriteLine();
+                }
+                else if (choice == "5")                     // If pressed 5, display all the items in the Queue;
+                {
+                    Console.WriteLine();
+                    rndWords.GetAllQueueItems();
+                    Console.WriteLine();
+                }
+                else if (choice == "6")                     // If pressed 6, clear the Queue list;
                 {
                     Console.WriteLine();
                     Console.Write("The Queue list has been cleared! ");
@@ -99,14 +80,20 @@ namespace INF2G_DLL.Chapters.Chapter_5
                     Console.Write(rndWords.Count() + " item(s) remain in the list");
                     Console.WriteLine();
                 }
+                else if (choice == "7")
+                {
+                    runProgram = false;                     // If pressed 7, close the Program;
+                }
                 else
                 {
                     Console.WriteLine();
                     Console.Write("Unknown command");
+                    Console.WriteLine();
                 }
             }
         }
 
+        // Deze is niet goed
         #region
         public static void QueueTest()
         {

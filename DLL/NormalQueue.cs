@@ -19,10 +19,15 @@ namespace DLL
             qList = new LinkedList<T>();
         }
 
-        // If the list is empty, add an item in the first index
-        // Add items to the queue. Add new items as the first index (First in, First out);
-        // Else, add all items as the last index
-        public void EnqueueT(T item)
+        /// <summary>
+        /// When the list is still empty, Add (Enqueue) new item as first in the Queue,
+        /// else add it at the back of the Queue;
+        /// 
+        /// Creata a LinkedListNode that has the first item in the list (Queue),
+        /// while the items exists (compareTo : IComparable) pass the Node
+        /// to the next in Queue;
+        /// </summary>
+        public void Enqueue(T item)
         {
             if (IsEmpty)
             {
@@ -33,52 +38,106 @@ namespace DLL
             {
                 qList.AddLast(item);
             }
-            
+
             LinkedListNode<T> existingItem = qList.First;
             while (existingItem != null && existingItem.Value.CompareTo(item) < 0)
             {
                 existingItem = existingItem.Next;
             }
         }
-        
-        // Get the first item in the Queue
-        // Delete the first item from the Queue. (First in, First Out);
-        // return the new first item in the Queue after deletion
+
+        /// <summary>
+        /// It removes (Dequeues) the first item in the Queue: First in, First Out.
+        /// Returns the new first items in the Queue after deletion with the 
+        /// temp variable;
+        /// </summary>
         public T Dequeue()
         {
-            T value = qList.First.Value;
-            qList.RemoveFirst();
-            return value;
+            T temp = default(T);
+            if (!IsEmpty)
+            {
+                temp = qList.First.Value;
+                qList.RemoveFirst();
+            }
+            else
+            {
+                Console.WriteLine("There are no items to Dequeue");
+            }
+            return temp;
         }
 
-        // Look at the first item in the Queue;
+        /// <summary>
+        /// Stores the first item in the Queue in a temp variable
+        /// and returns it with a Peek();
+        /// </summary>
         public T Peek()
         {
-            return qList.First.Value;
+            T temp = default(T);
+            if (!IsEmpty)
+            {
+                temp = qList.First.Value;
+            }
+            else
+            {
+                Console.WriteLine("There are no items to Peek at");
+            }
+            return temp;
         }
 
-        // The total Queue's that are left in the Queue;
+        /// <summary>
+        /// Returns the total items in the Queue in numbers;
+        /// </summary>
         public int Count()
         {
             return qList.Count;
         }
 
-        // Empty the list;
+        /// <summary>
+        /// Clears the list. Removes all the items in the Queue;
+        /// </summary>
         public void Clear()
         {
             qList.Clear();
         }
 
-        // Checks for items in the Queue. If it does - return TRUE | If it doesn't - return false;
+
+        /// <summary>
+        /// Checks for items that are already in the Queue. 
+        /// If it finds one - returns TRUE | If it doesn't - returns false;
+        /// </summary>
+
         public bool Contains(T item)
         {
-            return qList.Contains(item);
+            var value = qList.Contains(item);
+            return value;
         }
 
-        // Check for Empty list
+
+        /// <summary>
+        /// Check for Empty list;
+        /// </summary>
         public bool IsEmpty
         {
             get { return qList.Count == 0; }
+        }
+
+        /// <summary>
+        /// Displays all items in the Queue;
+        /// </summary>
+        public void GetAllQueueItems()
+        {
+            if (!IsEmpty)
+            {
+                Console.WriteLine("Items in the Queue: ");
+                foreach (var item in qList)
+                {
+                    Console.Write(item + ", ");
+                }
+            }
+            else
+            {
+                Console.Write("There are no items to display");
+            }
         }
     }
 
