@@ -51,8 +51,9 @@ namespace INF2G_DLL.Chapters.Chapter_3
                 Console.WriteLine();
                 Console.WriteLine("Enter a key from the list: ");
                 Console.WriteLine("(p) Print a unsorted list.");
-                Console.WriteLine("(b) Print a list sorted with the BubbleSort.");
-                Console.WriteLine("(i) Print a list sorted with the InsertionSort.");
+                Console.WriteLine("(b) Print a list sorted with the BubbleSort algorithm.");
+                Console.WriteLine("(s) Print a list sorted with the SmartBubbleSort algorithm.");
+                Console.WriteLine("(i) Print a list sorted with the InsertionSort algorithm.");
                 Console.WriteLine("(c) Clear console");
                 Console.WriteLine("(x) Exit program");
                 Console.WriteLine();
@@ -86,9 +87,21 @@ namespace INF2G_DLL.Chapters.Chapter_3
                         // Sorteren van de gekopieerde array met de BubbleSort()
                         case 'b':
                             Console.WriteLine();
-                            Console.WriteLine("List sorted by the BubbleSort");
+                            Console.WriteLine("List sorted by the BubbleSort algorithm");
                             Console.WriteLine();
                             sort.BubbleSort(sortedArray);
+                            foreach (var singleString in sortedArray)
+                            {
+                                Console.WriteLine(singleString);
+                            }
+                            break;
+
+                        // Sorteren van de gekopieerde array met de BubbleSort()
+                        case 's':
+                            Console.WriteLine();
+                            Console.WriteLine("List sorted by the SmartBubbleSort algorithm");
+                            Console.WriteLine();
+                            sort.SmartBubbleSort(sortedArray);
                             foreach (var singleString in sortedArray)
                             {
                                 Console.WriteLine(singleString);
@@ -98,7 +111,7 @@ namespace INF2G_DLL.Chapters.Chapter_3
                         // Sorteren van de gekopieerde array met de InsertionSort()
                         case 'i':
                             Console.WriteLine();
-                            Console.WriteLine("List sorted by the InsertionSort");
+                            Console.WriteLine("List sorted by the InsertionSort algorithm");
                             Console.WriteLine();
                             sort.InsertionSort(sortedArray);
                             foreach (var singleString in sortedArray)

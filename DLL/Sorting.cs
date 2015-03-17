@@ -40,6 +40,33 @@ namespace DLL
         }
 
         /// <summary>
+        /// Smart Bubble Sort.
+        /// Functions the same as Bubble Sort, but now stops searching once no more changes in a certain pass are made.
+        /// </summary>
+        /// <param name="array"></param>
+        public void SmartBubbleSort(T[] array)
+        {
+            for (var outer = array.Length - 1; outer > 1; outer--)
+            {
+                var valueChanged = false;
+                for (var inner = 0; inner < outer; inner++)
+                {
+                    if (comparer.Compare(array[inner], array[inner + 1]) > 0)
+                    {
+                        var temp = array[inner];
+                        array[inner] = array[inner + 1];
+                        array[inner + 1] = temp;
+                        valueChanged = true;
+                    }
+                }
+                if (!valueChanged)
+                {
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
         ///     Het sorteren van een Array op alfabetische volgorde. Alle mogelijke objecten kunnen erin.
         ///     Van strings tot integers.
         /// </summary>

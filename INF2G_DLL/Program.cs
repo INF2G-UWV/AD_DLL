@@ -6,7 +6,7 @@ namespace INF2G_DLL
     {
         private static void Main(string[] args)
         {
-            Sort.Run(args);
+            INF2G_DLL.Chapters.Chapter_11.ExampleSingleLinkedList.Run(args);
         }
     }
 }

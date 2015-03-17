@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using DLL;
 
 namespace INF2G_DLL.Chapters.Chapter_4
@@ -18,8 +19,16 @@ namespace INF2G_DLL.Chapters.Chapter_4
             // Create a Generic BinarySearch;
             var bsearch = new BinarySearch<string>();
 
+            // Items in the Array;
+            Console.WriteLine("\nAll the items in the Array:");
+            PrintValues(rndWords);
+            Console.WriteLine("");
+
             // Sort the above array ascending;
+            Console.WriteLine("\nSorting Array:");
             Array.Sort(rndWords);
+            PrintValues(rndWords);
+            Console.WriteLine("");
 
             // Search for an item in the Array | Example: Bread;
             // Positive test
@@ -34,6 +43,14 @@ namespace INF2G_DLL.Chapters.Chapter_4
             bsearch.Search(rndWords, index2);
 
             Console.ReadLine();
+        }
+
+        public static void PrintValues(IEnumerable rndWords)
+        {
+            foreach (object rndWord in rndWords)
+            {
+                Console.Write(rndWord + ", ");
+            }
         }
     }
 }
