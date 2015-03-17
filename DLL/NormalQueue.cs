@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,12 +9,12 @@ namespace DLL
     ///     Queue Class
     ///     Chapter 5
     /// </summary>
-    public class Queue<T> where T : IComparable<T>
+    public class NormalQueue<T> where T : IComparable<T>
     {
         // Make a List to store all the items in it;
         private LinkedList<T> qList;
 
-        public Queue()
+        public NormalQueue()
         {
             qList = new LinkedList<T>();
         }
@@ -21,15 +22,19 @@ namespace DLL
         // If the list is empty, add an item in the first index
         // Add items to the queue. Add new items as the first index (First in, First out);
         // Else, add all items as the last index
-        public void Enqueue(T item)
+        public void EnqueueT(T item)
         {
             if (IsEmpty)
             {
                 qList.AddFirst(item);
                 return;
             }
+            else
+            {
+                qList.AddLast(item);
+            }
+            
             LinkedListNode<T> existingItem = qList.First;
-
             while (existingItem != null && existingItem.Value.CompareTo(item) < 0)
             {
                 existingItem = existingItem.Next;
@@ -44,10 +49,6 @@ namespace DLL
             T value = qList.First.Value;
             qList.RemoveFirst();
             return value;
-
-            /*T temp = pqList[0];
-            pqList.RemoveAt(0);
-            return temp;*/
         }
 
         // Look at the first item in the Queue;

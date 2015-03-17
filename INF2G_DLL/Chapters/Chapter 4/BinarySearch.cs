@@ -8,6 +8,9 @@ namespace INF2G_DLL.Chapters.Chapter_4
     {
         public static void Run(string[] args)
         {
+            // Create a timer
+            var timer = new HighResolutionTimer(true);
+
             // Create an array and fill it;
             string[] rndWords =
             {
@@ -30,7 +33,8 @@ namespace INF2G_DLL.Chapters.Chapter_4
             PrintValues(rndWords);
             Console.WriteLine("");
 
-            // Search for an item in the Array | Example: Bread;
+            timer.Start();
+            // Search for an item in the Array | Example: Laptop;
             // Positive test
             Console.WriteLine("\nBinarySearch for 'Laptop':");
             var index1 = Array.BinarySearch(rndWords, "Laptop");
@@ -41,6 +45,9 @@ namespace INF2G_DLL.Chapters.Chapter_4
             Console.WriteLine("\nBinarySearch for 'IceCream':");
             var index2 = Array.BinarySearch(rndWords, "IceCream");
             bsearch.Search(rndWords, index2);
+
+            timer.Stop();
+            Console.WriteLine("Time needed for search: " + timer.Duration(TimeResolution.Seconds));
 
             Console.ReadLine();
         }

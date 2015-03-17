@@ -12,10 +12,6 @@ namespace DLL
     {
         public void Search<T>(T[] array, int index)
         {
-            // Create a timer
-            var timer = new HighResolutionTimer(true);
-
-            timer.Start();
             // If the Array[] index is negative;
             if (index < 0)
             {
@@ -57,8 +53,6 @@ namespace DLL
                 // it prints out the index location in the Array[];
                 Console.WriteLine("Found at index {0}.", index);
             }
-            timer.Stop();
-            Console.WriteLine("Time needed for search: " + timer.Duration(TimeResolution.Seconds));
         }
     }
 }

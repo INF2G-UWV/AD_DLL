@@ -40,8 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayList.cs" />
-    <Compile Include="PriorityQueue.cs" />
-    <Compile Include="Queue.cs" />
+    <Compile Include="NormalQueue.cs" />
     <Compile Include="CollectionBase.cs" />
     <Compile Include="dll.cs" />
     <Compile Include="HighResolutionTimer.cs" />
