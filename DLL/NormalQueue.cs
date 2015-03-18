@@ -24,7 +24,7 @@ namespace DLL
         /// else add it at the back of the Queue;
         /// 
         /// Creata a LinkedListNode that has the first item in the list (Queue),
-        /// while the items exists (compareTo : IComparable) pass the Node
+        /// while the items exists (compareTo : IComparable) get the Node
         /// to the next in Queue;
         /// </summary>
         public void Enqueue(T item)
@@ -34,10 +34,7 @@ namespace DLL
                 qList.AddFirst(item);
                 return;
             }
-            else
-            {
-                qList.AddLast(item);
-            }
+            qList.AddLast(item);
 
             LinkedListNode<T> existingItem = qList.First;
             while (existingItem != null && existingItem.Value.CompareTo(item) < 0)
@@ -57,29 +54,31 @@ namespace DLL
             if (!IsEmpty)
             {
                 temp = qList.First.Value;
+                Console.Write("Dequeueing the first item in the Queue: ");
                 qList.RemoveFirst();
             }
             else
             {
-                Console.WriteLine("There are no items to Dequeue");
+                Console.Write("There are no items to Dequeue");
             }
             return temp;
         }
 
         /// <summary>
         /// Stores the first item in the Queue in a temp variable
-        /// and returns it with a Peek();
+        /// and returns it if the Queue is not empty;
         /// </summary>
         public T Peek()
         {
             T temp = default(T);
             if (!IsEmpty)
             {
+                Console.Write("Peek at the first item in the Queue: ");
                 temp = qList.First.Value;
             }
             else
             {
-                Console.WriteLine("There are no items to Peek at");
+                Console.Write("There are no items to Peek at");
             }
             return temp;
         }
@@ -97,19 +96,28 @@ namespace DLL
         /// </summary>
         public void Clear()
         {
+            Console.Write("The Queue list has been cleared! ");
             qList.Clear();
+            Console.Write(qList.Count() + " item(s) remain in the list");
         }
 
 
         /// <summary>
         /// Checks for items that are already in the Queue. 
-        /// If it finds one - returns TRUE | If it doesn't - returns false;
+        /// If it finds one - returns Item is found in the index; | If it doesn't - returns Item is not found in the index";
         /// </summary>
 
-        public bool Contains(T item)
+        public void Contains(T item)
         {
-            var value = qList.Contains(item);
-            return value;
+            if (!IsEmpty)
+            {
+                Console.Write(qList.Contains(item) ? "Item is found in the index" : "Item is not found in the index");
+                qList.Contains(item);
+            }
+            else
+            {
+                Console.Write("There are no items to Search through");
+            }
         }
 
 
