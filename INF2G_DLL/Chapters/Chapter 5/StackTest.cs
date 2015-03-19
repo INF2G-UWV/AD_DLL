@@ -13,7 +13,7 @@ namespace INF2G_DLL.Chapters.Chapter_5
         {
             //Initialize a generic type CSstack obj, with a 4 spots
             CStack<string> stack = new CStack<string>(4);
-            //Push 5 objects into stack, where fill positions will be filled
+            //Push 5 objects into stack, where positions will be filled
             stack.Push("test1");
             stack.Push("test2");
             stack.Push("test3");
