@@ -75,13 +75,13 @@ namespace DLL.Chapter12
         {
             this.root = null;
         }
-
+        /*
         /// <summary>Inserts new value in the binary search tree
         /// </summary>
         /// <param name="value">the value to be inserted</param>
         public void Insert(T value)
         {
             this.root = Insert(value, null, root);
-        }
+        }*/
     }
 }
