@@ -106,7 +106,6 @@ namespace DLL
         /// Checks for items that are already in the Queue. 
         /// If it finds one - returns Item is found in the index; | If it doesn't - returns Item is not found in the index";
         /// </summary>
-
         public void Contains(T item)
         {
             if (!IsEmpty)
@@ -118,15 +117,6 @@ namespace DLL
             {
                 Console.Write("There are no items to Search through");
             }
-        }
-
-
-        /// <summary>
-        /// Check for Empty list;
-        /// </summary>
-        public bool IsEmpty
-        {
-            get { return qList.Count == 0; }
         }
 
         /// <summary>
@@ -146,6 +136,14 @@ namespace DLL
             {
                 Console.Write("There are no items to display");
             }
+        }
+
+        /// <summary>
+        /// Check for Empty list;
+        /// </summary>
+        public bool IsEmpty
+        {
+            get { return qList.Count == 0; }
         }
     }
 

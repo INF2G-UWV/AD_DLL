@@ -47,6 +47,7 @@
     <Compile Include="Chapters\Chapter 4\BinarySearch.cs" />
     <Compile Include="Chapters\Chapter 4\MinMax.cs" />
     <Compile Include="Chapters\Chapter 5\NormalQueueTest.cs" />
+    <Compile Include="Chapters\Chapter 5\PQueueTest.cs" />
     <Compile Include="Chapters\Chapter 5\StackTest.cs" />
     <Compile Include="Chapters\Chapter 7\Strings.cs" />
     <Compile Include="Chapters\Chapter 2\ArrayListTest.cs" />

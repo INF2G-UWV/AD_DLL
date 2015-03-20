@@ -9,13 +9,15 @@ namespace INF2G_DLL.Chapters.Chapter_5
     {
         public static void Run(string[] args)
         {
-            // Deze is met tijdmeetingen, zonder UI
-            // QueueTest();
+            // Zonder UI, maar met tijd metingen;
+            QueueTest();
             
             // Zonder tijdmeetingen, met UI
-            QueueTest2();
+            //QueueTest2();
         }
 
+        // Zonder tijdmeetingen, met UI
+        #region
         public static void QueueTest2()
         {
             // Create a Generic Queue
@@ -93,19 +95,20 @@ namespace INF2G_DLL.Chapters.Chapter_5
                 }
             }
         }
+        #endregion
 
-        // Zonder UI, maar met tijd metingen
+        // Zonder UI, maar met tijd metingen;
         #region
         public static void QueueTest()
         {
-            // Create a Generic Queue and Timer
+            // Create a Generic Queue and Timer;
             NormalQueue<int> rndWords = new NormalQueue<int>();
             HighResolutionTimer timer = new HighResolutionTimer(true);
 
-            // Timer start
+            // Timer start;
             timer.Start();
 
-            // Vars to add in the Queue
+            // Vars to add in the Queue;
             int one = 1, three = 3, four = 4, five = 5, two = 2;
 
             Console.WriteLine("Adding " + one + ", " + three + ", " + four + ", " + five + ", " + two + " to the queue");
@@ -116,7 +119,7 @@ namespace INF2G_DLL.Chapters.Chapter_5
             rndWords.Enqueue(two);
 
             Console.WriteLine();
-            // Print the total Queue's in the list
+            // Print the total Queue's in the list;
             rndWords.GetAllQueueItems();
 
             Console.WriteLine("\n");
@@ -136,10 +139,10 @@ namespace INF2G_DLL.Chapters.Chapter_5
             Console.WriteLine("{0}", rndWords.Dequeue());
 
             Console.WriteLine();
-            // Print the total Queue's in the list
+            // Print the total Queue's in the list;
             rndWords.GetAllQueueItems();
 
-            // Check for if the items are still in the Queue or not
+            // Check for if the items are still in the Queue or not;
             Console.WriteLine("\n\nCheck for number 4 in the list: ");
             rndWords.Contains(four);
             Console.WriteLine("\n\nCheck for number 5 in the list: ");
@@ -151,10 +154,10 @@ namespace INF2G_DLL.Chapters.Chapter_5
             timer.Stop();
             Console.WriteLine("\n\nTime needed for Queue: " + timer.Duration(TimeResolution.Seconds));
 
-            // Clears the whole Queue
+            // Clears the whole Queue;
             rndWords.Clear();
 
-            // Remaing Queue in the list
+            // Remaing Queue in the list;
             rndWords.Count();
 
             Console.ReadLine();

@@ -48,6 +48,7 @@
     <Compile Include="HighResolutionTimer.cs" />
     <Compile Include="BinarySearch.cs" />
     <Compile Include="MinMax.cs" />
+    <Compile Include="PQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeqSearch.cs" />
     <Compile Include="SinglyLinkedList.cs" />
