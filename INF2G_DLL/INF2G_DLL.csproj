@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chapters\Chapter 11\ExampleDoublyLinkedList.cs" />
     <Compile Include="Chapters\Chapter 11\ExampleSingleLinkedList.cs" />
     <Compile Include="Chapters\Chapter 3\Sort.cs" />
     <Compile Include="Chapters\Chapter 4\BinarySearch.cs" />

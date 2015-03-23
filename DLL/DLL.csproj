@@ -42,6 +42,8 @@
     <Compile Include="ArrayList.cs" />
     <Compile Include="Chapter12\BinarySearchTree.cs" />
     <Compile Include="CStack.cs" />
+    <Compile Include="DoublyLinkedList.cs" />
+    <Compile Include="Node.cs" />
     <Compile Include="NormalQueue.cs" />
     <Compile Include="CollectionBase.cs" />
     <Compile Include="dll.cs" />
