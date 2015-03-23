@@ -44,6 +44,7 @@
     <Compile Include="CircularList.cs" />
     <Compile Include="CStack.cs" />
     <Compile Include="DoublyLinkedList.cs" />
+    <Compile Include="Iterator.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="NormalQueue.cs" />
     <Compile Include="CollectionBase.cs" />
