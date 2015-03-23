@@ -12,11 +12,11 @@ namespace DLL
     public class NormalQueue<T> where T : IComparable<T>
     {
         // Make a List to store all the items in it;
-        private LinkedList<T> qList;
+        private System.Collections.Generic.LinkedList<T> qList;
 
         public NormalQueue()
         {
-            qList = new LinkedList<T>();
+            qList = new System.Collections.Generic.LinkedList<T>();
         }
 
         /// <summary>

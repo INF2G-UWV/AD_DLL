@@ -10,13 +10,13 @@ namespace INF2G_DLL.Chapters.Chapter_5
         public static void Run(string[] args)
         {
             // Zonder UI, maar met tijd metingen;
-            QueueTest();
+            QueueTest1();
             
             // Zonder tijdmeetingen, met UI
             //QueueTest2();
         }
 
-        // Zonder tijdmeetingen, met UI
+        // Zonder tijdmeetingen, met UI | Queuetest2();
         #region
         public static void QueueTest2()
         {
@@ -97,9 +97,9 @@ namespace INF2G_DLL.Chapters.Chapter_5
         }
         #endregion
 
-        // Zonder UI, maar met tijd metingen;
+        // Zonder UI, maar met tijd metingen | QueueTest1();
         #region
-        public static void QueueTest()
+        public static void QueueTest1()
         {
             // Create a Generic Queue and Timer;
             NormalQueue<int> rndWords = new NormalQueue<int>();
@@ -143,11 +143,11 @@ namespace INF2G_DLL.Chapters.Chapter_5
             rndWords.GetAllQueueItems();
 
             // Check for if the items are still in the Queue or not;
-            Console.WriteLine("\n\nCheck for number 4 in the list: ");
+            Console.WriteLine("\n\nCheck for 4 in the list: ");
             rndWords.Contains(four);
-            Console.WriteLine("\n\nCheck for number 5 in the list: ");
+            Console.WriteLine("\n\nCheck for 5 in the list: ");
             rndWords.Contains(five);
-            Console.WriteLine("\n\nCheck for number 2 in the list: ");
+            Console.WriteLine("\n\nCheck for 2 in the list: ");
             rndWords.Contains(two);
 
             // End timer + results

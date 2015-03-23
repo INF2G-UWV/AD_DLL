@@ -1,56 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DLL
 {
     /// <summary>
-    ///     Priority Queue Class
+    ///     Priority Queue Class | Lowest number is Highest Priority
     ///     Chapter 5
     /// </summary>
     public class PQueue<T> where T : IComparable<T>
     {
         // Make a List to store all the items in it;
         private List<T> qList;
-        private List<T> qPriority;
+        private List<int> qPriority;
 
         public PQueue()
         {
             qList = new List<T>();
-            qPriority = new List<T>();
+            qPriority = new List<int>();
         }
 
         /// <summary>
         /// Adds value and priority to the Queue
         /// </summary>
-        public void Enqueue(T value, T priority)
+        public void Enqueue(T value, int priority)
         {
             qList.Add(value);
             qPriority.Add(priority);   
         }
 
+        /// <summary>
+        /// It removes (Dequeues) the Highest Priority item in the Queue.
+        /// Returns the next first items in the Queue after deletion with the 
+        /// temp variable;
+        /// </summary>
         public T Dequeue()
         {
             T value = default(T);
-            T prior = default(T);
+            //T prior = default(T);
 
             if (!IsEmpty)
             {
                 int index = 0;
-                T topPriority = qPriority[0];
+                int topPriority = qPriority[0];
 
+                // Loops through the list
                 for (int i = 1; i < qPriority.Count; i++)
                 {
+                    // IComparable | Compares the first Priority in the list with the 
+                    // Priorities that has been looped through | > 0 checks for the lowest number (highest priority)
                     if (topPriority.CompareTo(qPriority[i]) > 0)
                     {
+                        // saves the highest priority in the var
                         topPriority = qPriority[i];
                         index = i;
                     }
                 }
                 value = qList[index];
-                prior = topPriority;
+                //prior = topPriority;
 
                 Console.Write("Dequeueing the highest Priority item in the Queue: ");
                 qList.RemoveAt(index);
@@ -118,14 +128,17 @@ namespace DLL
         }
 
         /// <summary>
-        /// Displays all items in the Queue;
+        /// Displays all items in the Queue. Loops through
+        /// 2 lists to show the Value + Priority stored in the list;
         /// </summary>
         public void GetAllQueueItems()
         {
             if (!IsEmpty)
             {
+                // 2 foreach loops in 1, qList & qPriority
+                var loop = qList.Zip(qPriority, (first, second) => first + "_Priority = " + second);
                 Console.WriteLine("Items in the Queue: ");
-                foreach (var item in qList)
+                foreach (var item in loop)
                 {
                     Console.Write(item + ", ");
                 }
