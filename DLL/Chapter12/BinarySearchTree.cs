@@ -9,79 +9,51 @@ namespace DLL.Chapter12
     public class BinarySearchTree<T> where T : IComparable<T>
     {
         /// <summary>
-        /// Represents a binary tree node
+        /// Define the root of the tree
         /// </summary>
-        /// <typeparam name="T"Specifies the type for the values
-        /// in the nodes></typeparam>
-        internal class BinaryTreeNode<T> where T : IComparable<T>
-        {
-            //Value of the node
-            internal T value;
-
-            //Parent of the node
-            internal BinaryTreeNode<T> parent;
-
-            //Left child of the node
-            internal BinaryTreeNode<T> leftChild;
-
-            //right child of the node
-            internal BinaryTreeNode<T> rightChild;
-
-            public BinaryTreeNode(T value)
-            {
-                if (value == null)
-                {
-                    //Null are not allowed
-                    throw new ArgumentNullException("Null values are not allowed!");
-                }
-
-                this.value = value;
-                this.parent = null;
-                this.leftChild = null;
-                this.rightChild = null;
-            }
-
-            public override string ToString()
-            {
-                return this.value.ToString();
-            }
-
-            public override int GetHashCode()
-            {
-                return this.value.GetHashCode();
-            }
-
-            public override bool Equals(object obj)
-            {
-                BinaryTreeNode<T> other = (BinaryTreeNode<T>)obj;
-                return this.CompareTo(other) == 0;
-            }
-
-            public int CompareTo(BinaryTreeNode<T> other)
-            {
-                return this.value.CompareTo(other.value);
-            }
-        }
+        private BtNode<T> root;
 
         /// <summary>
-        /// The root of the tree
+        /// Constructor of the BST
         /// </summary>
-        private BinaryTreeNode<T> root;
+        public BinarySearchTree(T value)
+        {
+            this.root = new BtNode<T>(value);
+        }
+
+        //Methods
 
         /// <summary>
-        /// Constructs the tree
+        /// Inserts a new value in the BST
         /// </summary>
-        public BinarySearchTree()
-        {
-            this.root = null;
-        }
-        /*
-        /// <summary>Inserts new value in the binary search tree
-        /// </summary>
-        /// <param name="value">the value to be inserted</param>
+        /// <param name="value">Any object that will be inserted</param>
         public void Insert(T value)
         {
-            this.root = Insert(value, null, root);
-        }*/
+            root.Insert(value, null, root);
+        }
+
+        /// <summary>Returns whether given value exists in the tree
+        /// </summary>
+        /// <param name="value">the value to be checked</param>
+        /// <returns>true if the value is found in the tree</returns>
+        public bool Contains(T value)
+        {
+            BtNode<T> temp = new BtNode<T>(value);
+            bool found = temp.Find(value, root) != null;
+            return found;
+        }
+
+        public BtNode<T> Root
+        {
+            get { return root; }
+            set { root = value; }
+        }
+
+        /// <summary>Traverses and prints the tree</summary>
+        public void PrintTreeDFS()
+        {
+            root.PrintTreeDFS(root);
+            Console.WriteLine();
+        }
     }
 }
