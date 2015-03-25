@@ -11,7 +11,7 @@ namespace DLL.Chapter12
         /// <summary>
         /// Define the root of the tree
         /// </summary>
-        private BtNode<T> root;
+        protected BtNode<T> root;
 
         /// <summary>
         /// Constructor of the BST
@@ -32,6 +32,18 @@ namespace DLL.Chapter12
             root.Insert(value, null, root);
         }
 
+        /// <summary>Removes an element from the tree if exists
+        /// </summary>
+        /// <param name="value">the value to be deleted</param>
+        public void Remove(T value)
+        {
+            BtNode<T> nodeToDelete = root.Find(value,root);
+            if (nodeToDelete != null)
+            {
+                root.Remove(nodeToDelete, root);
+            }
+        }
+
         /// <summary>Returns whether given value exists in the tree
         /// </summary>
         /// <param name="value">the value to be checked</param>
@@ -39,7 +51,7 @@ namespace DLL.Chapter12
         public bool Contains(T value)
         {
             BtNode<T> temp = new BtNode<T>(value);
-            bool found = temp.Find(value, root) != null;
+            bool found = temp.Find(value,root) != null;
             return found;
         }
 
@@ -50,9 +62,9 @@ namespace DLL.Chapter12
         }
 
         /// <summary>Traverses and prints the tree</summary>
-        public void PrintTreeDFS()
+        public void PrintTree()
         {
-            root.PrintTreeDFS(root);
+            root.PrintTree(root);
             Console.WriteLine();
         }
     }

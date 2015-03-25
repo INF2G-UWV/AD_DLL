@@ -42,6 +42,15 @@ namespace DLL.Chapter12
             this.rightChild = null;
         }
 
+        public BtNode()
+        {
+            if (value == null)
+            {
+                //Null value are not allowed in the BST
+                throw new ArgumentNullException("Null values are not allowed in de Binary Search Tree");
+            }
+        }
+
         //Methods
 
         /// <summary>
@@ -144,16 +153,81 @@ namespace DLL.Chapter12
             return node;
         }
 
+        public void Remove(BtNode<T> node, BtNode<T> root)
+        {
+            // Case 3: If the node has two children.
+            // Note that if we get here at the end
+            // the node will be with at most one child
+            if (node.leftChild != null && node.rightChild != null)
+            {
+                BtNode<T> replacement = node.rightChild;
+                while (replacement.leftChild != null)
+                {
+                    replacement = replacement.leftChild;
+                }
+                node.value = replacement.value;
+                node = replacement;
+            }
+
+            // Case 1 and 2: If the node has at most one child
+            BtNode<T> theChild = node.leftChild != null ?
+                    node.leftChild : node.rightChild;
+
+            // If the element to be deleted has one child
+            if (theChild != null)
+            {
+                theChild.parent = node.parent;
+
+                // Handle the case when the element is the root
+                if (node.parent == null)
+                {
+                    root = theChild;
+                }
+                else
+                {
+                    // Replace the element with its child sub-tree
+                    if (node.parent.leftChild == node)
+                    {
+                        node.parent.leftChild = theChild;
+                    }
+                    else
+                    {
+                        node.parent.rightChild = theChild;
+                    }
+                }
+            }
+            else
+            {
+                // Handle the case when the element is the root
+                if (node.parent == null)
+                {
+                    root = null;
+                }
+                else
+                {
+                    // Remove the element - it is a leaf
+                    if (node.parent.leftChild == node)
+                    {
+                        node.parent.leftChild = null;
+                    }
+                    else
+                    {
+                        node.parent.rightChild = null;
+                    }
+                }
+            }
+        }
+
         /// <summary>Traverses and prints the ordered binary search tree
         /// tree starting from given root node.</summary>
         /// <param name="node">the starting node</param>
-        public void PrintTreeDFS(BtNode<T> node)
+        public void PrintTree(BtNode<T> node)
         {
             if (node != null)
             {
-                PrintTreeDFS(node.leftChild);
+                PrintTree(node.leftChild);
                 Console.Write(node.value + " ");
-                PrintTreeDFS(node.rightChild);
+                PrintTree(node.rightChild);
             }
         }
 
