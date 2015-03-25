@@ -21,7 +21,7 @@ namespace INF2G_DLL.Chapters.Chapter_5
         public static void QueueTest2()
         {
             // Create a Generic Queue
-            NormalQueue<string> rndWords = new NormalQueue<string>();
+            NQueue<string> rndWords = new NQueue<string>();
 
             // Two variables which choice stores the command pressed, and value typed in the input;
             string choice, value;
@@ -102,7 +102,7 @@ namespace INF2G_DLL.Chapters.Chapter_5
         public static void QueueTest1()
         {
             // Create a Generic Queue and Timer;
-            NormalQueue<int> rndWords = new NormalQueue<int>();
+            NQueue<int> rndWords = new NQueue<int>();
             HighResolutionTimer timer = new HighResolutionTimer(true);
 
             // Timer start;

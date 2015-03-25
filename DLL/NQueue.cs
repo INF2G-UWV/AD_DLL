@@ -9,12 +9,12 @@ namespace DLL
     ///     Queue Class
     ///     Chapter 5
     /// </summary>
-    public class NormalQueue<T> where T : IComparable<T>
+    public class NQueue<T> where T : IComparable<T>
     {
         // Make a List to store all the items in it;
         private System.Collections.Generic.LinkedList<T> qList;
 
-        public NormalQueue()
+        public NQueue()
         {
             qList = new System.Collections.Generic.LinkedList<T>();
         }
@@ -35,12 +35,6 @@ namespace DLL
                 return;
             }
             qList.AddLast(item);
-
-            LinkedListNode<T> existingItem = qList.First;
-            while (existingItem != null && existingItem.Value.CompareTo(item) < 0)
-            {
-                existingItem = existingItem.Next;
-            }
         }
 
         /// <summary>
