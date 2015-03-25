@@ -1,16 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DLL
+﻿namespace DLL
 {
     public class Node<T>
     {
-        public Node<T> previous;
-        public Node<T> next;
         public T item;
+        public Node<T> next;
+        public Node<T> previous;
+
+        public Node(T item)
+        {
+            this.item = item;
+            previous = null;
+            next = null;
+        }
+
+        public Node(T item, Node<T> previous, Node<T> next)
+        {
+            this.item = item;
+            this.previous = previous;
+            this.next = next;
+        }
 
         public Node<T> Previous
         {
@@ -28,20 +36,6 @@ namespace DLL
         {
             get { return item; }
             set { item = value; }
-        }
-
-        public Node(T item)
-        {
-            this.item = item;
-            previous = null;
-            next = null;
-        }
-
-        public Node(T item, Node<T> previous, Node<T> next)
-        {
-            this.item = item;
-            this.previous = previous;
-            this.next = next;
         }
 
         public override string ToString()

@@ -1,7 +1,7 @@
 ﻿using System;
 using DLL;
 
-namespace INF2G_DLL.Chapters.Chapter2
+namespace INF2G_DLL.Chapters.Chapter_2
 {
     /// <summary>
     ///     Test class for custom ArrayList feature.

@@ -1,26 +1,25 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DLL
 {
     public class DoublyLinkedList<T> : ICollection<T>
     {
         private string listName;
-        private Node<T> firstNode;
-        private Node<T> lastNode;
-        private int count;
+        public Node<T> FirstNode { get; private set; }
+        public Node<T> LastNode { get; private set; }
 
-        public Node<T> FirstNode
+        public DoublyLinkedList(string listName)
         {
-            get { return firstNode; }
+            this.listName = listName;
+            Count = 0;
+            FirstNode = LastNode = null;
         }
 
-        public Node<T> LastNode
+        public DoublyLinkedList() : this("MyList")
         {
-            get { return lastNode; }
         }
 
         public T this[int index]
@@ -31,8 +30,8 @@ namespace DLL
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                Node<T> currentNode = firstNode;
-                for (int i = 0; i < index; i++)
+                var currentNode = FirstNode;
+                for (var i = 0; i < index; i++)
                 {
                     if (currentNode.Next == null)
                     {
@@ -44,249 +43,46 @@ namespace DLL
             }
         }
 
-        public int Count
-        {
-            get { return count; }
-        }
-
         public bool IsEmpty
         {
             get
             {
                 lock (this)
                 {
-                    return firstNode == null;
+                    return FirstNode == null;
                 }
             }
         }
 
-        public DoublyLinkedList(string listName)
-        {
-            this.listName = listName;
-            count = 0;
-            firstNode = lastNode = null;
-        }
-
-        public DoublyLinkedList() : this("MyList") { }
-
-        public override string ToString()
-        {
-            if (IsEmpty)
-            {
-                return string.Empty;
-            }
-            StringBuilder returnString = new StringBuilder();
-            foreach (T item in this)
-            {
-                if (returnString.Length > 0)
-                {
-                    returnString.Append("->");
-                }
-                returnString.Append(item);
-            }
-            return returnString.ToString();
-        }
-
-        public Node<T> Find(T item)
-        {
-            lock (this)
-            {
-                Node<T> currentNode = firstNode;
-                while (currentNode != null)
-                {
-                    if (currentNode.Item.ToString().Equals(item.ToString()))
-                    {
-                        return currentNode;
-                    }
-                    currentNode = currentNode.Next;
-                }
-                return null;
-            }
-        }
-
-        public void InsertAtFront(T item)
-        {
-            lock (this)
-            {
-                if (IsEmpty)
-                {
-                    firstNode = lastNode = new Node<T>(item);
-                }
-                else
-                {
-                    Node<T> node = new Node<T>(item, null, firstNode);
-                    firstNode.Previous = node;
-                    firstNode = node;
-                }
-            }
-        }
-
-        public void InsertAtBack(T item)
-        {
-            if (IsEmpty)
-            {
-                firstNode = lastNode = new Node<T>(item);
-            }
-            else
-            {
-                Node<T> node = new Node<T>(item, lastNode, null);
-                lastNode.Next = node;
-                lastNode = node;
-            }
-        }
-
-        public object RemoveFromFront()
-        {
-            lock (this)
-            {
-                if (IsEmpty)
-                {
-                    throw new ApplicationException("List is empty!");
-                }
-                object removedData = firstNode.Item;
-                if (firstNode == lastNode)
-                {
-                    firstNode = lastNode = null;
-                }
-                else
-                {
-                    firstNode = firstNode.Next;
-                    firstNode.Previous = null;
-                }
-                count--;
-                return removedData;
-            }
-        }
-
-        public object RemoveFromBack()
-        {
-            lock (this)
-            {
-                if (IsEmpty)
-                {
-                    throw new ApplicationException("List is empty!");
-                }
-                object removedData = lastNode.Item;
-                if (firstNode == lastNode)
-                {
-                    firstNode = lastNode = null;
-                }
-                else
-                {
-                    lastNode = lastNode.Previous;
-                    lastNode.Next = null;
-                }
-                count--;
-                return removedData;
-            }
-        }
-
-        public void InsertAt(int index, T item)
-        {
-            lock (this)
-            {
-                if (index > count || index < 0)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                if (index == 0)
-                {
-                    InsertAtBack(item);
-                }
-                else if (index == (count - 1))
-                {
-                    InsertAtFront(item);
-                }
-                else
-                {
-                    Node<T> currentNode = firstNode;
-                    for (int i = 0; i < index; i++)
-                    {
-                        currentNode = currentNode.Next;
-                    }
-                    Node<T> newNode = new Node<T>(item, currentNode.Previous, currentNode);
-                    currentNode.Previous = newNode;
-                    count++;
-                }
-            }
-        }
-
-        public object RemoveAt(int index)
-        {
-            lock (this)
-            {
-                if (index > count || index < 0)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                object removedData;
-                if (index == 0)
-                {
-                    removedData = RemoveFromFront();
-                }
-                else if (index == (count - 1))
-                {
-                    removedData = RemoveFromBack();
-                }
-                else
-                {
-                    Node<T> currentNode = firstNode;
-                    for (int i = 0; i < index; i++)
-                    {
-                        currentNode = currentNode.Next;
-                    }
-                    removedData = currentNode.Item;
-                    currentNode.Previous.Next = currentNode.Next;
-                    count--;
-                }
-                return removedData;
-            }
-        }
+        public int Count { get; private set; }
 
         public bool Remove(T item)
         {
-            if (firstNode.Item.ToString().Equals(item.ToString()))
+            if (FirstNode.Item.ToString().Equals(item.ToString()))
             {
                 RemoveFromFront();
                 return true;
             }
-            else if (lastNode.Item.ToString().Equals(item.ToString()))
+            if (LastNode.Item.ToString().Equals(item.ToString()))
             {
                 RemoveFromBack();
                 return true;
             }
-            else
+            var currentNode = Find(item);
+            if (currentNode != null)
             {
-                Node<T> currentNode = Find(item);
-                if (currentNode != null)
-                {
-                    currentNode.Previous.Next = currentNode.Next;
-                    currentNode.Next.Previous = currentNode.Previous;
-                    return true;
-                }
+                currentNode.Previous.Next = currentNode.Next;
+                currentNode.Next.Previous = currentNode.Previous;
+                return true;
             }
             return false;
-        }
-
-        public bool Update(T oldItem, T newItem)
-        {
-            lock (this)
-            {
-                Node<T> currentNode = Find(oldItem);
-                if (currentNode != null)
-                {
-                    currentNode.Item = newItem;
-                    return true;
-                }
-                return false;
-            }
         }
 
         public bool Contains(T item)
         {
             lock (this)
             {
-                Node<T> currentNode = Find(item);
+                var currentNode = Find(item);
                 if (currentNode != null)
                 {
                     return true;
@@ -297,23 +93,13 @@ namespace DLL
 
         public void Clear()
         {
-            firstNode = lastNode = null;
-            count = 0;
-        }
-
-        public void ShowList()
-        {
-            Node<T> currentNode = firstNode;
-            do
-            {
-                Console.WriteLine(currentNode.Item);
-                currentNode = currentNode.Next;
-            } while (!(currentNode == null));
+            FirstNode = LastNode = null;
+            Count = 0;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            Node<T> currentNode = firstNode;
+            var currentNode = FirstNode;
             while (currentNode != null)
             {
                 yield return currentNode.Item;
@@ -321,7 +107,7 @@ namespace DLL
             }
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
@@ -348,7 +134,7 @@ namespace DLL
                 throw new ArgumentException();
             }
 
-            Node<T> node = firstNode;
+            var node = FirstNode;
             if (node != null)
             {
                 do
@@ -362,6 +148,204 @@ namespace DLL
         bool ICollection<T>.IsReadOnly
         {
             get { return false; }
+        }
+
+        public override string ToString()
+        {
+            if (IsEmpty)
+            {
+                return string.Empty;
+            }
+            var returnString = new StringBuilder();
+            foreach (var item in this)
+            {
+                if (returnString.Length > 0)
+                {
+                    returnString.Append("->");
+                }
+                returnString.Append(item);
+            }
+            return returnString.ToString();
+        }
+
+        public Node<T> Find(T item)
+        {
+            lock (this)
+            {
+                var currentNode = FirstNode;
+                while (currentNode != null)
+                {
+                    if (currentNode.Item.ToString().Equals(item.ToString()))
+                    {
+                        return currentNode;
+                    }
+                    currentNode = currentNode.Next;
+                }
+                return null;
+            }
+        }
+
+        public void InsertAtFront(T item)
+        {
+            lock (this)
+            {
+                if (IsEmpty)
+                {
+                    FirstNode = LastNode = new Node<T>(item);
+                }
+                else
+                {
+                    var node = new Node<T>(item, null, FirstNode);
+                    FirstNode.Previous = node;
+                    FirstNode = node;
+                }
+            }
+        }
+
+        public void InsertAtBack(T item)
+        {
+            if (IsEmpty)
+            {
+                FirstNode = LastNode = new Node<T>(item);
+            }
+            else
+            {
+                var node = new Node<T>(item, LastNode, null);
+                LastNode.Next = node;
+                LastNode = node;
+            }
+        }
+
+        public object RemoveFromFront()
+        {
+            lock (this)
+            {
+                if (IsEmpty)
+                {
+                    throw new ApplicationException("List is empty!");
+                }
+                object removedData = FirstNode.Item;
+                if (FirstNode == LastNode)
+                {
+                    FirstNode = LastNode = null;
+                }
+                else
+                {
+                    FirstNode = FirstNode.Next;
+                    FirstNode.Previous = null;
+                }
+                Count--;
+                return removedData;
+            }
+        }
+
+        public object RemoveFromBack()
+        {
+            lock (this)
+            {
+                if (IsEmpty)
+                {
+                    throw new ApplicationException("List is empty!");
+                }
+                object removedData = LastNode.Item;
+                if (FirstNode == LastNode)
+                {
+                    FirstNode = LastNode = null;
+                }
+                else
+                {
+                    LastNode = LastNode.Previous;
+                    LastNode.Next = null;
+                }
+                Count--;
+                return removedData;
+            }
+        }
+
+        public void InsertAt(int index, T item)
+        {
+            lock (this)
+            {
+                if (index > Count || index < 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                if (index == 0)
+                {
+                    InsertAtBack(item);
+                }
+                else if (index == (Count - 1))
+                {
+                    InsertAtFront(item);
+                }
+                else
+                {
+                    var currentNode = FirstNode;
+                    for (var i = 0; i < index; i++)
+                    {
+                        currentNode = currentNode.Next;
+                    }
+                    var newNode = new Node<T>(item, currentNode.Previous, currentNode);
+                    currentNode.Previous = newNode;
+                    Count++;
+                }
+            }
+        }
+
+        public object RemoveAt(int index)
+        {
+            lock (this)
+            {
+                if (index > Count || index < 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                object removedData;
+                if (index == 0)
+                {
+                    removedData = RemoveFromFront();
+                }
+                else if (index == (Count - 1))
+                {
+                    removedData = RemoveFromBack();
+                }
+                else
+                {
+                    var currentNode = FirstNode;
+                    for (var i = 0; i < index; i++)
+                    {
+                        currentNode = currentNode.Next;
+                    }
+                    removedData = currentNode.Item;
+                    currentNode.Previous.Next = currentNode.Next;
+                    Count--;
+                }
+                return removedData;
+            }
+        }
+
+        public bool Update(T oldItem, T newItem)
+        {
+            lock (this)
+            {
+                var currentNode = Find(oldItem);
+                if (currentNode != null)
+                {
+                    currentNode.Item = newItem;
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public void ShowList()
+        {
+            var currentNode = FirstNode;
+            do
+            {
+                Console.WriteLine(currentNode.Item);
+                currentNode = currentNode.Next;
+            } while (currentNode != null);
         }
     }
 }

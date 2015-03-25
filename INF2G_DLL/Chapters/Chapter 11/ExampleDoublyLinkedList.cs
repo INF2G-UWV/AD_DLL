@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DLL;
 
 namespace INF2G_DLL.Chapters.Chapter_11
 {
-    class ExampleDoubleLinkedList
+    internal class ExampleDoubleLinkedList
     {
         public static void Run(string[] args)
         {
@@ -16,7 +12,7 @@ namespace INF2G_DLL.Chapters.Chapter_11
 
         public static void LinkedListProgram()
         {
-            DoublyLinkedList<string> myList = new DoublyLinkedList<string>();
+            var myList = new DoublyLinkedList<string>();
             string choice, value1, value2;
             try
             {
@@ -42,7 +38,7 @@ namespace INF2G_DLL.Chapters.Chapter_11
                     Console.Write("Enter your choice: ");
                     choice = Console.ReadLine();
                     choice = choice.ToLower();
-                    char[] onechar = choice.ToCharArray();
+                    var onechar = choice.ToCharArray();
                     switch (onechar[0])
                     {
                         case 'a':
@@ -91,7 +87,7 @@ namespace INF2G_DLL.Chapters.Chapter_11
                             Console.WriteLine();
                             Console.Write("Enter a index to remove the item: ");
                             value1 = Console.ReadLine();
-                            int value4 = Int32.Parse(value1);
+                            var value4 = Int32.Parse(value1);
                             myList.RemoveAt(value4);
                             break;
                         case 'g':

@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chapters\Chapter 10\QuadraticHashTest.cs" />
+    <Compile Include="Chapters\Chapter 10\BucketHashTest.cs" />
     <Compile Include="Chapters\Chapter 11\ExampleCircularList.cs" />
     <Compile Include="Chapters\Chapter 11\ExampleDoublyLinkedList.cs" />
     <Compile Include="Chapters\Chapter 11\ExampleSingleLinkedList.cs" />

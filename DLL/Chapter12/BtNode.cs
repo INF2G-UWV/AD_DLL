@@ -1,31 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DLL.Chapter12
 {
     /// <summary>
-    /// Custom binary tree node
+    ///     Custom binary tree node
     /// </summary>
     /// <typeparam name="T">Specifies a generic type for the values</typeparam>
     public class BtNode<T> where T : IComparable<T>
     {
+        //Left child of the node
+        protected BtNode<T> leftChild;
+        //Parent node
+        protected BtNode<T> parent;
+        //Right child of the node
+        protected BtNode<T> rightChild;
         //Value of a node
         protected T value;
 
-        //Parent node
-        protected BtNode<T> parent;
-
-        //Left child of the node
-        protected BtNode<T> leftChild;
-
-        //Right child of the node
-        protected BtNode<T> rightChild;
-
         /// <summary>
-        /// Constructor of the binary tree node check its null
+        ///     Constructor of the binary tree node check its null
         /// </summary>
         /// <param name="value">It expects an generic type of value</param>
         public BtNode(T value)
@@ -37,9 +30,9 @@ namespace DLL.Chapter12
             }
 
             this.value = value;
-            this.parent = null;
-            this.leftChild = null;
-            this.rightChild = null;
+            parent = null;
+            leftChild = null;
+            rightChild = null;
         }
 
         public BtNode()
@@ -54,53 +47,53 @@ namespace DLL.Chapter12
         //Methods
 
         /// <summary>
-        /// Override the ToString method
+        ///     Override the ToString method
         /// </summary>
         /// <returns>string</returns>
         public override string ToString()
         {
-            return this.value.ToString();
+            return value.ToString();
         }
 
         /// <summary>
-        /// Override the gethashcode
+        ///     Override the gethashcode
         /// </summary>
         /// <returns>integers</returns>
         public override int GetHashCode()
         {
-            return this.value.GetHashCode();
+            return value.GetHashCode();
         }
 
         /// <summary>
-        /// Override the equals method
+        ///     Override the equals method
         /// </summary>
         /// <param name="obj">Could be anything</param>
         /// <returns>Equals using IComparable</returns>
         public override bool Equals(object obj)
         {
-            BtNode<T> other = (BtNode<T>)obj;
-            return this.CompareTo(other) == 0;
+            var other = (BtNode<T>) obj;
+            return CompareTo(other) == 0;
         }
 
         /// <summary>
-        /// Customm CompareTo method
+        ///     Customm CompareTo method
         /// </summary>
         /// <param name="other">A node comparing to another node</param>
         /// <returns>integer</returns>
         public int CompareTo(BtNode<T> other)
         {
-            return this.value.CompareTo(other.value);
+            return value.CompareTo(other.value);
         }
 
         /// <summary>
-        /// Inserts node in the binary search tree by given value
+        ///     Inserts node in the binary search tree by given value
         /// </summary>
         /// <param name="value">the new value</param>
         /// <param name="parentNode">the parent of the new node</param>
         /// <param name="node">current node</param>
         /// <returns>the inserted node</returns>
         public BtNode<T> Insert(T value,
-                BtNode<T> parentNode, BtNode<T> node)
+            BtNode<T> parentNode, BtNode<T> node)
         {
             if (node == null)
             {
@@ -109,7 +102,7 @@ namespace DLL.Chapter12
             }
             else
             {
-                int compareTo = value.CompareTo(node.value);
+                var compareTo = value.CompareTo(node.value);
                 if (compareTo < 0)
                 {
                     node.leftChild =
@@ -125,17 +118,18 @@ namespace DLL.Chapter12
             return node;
         }
 
-        /// <summary>Finds a given value in the tree and
-        /// return the node which contains it if such exsists
+        /// <summary>
+        ///     Finds a given value in the tree and
+        ///     return the node which contains it if such exsists
         /// </summary>
         /// <param name="value">the value to be found</param>
         /// <returns>the found node or null if not found</returns>
         public BtNode<T> Find(T value, BtNode<T> root)
         {
-            BtNode<T> node = root;
+            var node = root;
             while (node != null)
             {
-                int compareTo = value.CompareTo(node.value);
+                var compareTo = value.CompareTo(node.value);
                 if (compareTo < 0)
                 {
                     node = node.leftChild;
@@ -160,7 +154,7 @@ namespace DLL.Chapter12
             // the node will be with at most one child
             if (node.leftChild != null && node.rightChild != null)
             {
-                BtNode<T> replacement = node.rightChild;
+                var replacement = node.rightChild;
                 while (replacement.leftChild != null)
                 {
                     replacement = replacement.leftChild;
@@ -170,8 +164,9 @@ namespace DLL.Chapter12
             }
 
             // Case 1 and 2: If the node has at most one child
-            BtNode<T> theChild = node.leftChild != null ?
-                    node.leftChild : node.rightChild;
+            var theChild = node.leftChild != null
+                ? node.leftChild
+                : node.rightChild;
 
             // If the element to be deleted has one child
             if (theChild != null)
@@ -218,8 +213,10 @@ namespace DLL.Chapter12
             }
         }
 
-        /// <summary>Traverses and prints the ordered binary search tree
-        /// tree starting from given root node.</summary>
+        /// <summary>
+        ///     Traverses and prints the ordered binary search tree
+        ///     tree starting from given root node.
+        /// </summary>
         /// <param name="node">the starting node</param>
         public void PrintTree(BtNode<T> node)
         {
@@ -230,6 +227,5 @@ namespace DLL.Chapter12
                 PrintTree(node.rightChild);
             }
         }
-
     }
 }

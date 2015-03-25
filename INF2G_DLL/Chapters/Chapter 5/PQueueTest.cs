@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DLL;
 
 namespace INF2G_DLL.Chapters.Chapter_5
@@ -15,11 +11,13 @@ namespace INF2G_DLL.Chapters.Chapter_5
         }
 
         // Zonder tijdmeetingen, met UI | PQueuetest2();
+
         #region
+
         public static void PQueueTest2()
         {
             // Create a Generic Queue
-            PQueue<string> rndWords = new PQueue<string>();
+            var rndWords = new PQueue<string>();
 
             // Two variables which choice stores the command pressed, and value typed in the input;
             string choice, value1;
@@ -36,14 +34,14 @@ namespace INF2G_DLL.Chapters.Chapter_5
             Console.WriteLine("(7) Exit");
 
             // While the console applications runs, the commands can be executed;
-            bool runProgram = true;
+            var runProgram = true;
             while (runProgram)
             {
                 Console.Write("\nSelect command: ");
                 choice = Console.ReadLine();
                 choice = choice.ToLower();
 
-                if (choice == "1")                          // If pressed 1, add item to the Queue;
+                if (choice == "1") // If pressed 1, add item to the Queue;
                 {
                     Console.WriteLine();
                     Console.Write("Enter item to Enqeue: ");
@@ -52,19 +50,19 @@ namespace INF2G_DLL.Chapters.Chapter_5
                     value2 = int.Parse(Console.ReadLine());
                     rndWords.Enqueue(value1, value2);
                 }
-                else if (choice == "2")                     // If pressed 2, delete first Highest Priority in the Queue;
+                else if (choice == "2") // If pressed 2, delete first Highest Priority in the Queue;
                 {
                     Console.WriteLine();
                     Console.Write("{0}", rndWords.Dequeue());
                     Console.WriteLine();
                 }
-                else if (choice == "3")                     // If pressed 3, peek at the first item in the Queue;
+                else if (choice == "3") // If pressed 3, peek at the first item in the Queue;
                 {
                     Console.WriteLine();
                     Console.Write("{0}", rndWords.Peek());
                     Console.WriteLine();
                 }
-                else if (choice == "4")                     // If pressed 4, check if the item Contains in the list;
+                else if (choice == "4") // If pressed 4, check if the item Contains in the list;
                 {
                     Console.WriteLine();
                     Console.Write("Enter item to check if it Contains in the List: ");
@@ -72,13 +70,13 @@ namespace INF2G_DLL.Chapters.Chapter_5
                     rndWords.Contains(value1);
                     Console.WriteLine();
                 }
-                else if (choice == "5")                     // If pressed 5, display all the items in the Queue;
+                else if (choice == "5") // If pressed 5, display all the items in the Queue;
                 {
                     Console.WriteLine();
                     rndWords.GetAllQueueItems();
                     Console.WriteLine();
                 }
-                else if (choice == "6")                     // If pressed 6, clear the Queue list;
+                else if (choice == "6") // If pressed 6, clear the Queue list;
                 {
                     Console.WriteLine();
                     rndWords.Clear();
@@ -86,7 +84,7 @@ namespace INF2G_DLL.Chapters.Chapter_5
                 }
                 else if (choice == "7")
                 {
-                    runProgram = false;                     // If pressed 7, close the Program;
+                    runProgram = false; // If pressed 7, close the Program;
                 }
                 else
                 {
@@ -96,15 +94,18 @@ namespace INF2G_DLL.Chapters.Chapter_5
                 }
             }
         }
+
         #endregion
 
         // Zonder UI, maar met tijd metingen | PQueueTest1();
+
         #region
+
         public static void PQueueTest1()
         {
             // Create a Generic Queue and Timer;
-            PQueue<string> priorQueue = new PQueue<string>();
-            HighResolutionTimer timer = new HighResolutionTimer(true);
+            var priorQueue = new PQueue<string>();
+            var timer = new HighResolutionTimer(true);
 
             // Timer start
             timer.Start();
@@ -168,6 +169,7 @@ namespace INF2G_DLL.Chapters.Chapter_5
 
             Console.ReadLine();
         }
+
         #endregion
     }
 }

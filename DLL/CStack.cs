@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DLL
 {
     public class CStack<T> where T : IComparable
     {
         //Fields stack
-        private int capacity;
-        private T[] stack;
+        private readonly int capacity;
+        private readonly T[] stack;
         private int top;
-
         //Constructor Stack expects a maximum space for elements
         public CStack(int maxElements)
         {
@@ -22,9 +18,9 @@ namespace DLL
         }
 
         /// <summary>
-        /// It pushed an generic item into the stack
-        /// When top == same as capacity it will returns an invalid number
-        /// When not the same, it will pushed it into the stack
+        ///     It pushed an generic item into the stack
+        ///     When top == same as capacity it will returns an invalid number
+        ///     When not the same, it will pushed it into the stack
         /// </summary>
         /// <param name="item"></param>
         /// <returns>int</returns>
@@ -34,23 +30,20 @@ namespace DLL
             {
                 return -1;
             }
-            else
-            {
-                // insert elementt into stack
-                top = top + 1;
-                stack[top] = item;
-            }
+            // insert elementt into stack
+            top = top + 1;
+            stack[top] = item;
             return 0;
         }
 
         /// <summary>
-        /// The Pop method, is like a remove method. It will the last item LIFO
+        ///     The Pop method, is like a remove method. It will the last item LIFO
         /// </summary>
         /// <returns>The removed item or the temponary default</returns>
         public T Pop()
         {
             T removeItem;
-            T temp = default(T);
+            var temp = default(T);
             //checking underflow
             if (stack.Count() != 0)
             {
@@ -70,14 +63,14 @@ namespace DLL
         }
 
         /// <summary>
-        /// The peep method is get a value of the stack
+        ///     The peep method is get a value of the stack
         /// </summary>
         /// <param name="position"></param>
         /// <returns>Returns the stack, with an givin position</returns>
         public T Peep(int position)
         {
             // temponary generic variable, to set the variable
-            T temp = default(T);
+            var temp = default(T);
             if (stack.Count() != 0)
             {
                 //check if Position is Valid or not
@@ -94,15 +87,15 @@ namespace DLL
         }
 
         /// <summary>
-        /// Peek don't changes the order of the stack, but get the last in of 
-        /// the order in the stack.
+        ///     Peek don't changes the order of the stack, but get the last in of
+        ///     the order in the stack.
         /// </summary>
         /// <param name=""></param>
         /// <returns>If true return last in else catch exception</returns>
         public T Peek()
         {
             // temponary generic variable, to set the variable
-            T temp = default(T);
+            var temp = default(T);
 
             if (stack.Count() != 0)
             {
@@ -117,7 +110,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Get all stack items
+        ///     Get all stack items
         /// </summary>
         public void GetAllStackItems()
         {

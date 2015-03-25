@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DLL
 {
     public class IteratorNode<T>
     {
-        public IteratorNode<T> link;
         public T item;
+        public IteratorNode<T> link;
+
+        public IteratorNode(T item)
+        {
+            this.item = item;
+            link = null;
+        }
 
         public IteratorNode<T> Link
         {
@@ -21,12 +23,6 @@ namespace DLL
         {
             get { return item; }
             set { item = value; }
-        }
-
-        public IteratorNode(T item)
-        {
-            this.item = item;
-            link = null;
         }
 
         public override string ToString()
@@ -41,7 +37,7 @@ namespace DLL
 
     public class LinkedList<T>
     {
-        private IteratorNode<T> header;
+        private readonly IteratorNode<T> header;
 
         public LinkedList(T item)
         {
@@ -60,8 +56,8 @@ namespace DLL
 
         public void ShowList()
         {
-            IteratorNode<T> current = header.Link;
-            while (!(current == null))
+            var current = header.Link;
+            while (current != null)
             {
                 Console.WriteLine(current.Item);
                 current = current.Link;
@@ -71,9 +67,9 @@ namespace DLL
 
     public class Iterator<T>
     {
+        private readonly LinkedList<T> list;
         private IteratorNode<T> current;
         private IteratorNode<T> previous;
-        private LinkedList<T> list;
 
         public Iterator(LinkedList<T> list)
         {
@@ -95,23 +91,19 @@ namespace DLL
 
         public void InsertBefore(T item)
         {
-            IteratorNode<T> newNode = new IteratorNode<T>(item);
+            var newNode = new IteratorNode<T>(item);
             if (previous.Link == null)
             {
                 throw new InsertBeforeHeaderException("Can't insert here!");
             }
-            else
-            {
-                newNode.Link = previous.Link;
-                previous.Link = newNode;
-                current = newNode;
-            }
+            newNode.Link = previous.Link;
+            previous.Link = newNode;
+            current = newNode;
         }
 
         public void InsertAfter(T item)
         {
-            IteratorNode<T> newNode = new IteratorNode<T>(item);
-            newNode.Link = current.Link;
+            var newNode = new IteratorNode<T>(item) {Link = current.Link};
             current.Link = newNode;
             NextLink();
         }

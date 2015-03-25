@@ -40,8 +40,8 @@ namespace DLL
         }
 
         /// <summary>
-        /// Smart Bubble Sort.
-        /// Functions the same as Bubble Sort, but now stops searching once no more changes in a certain pass are made.
+        ///     Smart Bubble Sort.
+        ///     Functions the same as Bubble Sort, but now stops searching once no more changes in a certain pass are made.
         /// </summary>
         /// <param name="array"></param>
         public void SmartBubbleSort(T[] array)

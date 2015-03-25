@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DLL
 {
-    class Sort
+    internal class Sort
     {
-        static void Main()
+        private static void Main()
         {
-            CArray<int> nums = new CArray<int>(100);
-            for (int i = 0; i <= 100; i++)
+            var nums = new CArray<int>(100);
+            for (var i = 0; i <= 100; i++)
             {
                 nums.Insert(i);
             }
@@ -22,11 +18,10 @@ namespace DLL
 
     public class CArray<T>
     {
-        private T[] arr;
-        private int upper;
+        private readonly T[] arr;
+        private readonly int upper;
+        private Comparer comparer;
         private int numElements;
-
-        Comparer comparer;
 
         public CArray(int size)
         {
@@ -44,7 +39,7 @@ namespace DLL
 
         public void DisplayElements()
         {
-            for (int i = 0; i <= upper; i++)
+            for (var i = 0; i <= upper; i++)
             {
                 Console.Write(arr[i] + " ");
             }
@@ -52,7 +47,7 @@ namespace DLL
 
         public void Clear()
         {
-            for (int i = 0; i <= upper; i++)
+            for (var i = 0; i <= upper; i++)
             {
                 arr[i] = default(T);
                 numElements = 0;

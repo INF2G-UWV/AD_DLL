@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DLL;
 
 namespace INF2G_DLL.Chapters.Chapter_5
@@ -12,7 +8,7 @@ namespace INF2G_DLL.Chapters.Chapter_5
         public static void Run(string[] args)
         {
             //Initialize a generic type CSstack obj, with a 4 spots
-            CStack<string> stack = new CStack<string>(4);
+            var stack = new CStack<string>(4);
             //Push 5 objects into stack, where positions will be filled
             stack.Push("test1");
             stack.Push("test2");
