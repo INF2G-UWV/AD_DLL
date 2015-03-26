@@ -21,16 +21,19 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Check for Empty list;
+        ///     Check for empty list;
         /// </summary>
+        /// <returns>true or false</returns>
         public bool IsEmpty
         {
             get { return qList.Count == 0; }
         }
 
         /// <summary>
-        ///     Adds value and priority to the Queue
+        ///     Add the value and the priority to the list;
         /// </summary>
+        /// <param name="item">The value that will be inserted (T)</param>
+        /// <param name="priority">The priority that will be inserted (int)</param>
         public void Enqueue(T value, int priority)
         {
             qList.Add(value);
@@ -39,9 +42,8 @@ namespace DLL
 
         /// <summary>
         ///     It removes (Dequeues) the Highest Priority item in the Queue.
-        ///     Returns the next first items in the Queue after deletion with the
-        ///     temp variable;
         /// </summary>
+        /// <returns>Returns the new first items in the Queue after deletion (temp var)</returns>
         public T Dequeue()
         {
             var value = default(T);
@@ -59,7 +61,7 @@ namespace DLL
                     // Priorities that has been looped through | > 0 checks for the lowest number (highest priority)
                     if (topPriority.CompareTo(qPriority[i]) > 0)
                     {
-                        // saves the highest priority in the var
+                        // saves the highest priority in the var index
                         topPriority = qPriority[i];
                         index = i;
                     }
@@ -79,9 +81,10 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Checks for items that are already in the Queue.
-        ///     If it finds one - returns Item is found in the index; | If it doesn't - returns Item is not found in the index";
+        ///     Checks for items that are already in the Queue;
         /// </summary>
+        /// <param name="item">Look for the givin value in the list</param>
+        /// <returns>Item is found in the index; | Item is not found in the index</returns>
         public void Contains(T item)
         {
             if (!IsEmpty)
@@ -96,9 +99,9 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Stores the first item in the Queue in a temp variable
-        ///     and returns it if the Queue is not empty;
+        ///     Stores the first item in the Queue in a temp variable;
         /// </summary>
+        /// <returns>The first item in the Queue</returns>
         public T Peek()
         {
             var temp = default(T);

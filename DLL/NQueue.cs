@@ -4,7 +4,7 @@ using System.Linq;
 namespace DLL
 {
     /// <summary>
-    ///     Queue Class
+    ///     NQueue Class
     ///     Chapter 5
     /// </summary>
     public class NQueue<T> where T : IComparable<T>
@@ -18,8 +18,9 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Check for Empty list;
+        ///     Check for empty list;
         /// </summary>
+        /// <returns>true or false</returns>
         public bool IsEmpty
         {
             get { return qList.Count == 0; }
@@ -28,10 +29,8 @@ namespace DLL
         /// <summary>
         ///     When the list is still empty, Add (Enqueue) new item as first in the Queue,
         ///     else add it at the back of the Queue;
-        ///     Creata a LinkedListNode that has the first item in the list (Queue),
-        ///     while the items exists (compareTo : IComparable) get the Node
-        ///     to the next in Queue;
         /// </summary>
+        /// <param name="item">The value that will be inserted (T)</param>
         public void Enqueue(T item)
         {
             if (IsEmpty)
@@ -43,10 +42,10 @@ namespace DLL
         }
 
         /// <summary>
+        ///     Stores the first item in the Queue in a temp variable;
         ///     It removes (Dequeues) the first item in the Queue: First in, First Out.
-        ///     Returns the new first items in the Queue after deletion with the
-        ///     temp variable;
         /// </summary>
+        /// <returns>Returns the new first items in the Queue after deletion (temp var)</returns>
         public T Dequeue()
         {
             var temp = default(T);
@@ -64,9 +63,9 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Stores the first item in the Queue in a temp variable
-        ///     and returns it if the Queue is not empty;
+        ///     Stores the first item in the Queue in a temp variable;
         /// </summary>
+        /// <returns>The first item in the Queue</returns>
         public T Peek()
         {
             var temp = default(T);
@@ -101,9 +100,10 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Checks for items that are already in the Queue.
-        ///     If it finds one - returns Item is found in the index; | If it doesn't - returns Item is not found in the index";
+        ///     Checks for items that are already in the Queue;
         /// </summary>
+        /// <param name="item">Look for the givin value in the list</param>
+        /// <returns>Item is found in the index; | Item is not found in the index</returns>
         public void Contains(T item)
         {
             if (!IsEmpty)

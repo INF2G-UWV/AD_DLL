@@ -3,7 +3,7 @@ using DLL;
 
 namespace INF2G_DLL.Chapters.Chapter_5
 {
-    internal class NormalQueueTest
+    internal class NQueue
     {
         public static void Run(string[] args)
         {
