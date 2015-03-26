@@ -47,6 +47,7 @@
     <Compile Include="Chapters\Chapter 11\ExampleCircularList.cs" />
     <Compile Include="Chapters\Chapter 11\ExampleDoublyLinkedList.cs" />
     <Compile Include="Chapters\Chapter 11\ExampleSingleLinkedList.cs" />
+    <Compile Include="Chapters\Chapter 12\BSTTEST.cs" />
     <Compile Include="Chapters\Chapter 3\Sort.cs" />
     <Compile Include="Chapters\Chapter 4\BinarySearch.cs" />
     <Compile Include="Chapters\Chapter 4\MinMax.cs" />
