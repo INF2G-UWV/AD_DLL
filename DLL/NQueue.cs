@@ -35,7 +35,7 @@ namespace DLL
         {
             if (IsEmpty)
             {
-                qList.InsertAtFront(item);
+                qList.InsertAtBack(item);
                 return;
             }
             qList.InsertAtBack(item);
