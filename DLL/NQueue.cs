@@ -10,11 +10,11 @@ namespace DLL
     public class NQueue<T> where T : IComparable<T>
     {
         // Make a List to store all the items in it;
-        private readonly System.Collections.Generic.LinkedList<T> qList;
+        private readonly SinglyLinkedList<T> qList;
 
         public NQueue()
         {
-            qList = new System.Collections.Generic.LinkedList<T>();
+            qList = new SinglyLinkedList<T>();
         }
 
         /// <summary>
@@ -35,10 +35,10 @@ namespace DLL
         {
             if (IsEmpty)
             {
-                qList.AddFirst(item);
+                qList.InsertAtFront(item);
                 return;
             }
-            qList.AddLast(item);
+            qList.InsertAtBack(item);
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace DLL
             var temp = default(T);
             if (!IsEmpty)
             {
-                temp = qList.First.Value;
+                temp = qList.First();
                 Console.Write("Dequeueing the first item in the Queue: ");
-                qList.RemoveFirst();
+                qList.RemoveFromFront();
             }
             else
             {
@@ -72,7 +72,7 @@ namespace DLL
             if (!IsEmpty)
             {
                 Console.Write("Peek at the first item in the Queue: ");
-                temp = qList.First.Value;
+                temp = qList.First();
             }
             else
             {

@@ -332,6 +332,7 @@ namespace DLL
                 {
                     LastNode = LastNode.Next = new ListNode<T>(item);
                 }
+                Count++;
             }
         }
 
