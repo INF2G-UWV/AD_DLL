@@ -30,7 +30,7 @@ namespace DLL
         ///     When the list is still empty, Add (Enqueue) new item as first in the Queue,
         ///     else add it at the back of the Queue;
         /// </summary>
-        /// <param name="item">The value that will be inserted (T)</param>
+        /// <param name="item">The Item that will be inserted (T)</param>
         public void Enqueue(T item)
         {
             if (IsEmpty)
@@ -102,14 +102,13 @@ namespace DLL
         /// <summary>
         ///     Checks for items that are already in the Queue;
         /// </summary>
-        /// <param name="item">Look for the givin value in the list</param>
+        /// <param name="item">Look for the givin item in the list</param>
         /// <returns>Item is found in the index; | Item is not found in the index</returns>
         public void Contains(T item)
         {
             if (!IsEmpty)
             {
                 Console.Write(qList.Contains(item) ? "Item is found in the index" : "Item is not found in the index");
-                qList.Contains(item);
             }
             else
             {

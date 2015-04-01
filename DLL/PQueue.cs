@@ -11,13 +11,13 @@ namespace DLL
     public class PQueue<T> where T : IComparable<T>
     {
         // Make a List to store all the items in it;
-        private readonly List<T> qList;
-        private readonly List<int> qPriority;
+        private readonly SinglyLinkedList<T> qList;
+        private readonly SinglyLinkedList<int> qPriority;
 
         public PQueue()
         {
-            qList = new List<T>();
-            qPriority = new List<int>();
+            qList = new SinglyLinkedList<T>();
+            qPriority = new SinglyLinkedList<int>();
         }
 
         /// <summary>
@@ -30,20 +30,25 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Add the value and the priority to the list;
+        ///     Add the Item and the priority to the list;
         /// </summary>
-        /// <param name="item">The value that will be inserted (T)</param>
+        /// <param name="item">The Item that will be inserted (T)</param>
         /// <param name="priority">The priority that will be inserted (int)</param>
-        public void Enqueue(T value, int priority)
+        public void Enqueue(T item, int priority)
         {
-            qList.Add(value);
-            qPriority.Add(priority);
+            if (IsEmpty)
+            {
+                qList.InsertAtFront(item);
+                qPriority.InsertAtFront(priority);
+            }
+            qList.InsertAtBack(item);
+            qPriority.InsertAtBack(priority);
         }
 
         /// <summary>
-        ///     It removes (Dequeues) the Highest Priority item in the Queue.
+        ///     It removes (Dequeues) the Highest Priority Item in the Queue.
         /// </summary>
-        /// <returns>Returns the new first items in the Queue after deletion (temp var)</returns>
+        /// <returns>Returns the new first Item in the Queue after deletion (temp var)</returns>
         public T Dequeue()
         {
             var value = default(T);
@@ -61,7 +66,7 @@ namespace DLL
                     // Priorities that has been looped through | > 0 checks for the lowest number (highest priority)
                     if (topPriority.CompareTo(qPriority[i]) > 0)
                     {
-                        // saves the highest priority in the var index
+                        // Saves the highest priority in the var index
                         topPriority = qPriority[i];
                         index = i;
                     }
@@ -83,14 +88,13 @@ namespace DLL
         /// <summary>
         ///     Checks for items that are already in the Queue;
         /// </summary>
-        /// <param name="item">Look for the givin value in the list</param>
+        /// <param name="item">Look for the givin item in the list</param>
         /// <returns>Item is found in the index; | Item is not found in the index</returns>
         public void Contains(T item)
         {
             if (!IsEmpty)
             {
                 Console.Write(qList.Contains(item) ? "Item is found in the index" : "Item is not found in the index");
-                qList.Contains(item);
             }
             else
             {
@@ -137,7 +141,7 @@ namespace DLL
 
         /// <summary>
         ///     Displays all items in the Queue. Loops through
-        ///     2 lists to show the Value + Priority stored in the list;
+        ///     2 lists to show the Items + Priority stored in the list;
         /// </summary>
         public void GetAllQueueItems()
         {
