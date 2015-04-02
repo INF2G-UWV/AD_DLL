@@ -382,7 +382,7 @@ namespace DLL
                 else
                 {
                     var currentNode = FirstNode;
-                    while (currentNode.Next != LastNode)
+                    while (currentNode.Next != LastNode && currentNode.Next != null)
                     {
                         currentNode = currentNode.Next;
                     }

@@ -9,7 +9,7 @@ namespace INF2G_DLL
         {
             //INF2G_DLL.Chapters.Chapter_11.ExampleCircularList.Run(args);
             //INF2G_DLL.Chapters.Chapter_10.QuadraticHashTest bucketHashTest = new QuadraticHashTest();
-            INF2G_DLL.Chapters.Chapter_5.NQueueTest.Run(args);
+            INF2G_DLL.Chapters.Chapter_5.PQueueTest.Run(args);
         }
     }
 }

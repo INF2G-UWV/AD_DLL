@@ -41,8 +41,11 @@ namespace DLL
                 qList.InsertAtFront(item);
                 qPriority.InsertAtFront(priority);
             }
-            qList.InsertAtBack(item);
-            qPriority.InsertAtBack(priority);
+            else
+            {
+                qList.InsertAtBack(item);
+                qPriority.InsertAtBack(priority);
+            }
         }
 
         /// <summary>
