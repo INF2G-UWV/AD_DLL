@@ -4,9 +4,13 @@ using System.Management;
 using System.Text;
 using DLL;
 
-namespace StringsH7
+namespace DLL_Test.Chapters.Chapter_7
 {
-    internal class Program
+    /// <summary>
+    ///     String timing test.
+    ///     Author: INF2G.
+    /// </summary>
+    internal class StringTimingTest
     {
         //Fields
         private static int threadCount;
@@ -24,6 +28,11 @@ namespace StringsH7
         // Helper variables
         private static double SBDuration, SDuration;
         //Methods:
+
+        /// <summary>
+        ///     Main execution
+        /// </summary>
+        /// <param name="args"></param>
         private static void Run(string[] args)
         {
             WriteIntroduction();
@@ -32,6 +41,9 @@ namespace StringsH7
             RunTest();
         }
 
+        /// <summary>
+        ///     Write introduction text.
+        /// </summary>
         private static void WriteIntroduction()
         {
             Console.WriteLine("> **********************************");
@@ -41,33 +53,50 @@ namespace StringsH7
             Console.WriteLine();
         }
 
+        /// <summary>
+        ///     Run the actual test.
+        /// </summary>
         private static void RunTest()
         {
+            // Lock the thread
             lock (threadLock)
             {
-                // Lock the thread
+                //Start timer
                 timerSB.Start();
+
+                //Build using StringBuilder
                 BuildSB(size);
 
+                //Stop timer
                 timerSB.Stop();
+
+                //Return duration
                 SBDuration = timerSB.Duration(timeResolution);
             }
 
+            // Lock the thread
             lock (threadLock)
             {
-                // Lock the thread
+                //Start timer
                 timerString.Start();
+
+                //Build using String
                 BuildString(size);
 
+                //Stop timer
                 timerString.Stop();
+
+                //Return duration
                 SDuration = timerString.Duration(timeResolution);
             }
 
             Console.WriteLine();
 
+            //Write String duration
             Console.WriteLine("> String Duration: {0} {1}",
                 SDuration, timeResolution);
 
+            //Write String Builder duration
             Console.WriteLine("> StringBuilder Duration: {0} {1}",
                 SBDuration, timeResolution);
 
@@ -75,11 +104,15 @@ namespace StringsH7
             var highest = Math.Max(SBDuration, SDuration);
             var lowest = Math.Min(SBDuration, SDuration);
 
+            //Print difference
             Console.WriteLine("> Difference: " + (highest - lowest));
 
             Console.ReadLine();
         }
 
+        /// <summary>
+        ///     SetAffinity of thread.
+        /// </summary>
         private static void SetAffinity()
         {
             foreach (ProcessThread pt in proc.Threads)
@@ -91,13 +124,14 @@ namespace StringsH7
                 threadCount++;
             }
 
+            //Write thread affinity changes
             Console.WriteLine("> Thread affinity changes: {0}", threadCount);
         }
 
-        /*
-         * Static function that build strings with the StringBuilder class
-         */
-
+        /// <summary>
+        ///     Method to build strings using the StringBuilder class.
+        /// </summary>
+        /// <param name="size">int - size of string</param>
         private static void BuildSB(int size)
         {
             var sbObject = new StringBuilder();
@@ -107,10 +141,10 @@ namespace StringsH7
             }
         }
 
-        /*
-         * Static function that builds strings with the string class
-         */
-
+        /// <summary>
+        ///     Method to build string using the String class.
+        /// </summary>
+        /// <param name="size">int - size of string</param>
         private static void BuildString(int size)
         {
             var stringObject = "";
@@ -137,7 +171,7 @@ namespace StringsH7
         /// <summary>
         ///     Get maximum cpu clock frequency.
         /// </summary>
-        /// <returns>uint clockspeed in hertz</returns>
+        /// <returns>uint - clockspeed in hertz</returns>
         public static uint GetMaxCPUSpeed()
         {
             uint maxSpeed;

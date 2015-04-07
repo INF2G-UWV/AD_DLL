@@ -1,5 +1,9 @@
 ﻿namespace DLL
 {
+    /// <summary>
+    ///     QuadtraticHash hashing class
+    ///     Author: Marcel Schoeber - INF2G
+    /// </summary>
     public class QuadraticHash
     {
         //fields

@@ -1,10 +1,18 @@
 ﻿using System;
 using DLL;
 
-namespace INF2G_DLL.Chapters.Chapter_5
+namespace DLL_Test.Chapters.Chapter_5
 {
+    /// <summary>
+    ///     NQueue Test
+    ///     Author: Selami Çetingüney - INF2G
+    /// </summary>
     internal class NQueueTest
     {
+        /// <summary>
+        ///     Main execution.
+        /// </summary>
+        /// <param name="args"></param>
         public static void Run(string[] args)
         {
             // Zonder UI, maar met tijd metingen;

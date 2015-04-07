@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DLL.Chapter12
+namespace DLL
 {
     public class BinarySearchTree<T> where T : IComparable<T>
     {

@@ -1,19 +1,28 @@
 ﻿using System;
 using DLL;
 
-namespace INF2G_DLL.Chapters.Chapter_5
+namespace DLL_Test.Chapters.Chapter_5
 {
+    /// <summary>
+    ///     PQueue Test
+    ///     Author: Selami Çetingüney - INF2G
+    /// </summary>
     internal class PQueueTest
     {
+        /// <summary>
+        ///     Main execution.
+        /// </summary>
+        /// <param name="args"></param>
         public static void Run(string[] args)
         {
             PQueueTest1();
         }
 
-        // Zonder tijdmeetingen, met UI | PQueuetest2();
-
         #region
 
+        /// <summary>
+        ///     Test with UI and no time measurements.
+        /// </summary>
         public static void PQueueTest2()
         {
             // Create a Generic Queue
@@ -39,68 +48,72 @@ namespace INF2G_DLL.Chapters.Chapter_5
             {
                 Console.Write("\nSelect command: ");
                 choice = Console.ReadLine();
-                choice = choice.ToLower();
+                if (choice != null)
+                {
+                    choice = choice.ToLower();
 
-                if (choice == "1") // If pressed 1, add item to the Queue;
-                {
-                    Console.WriteLine();
-                    Console.Write("Enter item to Enqeue: ");
-                    value1 = Console.ReadLine();
-                    Console.Write("Enter the Priority: ");
-                    value2 = int.Parse(Console.ReadLine());
-                    rndWords.Enqueue(value1, value2);
-                }
-                else if (choice == "2") // If pressed 2, delete first Highest Priority in the Queue;
-                {
-                    Console.WriteLine();
-                    Console.Write("{0}", rndWords.Dequeue());
-                    Console.WriteLine();
-                }
-                else if (choice == "3") // If pressed 3, peek at the first item in the Queue;
-                {
-                    Console.WriteLine();
-                    Console.Write("{0}", rndWords.Peek());
-                    Console.WriteLine();
-                }
-                else if (choice == "4") // If pressed 4, check if the item Contains in the list;
-                {
-                    Console.WriteLine();
-                    Console.Write("Enter item to check if it Contains in the List: ");
-                    value1 = Console.ReadLine();
-                    rndWords.Contains(value1);
-                    Console.WriteLine();
-                }
-                else if (choice == "5") // If pressed 5, display all the items in the Queue;
-                {
-                    Console.WriteLine();
-                    rndWords.GetAllQueueItems();
-                    Console.WriteLine();
-                }
-                else if (choice == "6") // If pressed 6, clear the Queue list;
-                {
-                    Console.WriteLine();
-                    rndWords.Clear();
-                    Console.WriteLine();
-                }
-                else if (choice == "7")
-                {
-                    runProgram = false; // If pressed 7, close the Program;
-                }
-                else
-                {
-                    Console.WriteLine();
-                    Console.Write("Unknown command");
-                    Console.WriteLine();
+                    if (choice == "1") // If pressed 1, add item to the Queue;
+                    {
+                        Console.WriteLine();
+                        Console.Write("Enter item to Enqeue: ");
+                        value1 = Console.ReadLine();
+                        Console.Write("Enter the Priority: ");
+                        value2 = int.Parse(Console.ReadLine());
+                        rndWords.Enqueue(value1, value2);
+                    }
+                    else if (choice == "2") // If pressed 2, delete first Highest Priority in the Queue;
+                    {
+                        Console.WriteLine();
+                        Console.Write("{0}", rndWords.Dequeue());
+                        Console.WriteLine();
+                    }
+                    else if (choice == "3") // If pressed 3, peek at the first item in the Queue;
+                    {
+                        Console.WriteLine();
+                        Console.Write("{0}", rndWords.Peek());
+                        Console.WriteLine();
+                    }
+                    else if (choice == "4") // If pressed 4, check if the item Contains in the list;
+                    {
+                        Console.WriteLine();
+                        Console.Write("Enter item to check if it Contains in the List: ");
+                        value1 = Console.ReadLine();
+                        rndWords.Contains(value1);
+                        Console.WriteLine();
+                    }
+                    else if (choice == "5") // If pressed 5, display all the items in the Queue;
+                    {
+                        Console.WriteLine();
+                        rndWords.GetAllQueueItems();
+                        Console.WriteLine();
+                    }
+                    else if (choice == "6") // If pressed 6, clear the Queue list;
+                    {
+                        Console.WriteLine();
+                        rndWords.Clear();
+                        Console.WriteLine();
+                    }
+                    else if (choice == "7")
+                    {
+                        runProgram = false; // If pressed 7, close the Program;
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.Write("Unknown command");
+                        Console.WriteLine();
+                    }
                 }
             }
         }
 
         #endregion
 
-        // Zonder UI, maar met tijd metingen | PQueueTest1();
-
         #region
 
+        /// <summary>
+        ///     Test without UI, but with time measurements.
+        /// </summary>
         public static void PQueueTest1()
         {
             // Create a Generic Queue and Timer;
@@ -111,8 +124,14 @@ namespace INF2G_DLL.Chapters.Chapter_5
             timer.Start();
 
             // Patiënt and their priority;
-            string patiënt1 = "Patiënt1", patiënt2 = "Patiënt2", patiënt3 = "Patiënt3", patiënt4 = "Patiënt4";
-            int priority1 = 11, priority2 = 5, priority3 = 7, priority4 = 1;
+            const string patiënt1 = "Patiënt1";
+            const string patiënt2 = "Patiënt2";
+            const string patiënt3 = "Patiënt3";
+            const string patiënt4 = "Patiënt4";
+            const int priority1 = 11;
+            const int priority2 = 5;
+            const int priority3 = 7;
+            const int priority4 = 1;
 
             Console.WriteLine("\nAdding " + patiënt1 + " with Priority (" + priority1 + ")");
             Console.WriteLine("Adding " + patiënt2 + " with Priority (" + priority2 + ")");

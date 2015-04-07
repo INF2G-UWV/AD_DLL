@@ -2,8 +2,12 @@
 using System.Collections;
 using DLL;
 
-namespace INF2G_DLL.Chapters.Chapter_4
+namespace DLL_Test.Chapters.Chapter_4
 {
+    /// <summary>
+    ///     Binary Search Test.
+    ///     Author: Selami Çetingüney - INF2G
+    /// </summary>
     internal class BinarySearch
     {
         public static void Run(string[] args)
@@ -54,7 +58,7 @@ namespace INF2G_DLL.Chapters.Chapter_4
 
         public static void PrintValues(IEnumerable rndWords)
         {
-            foreach (object rndWord in rndWords)
+            foreach (var rndWord in rndWords)
             {
                 Console.Write(rndWord + ", ");
             }

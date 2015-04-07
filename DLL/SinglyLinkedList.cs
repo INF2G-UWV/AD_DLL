@@ -5,10 +5,15 @@ using System.Text;
 
 namespace DLL
 {
+    /// <summary>
+    ///     ListNode class
+    ///     Author: Ferdi Smit - INF2G
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ListNode<T>
     {
         /// <summary>
-        ///     Constructor with item init
+        ///     Constructor with item
         /// </summary>
         /// <param name="item"></param>
         public ListNode(T item)
@@ -18,7 +23,7 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Constructor with item and the next node specified
+        ///     Constructor with item and node
         /// </summary>
         /// <param name="item"></param>
         /// <param name="next"></param>
@@ -29,12 +34,12 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Property to hold pointer to next ListNode - Self containing object
+        ///     Holds the next ListNode
         /// </summary>
         public ListNode<T> Next { get; set; }
 
         /// <summary>
-        ///     Property to hold value into the Node
+        ///     Holds value in current Node
         /// </summary>
         public T Item { get; set; }
 
@@ -61,11 +66,10 @@ namespace DLL
     }
 
     /// <summary>
-    ///     SinglyLinkedList class for generic implementation of LinkedList.
-    ///     Again, avoiding boxing unboxing here and using ICollection interface members.
-    ///     Believe this can be useful when applying other
-    ///     operations such as sorting, searching etc.
+    ///     SinglyLinkedList class, custom version of LinkedList
+    ///     Author: Ferdi Smit - INF2G
     /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SinglyLinkedList<T> : ICollection<T>
     {
         #region private variables
@@ -75,7 +79,7 @@ namespace DLL
         #endregion
 
         /// <summary>
-        ///     Constructor initializing list with a provided list name
+        ///     Constructor with provided listname
         /// </summary>
         /// <param name="strListName"></param>
         public SinglyLinkedList(string strListName)
@@ -86,7 +90,7 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Default constructor initialzing list with a default name "MyList"
+        ///     Constructor with default name "MyList"
         /// </summary>
         public SinglyLinkedList() : this("MyList")
         {

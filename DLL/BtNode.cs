@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DLL.Chapter12
+namespace DLL
 {
     /// <summary>
     ///     Custom binary tree node

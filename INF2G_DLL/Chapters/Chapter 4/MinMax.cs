@@ -1,10 +1,18 @@
 ﻿using System;
 using DLL;
 
-namespace INF2G_DLL.Chapters.Chapter_4
+namespace DLL_Test.Chapters.Chapter_4
 {
+    /// <summary>
+    ///     MinMax Test.
+    ///     Author: Xing Woo - INF2G
+    /// </summary>
     internal class MinMax
     {
+        /// <summary>
+        ///     Main execution.
+        /// </summary>
+        /// <param name="args"></param>
         public static void Run(string[] args)
         {
             //Create an array and fill it

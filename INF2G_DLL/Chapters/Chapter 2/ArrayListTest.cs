@@ -1,10 +1,11 @@
 ﻿using System;
 using DLL;
 
-namespace INF2G_DLL.Chapters.Chapter_2
+namespace DLL_Test.Chapters.Chapter_2
 {
     /// <summary>
     ///     Test class for custom ArrayList feature.
+    ///     Author: Marcel Schoeber - INF2G
     /// </summary>
     public class ArrayListTest
     {

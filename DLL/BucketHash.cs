@@ -4,11 +4,12 @@ namespace DLL
 {
     /// <summary>
     ///     BucketHash hashing class.
+    ///     Author: Marcel Schoeber - INF2G
     /// </summary>
     public class BucketHash
     {
         //fields
-        private const int SIZE = 101;
+        private const int SIZE = 10007;
         private readonly ArrayList[] data;
 
         /// <summary>

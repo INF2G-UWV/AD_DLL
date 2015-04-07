@@ -1,30 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DLL.Chapter12;
+using DLL;
 
-namespace INF2G_DLL.Chapters.Chapter_12
+namespace DLL_Test.Chapters.Chapter_12
 {
-    internal class BSTTEST
+    /// <summary>
+    ///     Binary Search Tree Test.
+    ///     Author: Xing Woo - INF2G
+    /// </summary>
+    internal class BstTest
     {
+        /// <summary>
+        ///     Main test method.
+        /// </summary>
+        /// <param name="args"></param>
         public static void Run(string[] args)
         {
-            BinarySearchTree<int> tree =
+            //Create new tree
+            var tree =
                 new BinarySearchTree<int>(44);
-            for (int i = 0; i < 150; i++)
+            //Insert values
+            for (var i = 0; i < 150; i++)
             {
                 tree.Insert(i);
             }
+            //Print
             tree.PrintTree();
             Console.WriteLine();
             Console.WriteLine(tree.Contains(25).ToString());
             Console.WriteLine();
-            for (int j = 25; j < 30; j++)
+            //Remove values
+            for (var j = 25; j < 30; j++)
             {
                 tree.Remove(j);
             }
+            //Print
             tree.PrintTree();
             Console.ReadLine();
         }

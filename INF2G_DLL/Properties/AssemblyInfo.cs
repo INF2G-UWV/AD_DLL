@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("INF2G_DLL")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("DLL_Test")]
+[assembly: AssemblyDescription("Testing application for AD DLL")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("INF2G_DLL")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("INF2G - Stenden University")]
+[assembly: AssemblyProduct("DLL_Test")]
+[assembly: AssemblyCopyright("Copyright © 2015 by INF2G/Stenden")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DLL")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Library containing several different algorithms")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("INF2G - Stenden University")]
 [assembly: AssemblyProduct("DLL")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2015 by INF2G/Stenden")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

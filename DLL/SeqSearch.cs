@@ -3,10 +3,10 @@
     /// <summary>
     ///     Sequential searching algorithm.
     ///     Checks every item sequentially in a generic array until a match is found.
+    ///     Author: Marcel Schoeber - INF2G
     /// </summary>
     public class SeqSearch<T>
     {
-
         /// <summary>
         ///     Searching method.
         ///     Returns true if a match is found.

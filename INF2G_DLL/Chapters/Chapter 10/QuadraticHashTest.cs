@@ -1,7 +1,7 @@
 ﻿using System;
 using DLL;
 
-namespace INF2G_DLL.Chapters.Chapter_10
+namespace DLL_Test.Chapters.Chapter_10
 {
     /// <summary>
     ///     Test for QuadraticHash

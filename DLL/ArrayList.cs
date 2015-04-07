@@ -6,6 +6,7 @@ namespace DLL
     /// <summary>
     ///     Custom ArrayList class.
     ///     Provides similar functionality to the internal C# ArrayList class.
+    ///     Author: Marcel Schoeber - INF2G
     /// </summary>
     /// <typeparam name="T">Generic Type</typeparam>
     public class ArrayList<T>
