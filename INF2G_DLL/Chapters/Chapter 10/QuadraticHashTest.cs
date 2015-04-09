@@ -29,8 +29,7 @@ namespace DLL_Test.Chapters.Chapter_10
             {
                 Console.Clear();
                 Console.WriteLine("Quadratic Hash Test");
-                Console.WriteLine("");
-                Console.WriteLine("1.Add new item to hash.");
+                Console.WriteLine("\n1.Add new item to hash.");
                 Console.WriteLine("2.Remove item from hash.");
                 Console.WriteLine("3.Check if item exists.");
                 Console.WriteLine("4.Get a hashvalue from input.");
@@ -76,8 +75,7 @@ namespace DLL_Test.Chapters.Chapter_10
                 }
                 else
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("Unrecognized input!");
+                    Console.WriteLine("\nUnrecognized input!");
                     Console.ReadKey(true);
                 }
             }
@@ -93,13 +91,11 @@ namespace DLL_Test.Chapters.Chapter_10
 
             //Insert into QuadraticHash
             quadraticHash.Insert(input);
-
-            Console.WriteLine();
+    
             //Get hashvalue
-            Console.WriteLine("Hashvalue of the word '{0}' is: {1}", input,
+            Console.WriteLine("\nHashvalue of the word '{0}' is: {1}", input,
                 quadraticHash.GetHashValue(input));
-            Console.WriteLine();
-            Console.WriteLine("Press a key to continue");
+            Console.WriteLine("\nPress a key to continue");
             Console.ReadKey(true);
         }
 
@@ -119,15 +115,13 @@ namespace DLL_Test.Chapters.Chapter_10
             {
                 //Remove item
                 quadraticHash.Remove(input);
-                Console.WriteLine();
-                Console.WriteLine(!quadraticHash.Exists(input) ? "Succesfully removed!" : "Remove failed!");
+                Console.WriteLine(!quadraticHash.Exists(input) ? "\nSuccesfully removed!" : "\nRemove failed!");
             }
             else
             {
-                Console.WriteLine("Item does not exist!");
+                Console.WriteLine("\nItem does not exist!");
             }
-            Console.WriteLine();
-            Console.WriteLine("Press a key to continue");
+            Console.WriteLine("\nPress a key to continue");
             Console.ReadKey(true);
         }
 
@@ -141,13 +135,11 @@ namespace DLL_Test.Chapters.Chapter_10
 
             //Read string from input
             var input = Console.ReadLine();
-            Console.WriteLine();
 
             //Get hashvalue
-            Console.WriteLine("Hashvalue of the word '{0}' is: {1}", input,
+            Console.WriteLine("\nHashvalue of the word '{0}' is: {1}", input,
                 quadraticHash.GetHashValue(input));
-            Console.WriteLine();
-            Console.WriteLine("Press a key to continue");
+            Console.WriteLine("\nPress a key to continue");
             Console.ReadKey(true);
         }
 
@@ -174,8 +166,7 @@ namespace DLL_Test.Chapters.Chapter_10
             {
                 Console.WriteLine("Hash is empty!");
             }
-            Console.WriteLine();
-            Console.WriteLine("Press a key to continue");
+            Console.WriteLine("\nPress a key to continue");
             Console.ReadKey(true);
         }
 
@@ -190,10 +181,9 @@ namespace DLL_Test.Chapters.Chapter_10
             var input = Console.ReadLine();
             //Verify if exists or not
             Console.WriteLine(quadraticHash.Exists(input)
-                ? "{0} exists in the quadratic hash."
-                : "{0} does not exist!", input);
-            Console.WriteLine();
-            Console.WriteLine("Press a key to continue");
+                ? "\n{0} exists in the quadratic hash."
+                : "\n{0} does not exist!", input);
+            Console.WriteLine("\nPress a key to continue");
             Console.ReadKey(true);
         }
     }
