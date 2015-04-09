@@ -9,28 +9,38 @@ namespace DLL_Test.Chapters.Chapter_5
     /// </summary>
     internal class NQueueTest
     {
+        private static NQueue<string> rndWords;
+
         /// <summary>
         ///     Main execution.
         /// </summary>
         /// <param name="args"></param>
-        public static void Run(string[] args)
+        public static void Run(int test)
         {
+            // Create a Generic Queue
+            rndWords = new NQueue<string>();
             // Zonder UI, maar met tijd metingen;
-            QueueTest1();
+            if (test == 1)
+            {
+                //With time measurement, without UI.
+                QueueTest1();
+            }
 
-            // Zonder tijdmeetingen, met UI
-            //QueueTest2();
+            if (test == 2)
+            {
+                //Without time measurement, with UI.
+                QueueTest2();
+            }
         }
-
-        // Zonder tijdmeetingen, met UI | Queuetest2();
 
         #region
 
+        /// <summary>
+        ///     Normal Queue Test 2.
+        ///     Has a user interface so that the various features can be tested individually.
+        /// </summary>
         public static void QueueTest2()
         {
-            // Create a Generic Queue
-            var rndWords = new NQueue<string>();
-
             // Two variables which choice stores the command pressed, and value typed in the input;
             string choice, value;
 
@@ -58,6 +68,8 @@ namespace DLL_Test.Chapters.Chapter_5
                     Console.Write("Enter item to Enqeue: ");
                     value = Console.ReadLine();
                     rndWords.Enqueue(value);
+                    Console.WriteLine();
+                    Console.WriteLine("Item {0} added to the queue.", value);
                 }
                 else if (choice == "2") // If pressed 2, delete first item in the Queue;
                 {
@@ -101,15 +113,20 @@ namespace DLL_Test.Chapters.Chapter_5
                     Console.Write("Unknown command");
                     Console.WriteLine();
                 }
+                Console.ReadKey();
+                Console.Clear();
+                QueueTest2();
             }
         }
 
         #endregion
 
-        // Zonder UI, maar met tijd metingen | QueueTest1();
-
         #region
 
+        /// <summary>
+        ///     Normal Queue Test 1.
+        ///     Testing NQueue functionality with timer.
+        /// </summary>
         public static void QueueTest1()
         {
             // Create a Generic Queue and Timer;

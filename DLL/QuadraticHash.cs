@@ -1,7 +1,10 @@
-﻿namespace DLL
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace DLL
 {
     /// <summary>
-    ///     QuadtraticHash hashing class
+    ///     QuadraticHash hashing class
     ///     Author: Marcel Schoeber - INF2G
     /// </summary>
     public class QuadraticHash
@@ -100,6 +103,15 @@
                 return data[hashValue].Contains(item);
             }
             return false;
+        }
+
+        /// <summary>
+        ///     Get a dictionary list of items in quadratichash.
+        /// </summary>
+        /// <returns>string,int - item, hashvalue</returns>
+        public Dictionary<string, int> GetList()
+        {
+            return data.Where(t => t != null).ToDictionary(t => t, GetHashValue);
         }
 
         /// <summary>

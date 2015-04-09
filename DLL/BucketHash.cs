@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DLL
 {
@@ -68,7 +70,7 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Returns hash value of giving string
+        ///     Returns hash value of given string
         /// </summary>
         /// <param name="item">String - item</param>
         /// <returns>Int hash</returns>
@@ -86,6 +88,16 @@ namespace DLL
         {
             var hashValue = Hash(item);
             return data[hashValue].Contains(item);
+        }
+
+        /// <summary>
+        /// Get a dictionary list of items in buckethash.
+        /// </summary>
+        /// <returns>string,int - item, hashvalue</returns>
+        public Dictionary<string, int> GetList()
+        {
+            //Fetch items
+            return (from itemlist in data where itemlist.Count > 0 from item in itemlist.Cast<object>().Where(item => item != null) select item).ToDictionary(item => item.ToString(), item => GetHashValue(item.ToString()));
         }
 
         /// <summary>

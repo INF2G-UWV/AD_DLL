@@ -9,25 +9,35 @@ namespace DLL_Test.Chapters.Chapter_5
     /// </summary>
     internal class PQueueTest
     {
+        private static PQueue<string> rndWords;
+
         /// <summary>
-        ///     Main execution.
+        ///     Main Execution.
         /// </summary>
-        /// <param name="args"></param>
-        public static void Run(string[] args)
+        /// <param name="args">Int - 1 = Timer, 2 = UI </param>
+        public static void Run(int test)
         {
-            PQueueTest1();
+            // Create a Generic Queue
+            rndWords = new PQueue<string>();
+            if (test == 1)
+            {
+                PQueueTestTimer();
+            }
+
+            if (test == 2)
+            {
+                PQueueTestUI();
+            }
         }
 
         #region
 
         /// <summary>
+        ///     Priority Queue Test UI.
         ///     Test with UI and no time measurements.
         /// </summary>
-        public static void PQueueTest2()
+        public static void PQueueTestUI()
         {
-            // Create a Generic Queue
-            var rndWords = new PQueue<string>();
-
             // Two variables which choice stores the command pressed, and value typed in the input;
             string choice, value1;
             int value2;
@@ -51,15 +61,23 @@ namespace DLL_Test.Chapters.Chapter_5
                 if (choice != null)
                 {
                     choice = choice.ToLower();
-
                     if (choice == "1") // If pressed 1, add item to the Queue;
                     {
                         Console.WriteLine();
                         Console.Write("Enter item to Enqeue: ");
                         value1 = Console.ReadLine();
                         Console.Write("Enter the Priority: ");
-                        value2 = int.Parse(Console.ReadLine());
-                        rndWords.Enqueue(value1, value2);
+
+                        if (int.TryParse(Console.ReadLine(), out value2))
+                        {
+                            rndWords.Enqueue(value1, value2);
+                            Console.WriteLine();
+                            Console.WriteLine("Item {0} with priority {1} added to the queue.", value1, value2);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input!");
+                        }
                     }
                     else if (choice == "2") // If pressed 2, delete first Highest Priority in the Queue;
                     {
@@ -103,6 +121,9 @@ namespace DLL_Test.Chapters.Chapter_5
                         Console.Write("Unknown command");
                         Console.WriteLine();
                     }
+                    Console.ReadKey();
+                    Console.Clear();
+                    PQueueTestUI();
                 }
             }
         }
@@ -112,9 +133,10 @@ namespace DLL_Test.Chapters.Chapter_5
         #region
 
         /// <summary>
+        ///     Priority Queue Test Timer.
         ///     Test without UI, but with time measurements.
         /// </summary>
-        public static void PQueueTest1()
+        public static void PQueueTestTimer()
         {
             // Create a Generic Queue and Timer;
             var priorQueue = new PQueue<string>();

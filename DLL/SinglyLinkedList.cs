@@ -458,7 +458,7 @@ namespace DLL
                 else
                 {
                     var currentNode = FirstNode;
-                    for (var i = 0; i < index; i++)
+                    for (var i = 1; i < index; i++)
                     {
                         currentNode = currentNode.Next;
                     }
