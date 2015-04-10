@@ -10,8 +10,12 @@ namespace DLL_Test.Chapters.Chapter_4
     /// </summary>
     internal class BinarySearch
     {
-        public static void Run(string[] args)
+        /// <summary>
+        ///     Main Execution
+        /// </summary>
+        public static void Run()
         {
+            Console.Clear();
             // Create a timer
             var timer = new HighResolutionTimer(true);
 
@@ -25,6 +29,10 @@ namespace DLL_Test.Chapters.Chapter_4
 
             // Create a Generic BinarySearch;
             var bsearch = new BinarySearch<string>();
+
+            Console.WriteLine("***************************");
+            Console.WriteLine("****Binary Search Test****");
+            Console.WriteLine("**************************");
 
             // Items in the Array;
             Console.WriteLine("\nAll the items in the Array:");
@@ -52,8 +60,8 @@ namespace DLL_Test.Chapters.Chapter_4
 
             timer.Stop();
             Console.WriteLine("Time needed for search: " + timer.Duration(TimeResolution.Seconds));
-
-            Console.ReadLine();
+            Console.WriteLine("\nPress a key to continue");
+            Console.ReadKey(true);
         }
 
         public static void PrintValues(IEnumerable rndWords)

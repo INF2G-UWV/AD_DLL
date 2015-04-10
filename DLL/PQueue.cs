@@ -6,6 +6,7 @@ namespace DLL
     /// <summary>
     ///     Priority Queue Class | Lowest number is Highest Priority
     ///     Chapter 5
+    ///     Author: Selami Çetingüney - INF2G
     /// </summary>
     public class PQueue<T> where T : IComparable<T>
     {

@@ -3,6 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace DLL
 {
+    /// <summary>
+    ///     Timeresolution enum
+    /// </summary>
     public enum TimeResolution
     {
         Seconds = 1,
@@ -11,10 +14,19 @@ namespace DLL
         Nanoseconds = 1000000000
     }
 
+    /// <summary>
+    ///     HighResolutionTimer.
+    ///     Powerful timer for accurate measurements.
+    ///     Author: Martijn Buurman - INF2G
+    /// </summary>
     public class HighResolutionTimer
     {
         #region Constructor
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        /// <param name="useDLL">useDLL</param>
         public HighResolutionTimer(bool useDLL)
         {
             TimestampStart = 0;
@@ -27,6 +39,8 @@ namespace DLL
 
         #region QueryPerformance DLL Import
 
+        //Import QueryPerfomanceCounter from kernel
+
         [DllImport("kernel32.dll")]
         private static extern short QueryPerformanceCounter(ref long x);
 
@@ -37,6 +51,7 @@ namespace DLL
 
         #region Variables
 
+        //fields
         private long timestampStart;
         private long timestampEnd;
 
@@ -46,12 +61,18 @@ namespace DLL
 
         #region Properties
 
+        /// <summary>
+        ///     Get/Set Start
+        /// </summary>
         public long TimestampStart
         {
             get { return timestampStart; }
             private set { timestampStart = value; }
         }
 
+        /// <summary>
+        ///     Get/Set End
+        /// </summary>
         public long TimestampEnd
         {
             get { return timestampEnd; }
@@ -62,8 +83,12 @@ namespace DLL
 
         #region Public Methods
 
+        /// <summary>
+        ///     Start timer
+        /// </summary>
         public void Start()
         {
+            //Check if DLL is used, else use default Stopwatch
             if (useDLL)
             {
                 QueryPerformanceCounter(ref timestampStart);
@@ -74,6 +99,9 @@ namespace DLL
             }
         }
 
+        /// <summary>
+        ///     Stop timer
+        /// </summary>
         public void Stop()
         {
             if (useDLL)
@@ -86,15 +114,23 @@ namespace DLL
             }
         }
 
+        /// <summary>
+        ///     Get the duration between start and end
+        /// </summary>
+        /// <param name="timeResolution">Timeresolution</param>
+        /// <returns>double - duration</returns>
         public double Duration(TimeResolution timeResolution)
         {
+            //check if DLL is used
             if (useDLL)
             {
+                //Return the duration
                 long frequency = 0;
                 QueryPerformanceFrequency(ref frequency);
 
                 return ((timestampEnd - timestampStart)*((double) timeResolution/frequency));
             }
+            //Return the duration (without DLL)
             return ((timestampEnd - timestampStart)*((double) timeResolution/Stopwatch.Frequency));
         }
 

@@ -7,13 +7,13 @@ namespace DLL_Test.Chapters.Chapter_10
     ///     Test for QuadraticHash
     ///     Author: Marcel Schoeber - INF2G
     /// </summary>
-    internal class QuadraticHashTest
+    internal class LinearHashTest
     {
-        private static QuadraticHash quadraticHash;
+        private static LinearHash linearHash;
 
         public static void Run()
         {
-            quadraticHash = new QuadraticHash();
+            linearHash = new LinearHash();
             RunTest();
         }
 
@@ -27,9 +27,9 @@ namespace DLL_Test.Chapters.Chapter_10
 
             //print menu
             Console.Clear();
-            Console.WriteLine("***************************");
-            Console.WriteLine("****Quadratic Hash Test****");
-            Console.WriteLine("***************************");
+            Console.WriteLine("************************");
+            Console.WriteLine("****Linear Hash Test****");
+            Console.WriteLine("************************");
             Console.WriteLine("(1) Add new item to hash.");
             Console.WriteLine("(2) Remove item from hash.");
             Console.WriteLine("(3) Check if item exists.");
@@ -88,18 +88,18 @@ namespace DLL_Test.Chapters.Chapter_10
 
         private static void AddList()
         {
-            Console.WriteLine("Please type a string or word to be inserted in the quadratic hash:");
+            Console.WriteLine("Please type a string or word to be inserted in the linear hash:");
             Console.Write("> ");
 
             //Read string from input
             var input = Console.ReadLine();
 
             //Insert into QuadraticHash
-            quadraticHash.Insert(input);
+            linearHash.Insert(input);
 
             //Get hashvalue
             Console.WriteLine("\nHashvalue of the word '{0}' is: {1}", input,
-                quadraticHash.GetHashValue(input));
+                linearHash.GetHashValue(input));
             Console.WriteLine("\nPress a key to continue");
             Console.ReadKey(true);
         }
@@ -109,18 +109,18 @@ namespace DLL_Test.Chapters.Chapter_10
         /// </summary>
         private static void RemoveList()
         {
-            Console.WriteLine("Please type a string or word to be removed from quadratic hash:");
+            Console.WriteLine("Please type a string or word to be removed from linear hash:");
             Console.Write("> ");
 
             //Read string from input
             var input = Console.ReadLine();
 
             //Check if exists
-            if (quadraticHash.Exists(input))
+            if (linearHash.Exists(input))
             {
                 //Remove item
-                quadraticHash.Remove(input);
-                Console.WriteLine(!quadraticHash.Exists(input) ? "\nSuccesfully removed!" : "\nRemove failed!");
+                linearHash.Remove(input);
+                Console.WriteLine(!linearHash.Exists(input) ? "\nSuccesfully removed!" : "\nRemove failed!");
             }
             else
             {
@@ -143,7 +143,7 @@ namespace DLL_Test.Chapters.Chapter_10
 
             //Get hashvalue
             Console.WriteLine("\nHashvalue of the word '{0}' is: {1}", input,
-                quadraticHash.GetHashValue(input));
+                linearHash.GetHashValue(input));
             Console.WriteLine("\nPress a key to continue");
             Console.ReadKey(true);
         }
@@ -156,7 +156,7 @@ namespace DLL_Test.Chapters.Chapter_10
             Console.WriteLine("Contents of hashtable (item - hashvalue):");
             Console.WriteLine();
             //Fetch list
-            var contents = quadraticHash.GetList();
+            var contents = linearHash.GetList();
 
             //Check if empty
             if (contents.Count > 0)
@@ -185,8 +185,8 @@ namespace DLL_Test.Chapters.Chapter_10
             //Read input
             var input = Console.ReadLine();
             //Verify if exists or not
-            Console.WriteLine(quadraticHash.Exists(input)
-                ? "\n{0} exists in the quadratic hash."
+            Console.WriteLine(linearHash.Exists(input)
+                ? "\n{0} exists in the linear hash."
                 : "\n{0} does not exist!", input);
             Console.WriteLine("\nPress a key to continue");
             Console.ReadKey(true);

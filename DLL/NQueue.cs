@@ -6,6 +6,7 @@ namespace DLL
     /// <summary>
     ///     NQueue Class
     ///     Chapter 5
+    ///     Author: Selami Çetingüney - INF2G
     /// </summary>
     public class NQueue<T> where T : IComparable<T>
     {

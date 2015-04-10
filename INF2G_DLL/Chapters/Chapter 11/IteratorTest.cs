@@ -1,7 +1,7 @@
 ﻿using System;
 using DLL;
 
-namespace DLL_Test.Chapters
+namespace DLL_Test.Chapters.Chapter_11
 {
     /// <summary>
     ///     Iterator Test.
@@ -22,12 +22,14 @@ namespace DLL_Test.Chapters
         /// <summary>
         ///     Run the iterator test.
         /// </summary>
-        public static void RunTest()
+        private static void RunTest()
         {
             //Create new iterator
             var iterator = new Iterator<int>(GenerateList());
-
-            Console.WriteLine("Iterator Test\n");
+            Console.Clear();
+            Console.WriteLine("*********************");
+            Console.WriteLine("****Iterator Test****");
+            Console.WriteLine("*********************\n");
 
             //Iterate through items
             while (!iterator.AtEnd())
@@ -82,10 +84,10 @@ namespace DLL_Test.Chapters
             var list = new LinkedList<int>(value);
 
             //Add many other nodes to LinkedList
-            for (var i = 0; i < 200; i++)
+            for (var i = 0; i < 100; i++)
             {
                 var previous = value;
-                value = rnd.Next(1, 150);
+                value = rnd.Next(50, 150);
                 list.Insert(value, previous);
             }
             return list;

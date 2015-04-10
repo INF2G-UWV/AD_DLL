@@ -19,17 +19,17 @@ namespace DLL_Test.Chapters.Chapter_5
         {
             // Create a Generic Queue
             rndWords = new NQueue<string>();
-            // Zonder UI, maar met tijd metingen;
+
             if (test == 1)
             {
                 //With time measurement, without UI.
-                QueueTest1();
+                QueueTestTimer();
             }
 
             if (test == 2)
             {
                 //Without time measurement, with UI.
-                QueueTest2();
+                QueueTestUI();
             }
         }
 
@@ -39,83 +39,86 @@ namespace DLL_Test.Chapters.Chapter_5
         ///     Normal Queue Test 2.
         ///     Has a user interface so that the various features can be tested individually.
         /// </summary>
-        public static void QueueTest2()
+        private static void QueueTestUI()
         {
             // Two variables which choice stores the command pressed, and value typed in the input;
-            string choice, value;
+            string value;
+            Console.Clear();
 
             // Commands that are available;
-            Console.WriteLine("\nCommands to follow!");
+            Console.WriteLine("*************************");
+            Console.WriteLine("****Normal Queue Test****");
+            Console.WriteLine("*************************");
             Console.WriteLine("(1) Enqueue");
             Console.WriteLine("(2) Dequeue");
             Console.WriteLine("(3) Peek");
             Console.WriteLine("(4) Contains");
             Console.WriteLine("(5) Print Queue list");
             Console.WriteLine("(6) Clear");
-            Console.WriteLine("(7) Exit");
+            Console.WriteLine("(X) Exit");
 
             // While the console applications runs, the commands can be executed;
             var runProgram = true;
-            while (runProgram)
-            {
-                Console.Write("\nSelect command: ");
-                choice = Console.ReadLine();
-                choice = choice.ToLower();
 
-                if (choice == "1") // If pressed 1, add item to the Queue;
-                {
-                    Console.WriteLine();
-                    Console.Write("Enter item to Enqeue: ");
-                    value = Console.ReadLine();
-                    rndWords.Enqueue(value);
-                    Console.WriteLine();
-                    Console.WriteLine("Item {0} added to the queue.", value);
-                }
-                else if (choice == "2") // If pressed 2, delete first item in the Queue;
-                {
-                    Console.WriteLine();
-                    Console.Write("{0}", rndWords.Dequeue());
-                    Console.WriteLine();
-                }
-                else if (choice == "3") // If pressed 3, peek at the first item in the Queue;
-                {
-                    Console.WriteLine();
-                    Console.Write("{0}", rndWords.Peek());
-                    Console.WriteLine();
-                }
-                else if (choice == "4") // If pressed 4, check if the item Contains in the list;
-                {
-                    Console.WriteLine();
-                    Console.Write("Enter item to check if it Contains in the List: ");
-                    value = Console.ReadLine();
-                    rndWords.Contains(value);
-                    Console.WriteLine();
-                }
-                else if (choice == "5") // If pressed 5, display all the items in the Queue;
-                {
-                    Console.WriteLine();
-                    rndWords.GetAllQueueItems();
-                    Console.WriteLine();
-                }
-                else if (choice == "6") // If pressed 6, clear the Queue list;
-                {
-                    Console.WriteLine();
-                    rndWords.Clear();
-                    Console.WriteLine();
-                }
-                else if (choice == "7")
-                {
-                    runProgram = false; // If pressed 7, close the Program;
-                }
-                else
-                {
-                    Console.WriteLine();
-                    Console.Write("Unknown command");
-                    Console.WriteLine();
-                }
+            Console.Write("\nSelect command: ");
+            var input = Console.ReadKey(true);
+
+            if (input.Key.Equals(ConsoleKey.D1)) // If pressed 1, add item to the Queue;
+            {
+                Console.WriteLine();
+                Console.Write("Enter item to Enqeue: ");
+                value = Console.ReadLine();
+                rndWords.Enqueue(value);
+                Console.WriteLine();
+                Console.WriteLine("Item {0} added to the queue.", value);
+            }
+            else if (input.Key.Equals(ConsoleKey.D2)) // If pressed 2, delete first item in the Queue;
+            {
+                Console.WriteLine();
+                Console.Write("{0}", rndWords.Dequeue());
+                Console.WriteLine();
+            }
+            else if (input.Key.Equals(ConsoleKey.D3)) // If pressed 3, peek at the first item in the Queue;
+            {
+                Console.WriteLine();
+                Console.Write("{0}", rndWords.Peek());
+                Console.WriteLine();
+            }
+            else if (input.Key.Equals(ConsoleKey.D4)) // If pressed 4, check if the item Contains in the list;
+            {
+                Console.WriteLine();
+                Console.Write("Enter item to check if it Contains in the List: ");
+                value = Console.ReadLine();
+                rndWords.Contains(value);
+                Console.WriteLine();
+            }
+            else if (input.Key.Equals(ConsoleKey.D5)) // If pressed 5, display all the items in the Queue;
+            {
+                Console.WriteLine();
+                rndWords.GetAllQueueItems();
+                Console.WriteLine();
+            }
+            else if (input.Key.Equals(ConsoleKey.D6)) // If pressed 6, clear the Queue list;
+            {
+                Console.WriteLine();
+                rndWords.Clear();
+                Console.WriteLine();
+            }
+            else if (input.Key.Equals(ConsoleKey.X) || input.Key.Equals(ConsoleKey.Backspace))
+            {
+                runProgram = false; // If pressed 7, close the Program;
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.Write("Unknown command");
+                Console.WriteLine();
+            }
+            if (runProgram)
+            {
                 Console.ReadKey();
                 Console.Clear();
-                QueueTest2();
+                QueueTestUI();
             }
         }
 
@@ -127,7 +130,7 @@ namespace DLL_Test.Chapters.Chapter_5
         ///     Normal Queue Test 1.
         ///     Testing NQueue functionality with timer.
         /// </summary>
-        public static void QueueTest1()
+        private static void QueueTestTimer()
         {
             // Create a Generic Queue and Timer;
             var rndWords = new NQueue<int>();

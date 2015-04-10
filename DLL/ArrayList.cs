@@ -93,6 +93,14 @@ namespace DLL
             Array.Resize(ref list, list.Length - 1);
         }
 
+        public void InsertAt(int index, T item)
+        {
+            if (index <= Length())
+            {
+                list[index] = item;
+            }
+        }
+
         /// <summary>
         ///     Clears the array;
         /// </summary>
@@ -158,6 +166,20 @@ namespace DLL
             RemoveAt(from);
         }
 
+        public bool IsEmpty()
+        {
+            return Length() <= 0;
+        }
+
+        public void Update(T one, T two)
+        {
+            var indexOne = IndexOf(one);
+            if (indexOne > 0)
+            {
+                InsertAt(indexOne, two);
+            }
+        }
+
         /// <summary>
         ///     Swaps two items in array.
         /// </summary>
@@ -168,6 +190,17 @@ namespace DLL
             var itemTwo = list[two];
             list[two] = list[one];
             list[one] = itemTwo;
+        }
+
+        /// <summary>
+        ///     Print contents
+        /// </summary>
+        public void ShowList()
+        {
+            for (var i = 0; i < Length(); i++)
+            {
+                Console.WriteLine(list[i]);
+            }
         }
     }
 }

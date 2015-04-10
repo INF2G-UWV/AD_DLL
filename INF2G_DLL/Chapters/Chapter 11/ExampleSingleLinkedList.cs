@@ -9,175 +9,244 @@ namespace DLL_Test.Chapters.Chapter_11
     /// </summary>
     internal class ExampleSingleLinkedList
     {
+        private static SinglyLinkedList<string> myList;
+
         /// <summary>
         ///     Main execution
         /// </summary>
         /// <param name="args"></param>
-        public static void Run(string[] args)
+        public static void Run()
         {
-            LinkedListProgram();
+            CreateList();
+            ListProgram();
+        }
+
+        /// <summary>
+        ///     Create new list
+        /// </summary>
+        private static void CreateList()
+        {
+            myList = new SinglyLinkedList<string>();
+            //Add names in front
+            myList.InsertAtFront("Marcel");
+            myList.InsertAtFront("Ferdi");
+            myList.InsertAtFront("Martijn");
+            myList.InsertAtFront("Selami");
+            myList.InsertAtFront("Xing");
         }
 
         /// <summary>
         ///     Linked list testing program.
         /// </summary>
-        public static void LinkedListProgram()
+        public static void ListProgram()
         {
-            //Create new SingleLinkedList (of string)
-            var myList = new SinglyLinkedList<string>();
+            var runAgain = true;
 
             //Create strings.
-            string choice, value1, value2;
+            string value1, value2;
 
             try
             {
-                //Add names in front
-                myList.InsertAtFront("Marcel");
-                myList.InsertAtFront("Ferdi");
-                myList.InsertAtFront("Martijn");
-                myList.InsertAtFront("Selami");
-                myList.InsertAtFront("Xing");
-                //While application is active, show the following output on console
-                while (true)
+                //Show menu
+                Console.Clear();
+                Console.WriteLine("*****************************");
+                Console.WriteLine("****SingleLinkedList Test****");
+                Console.WriteLine("*****************************");
+                Console.WriteLine("(A) Insert item at front");
+                Console.WriteLine("(B) Insert item at back");
+                Console.WriteLine("(C) Remove item from front");
+                Console.WriteLine("(D) Remove item from back");
+                Console.WriteLine("(E) Insert at given index");
+                Console.WriteLine("(F) Remove from given index");
+                Console.WriteLine("(G) Remove given item from list");
+                Console.WriteLine("(H) Update an old item with a new item");
+                Console.WriteLine("(I) Check if item exists in the list");
+                Console.WriteLine("(J) Clears the list");
+                Console.WriteLine("(K) Show the list");
+                Console.WriteLine("(X) Back");
+                Console.Write("\nSelect:");
+
+                //input
+                var choice = Console.ReadKey(true);
+                Console.WriteLine();
+
+                //Check input
+                switch (choice.Key)
                 {
-                    Console.WriteLine("(A) Insert item at front");
-                    Console.WriteLine("(B) Insert item at back");
-                    Console.WriteLine("(C) Remove item from front");
-                    Console.WriteLine("(D) Remove item from back");
-                    Console.WriteLine("(E) Insert at given index");
-                    Console.WriteLine("(F) Remove from given index");
-                    Console.WriteLine("(G) Remove given item from list");
-                    Console.WriteLine("(H) Update an old item with new item");
-                    Console.WriteLine("(I) Shows true if item is in list and false otherwise");
-                    Console.WriteLine("(J) Clears the list");
-                    Console.WriteLine("(K) Show the list");
-                    Console.WriteLine();
-                    Console.Write("Enter your choice: ");
+                    //Enter name at front
+                    case ConsoleKey.A:
+                        Console.Write("\nEnter a name to insert: ");
+                        value1 = Console.ReadLine();
+                        myList.InsertAtFront(value1);
+                        Console.WriteLine("\nItem {0} added", value1);
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
 
-                    //Read input
-                    choice = Console.ReadLine();
+                    //Enter name at back
+                    case ConsoleKey.B:
+                        Console.Write("\nEnter a name to insert: ");
+                        value1 = Console.ReadLine();
+                        myList.InsertAtBack(value1);
+                        Console.WriteLine("\nItem {0} added", value1);
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
 
-                    //Convert input to lowercase
-                    choice = choice.ToLower();
+                    //Remove from front
+                    case ConsoleKey.C:
+                        if (!(myList.IsEmpty))
+                        {
+                            myList.RemoveFromFront();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nNo items to delete");
+                        }
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
 
-                    //Convert to chararray    
-                    var onechar = choice.ToCharArray();
+                    //Remove from back
+                    case ConsoleKey.D:
+                        if (!(myList.IsEmpty))
+                        {
+                            myList.RemoveFromBack();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nNo items to delete");
+                        }
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
 
-                    //Check input
-                    switch (onechar[0])
-                    {
-                        //Enter name at front
-                        case 'a':
-                            Console.WriteLine();
-                            Console.Write("Enter a name to insert: ");
-                            value1 = Console.ReadLine();
-                            myList.InsertAtFront(value1);
-                            break;
-
-                        //Enter name at back
-                        case 'b':
-                            Console.WriteLine();
-                            Console.Write("Enter a name to insert: ");
-                            value1 = Console.ReadLine();
-                            myList.InsertAtBack(value1);
-                            break;
-
-                        //Remove from front
-                        case 'c':
-                            if (!(myList.IsEmpty))
+                    //Insert name at index
+                    case ConsoleKey.E:
+                        Console.Write("\nEnter a name to insert: ");
+                        value1 = Console.ReadLine();
+                        Console.Write("\nEnter a index to at item: ");
+                        value2 = Console.ReadLine();
+                        int value3;
+                        if (int.TryParse(value2, out value3))
+                        {
+                            if (myList.Count - 1 >= value3)
                             {
-                                myList.RemoveFromFront();
+                                myList.InsertAt(value3, value1);
+                                Console.WriteLine("\nItem {0} added", value1);
                             }
                             else
                             {
-                                Console.WriteLine("No items to delete");
+                                Console.WriteLine("\nIndex out of range!");
                             }
-                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nInvalid input!");
+                        }
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
 
-                        //Remove from back
-                        case 'd':
-                            if (!(myList.IsEmpty))
+                    //Remove item at index
+                    case ConsoleKey.F:
+                        Console.Write("\nEnter a index to remove the item: ");
+                        value1 = Console.ReadLine();
+                        int value4;
+                        if (int.TryParse(value1, out value4))
+                        {
+                            if (myList.Count - 1 >= value4)
                             {
-                                myList.RemoveFromBack();
+                                myList.RemoveAt(value4);
                             }
                             else
                             {
-                                Console.WriteLine("No items to delete");
+                                Console.WriteLine("\nIndex out of range!");
                             }
-                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nInvalid input!");
+                        }
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
 
-                        //Insert name at index
-                        case 'e':
-                            Console.WriteLine();
-                            Console.Write("Enter a name to insert: ");
-                            value1 = Console.ReadLine();
-                            Console.WriteLine();
-                            Console.Write("Enter a index to at item: ");
-                            value2 = Console.ReadLine();
-                            var value3 = Int32.Parse(value2);
-                            myList.InsertAt(value3, value1);
-                            break;
+                    //Remove given name
+                    case ConsoleKey.G:
+                        Console.Write("\nEnter a name to remove: ");
+                        value1 = Console.ReadLine();
+                        myList.Remove(value1);
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
 
-                        //Remove item at index
-                        case 'f':
-                            Console.WriteLine();
-                            Console.Write("Enter a index to remove the item: ");
-                            value1 = Console.ReadLine();
-                            var value4 = Int32.Parse(value1);
-                            myList.RemoveAt(value4);
-                            break;
+                    //Update item
+                    case ConsoleKey.H:
+                        Console.WriteLine("\nEnter a old item to update: ");
+                        value1 = Console.ReadLine();
+                        Console.Write("\nEnter a new item to update the old item: ");
+                        value2 = Console.ReadLine();
+                        myList.Update(value1, value2);
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
 
-                        //Remove given name
-                        case 'g':
-                            Console.WriteLine();
-                            Console.Write("Enter a name to remove: ");
-                            value1 = Console.ReadLine();
-                            myList.Remove(value1);
-                            break;
+                    //Search for item
+                    case ConsoleKey.I:
+                        Console.Write("\nEnter a item to search for: ");
+                        value1 = Console.ReadLine();
+                        if (myList.Contains(value1))
+                        {
+                            Console.WriteLine("\nItem {0} found in list!", value1);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nItem {0} not found", value1);
+                        }
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
 
-                        //Update item
-                        case 'h':
-                            Console.WriteLine();
-                            Console.WriteLine("Enter a old item to update: ");
-                            value1 = Console.ReadLine();
-                            Console.WriteLine();
-                            Console.Write("Enter a new item to update the old item: ");
-                            value2 = Console.ReadLine();
-                            myList.Update(value1, value2);
-                            break;
+                    //Clear list
+                    case ConsoleKey.J:
+                        if (!(myList.IsEmpty))
+                        {
+                            myList.Clear();
+                            Console.WriteLine("\nList cleared.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nThe list is already empty");
+                        }
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
 
-                        //Search for item
-                        case 'i':
-                            Console.WriteLine();
-                            Console.Write("Enter a item to search for: ");
-                            value1 = Console.ReadLine();
-                            myList.Contains(value1);
-                            break;
-
-                        //Clear list
-                        case 'j':
-                            if (!(myList.IsEmpty))
-                            {
-                                myList.Clear();
-                            }
-                            else
-                            {
-                                Console.WriteLine("The list is already empty");
-                            }
-                            break;
-
-                        //Print list
-                        case 'k':
-                            if (!(myList.IsEmpty))
-                            {
-                                myList.ShowList();
-                            }
-                            else
-                            {
-                                Console.WriteLine("List is empty");
-                            }
-                            break;
-                    }
+                    //Print list
+                    case ConsoleKey.K:
+                        if (!(myList.IsEmpty))
+                        {
+                            myList.ShowList();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nList is empty");
+                        }
+                        Console.WriteLine("\nPress a key to continue");
+                        Console.ReadKey(true);
+                        break;
+                    //Exit
+                    case ConsoleKey.X:
+                        runAgain = false;
+                        break;
+                    case ConsoleKey.Backspace:
+                        runAgain = false;
+                        break;
+                }
+                if (runAgain)
+                {
+                    ListProgram();
                 }
             }
                 //Catch if error   

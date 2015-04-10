@@ -8,8 +8,6 @@ namespace DLL
     public class CircularList<T> : ICollection<T>
     {
         private string listName;
-        public Node<T> FirstNode { get; private set; }
-        public Node<T> LastNode { get; private set; }
 
         public CircularList(string listName)
         {
@@ -21,6 +19,9 @@ namespace DLL
         public CircularList() : this("MyList")
         {
         }
+
+        public Node<T> FirstNode { get; private set; }
+        public Node<T> LastNode { get; private set; }
 
         public T this[int index]
         {
@@ -203,6 +204,7 @@ namespace DLL
                     LastNode.Next = FirstNode;
                 }
             }
+            Count++;
         }
 
         public void InsertAtBack(T item)
@@ -220,6 +222,7 @@ namespace DLL
                 LastNode = node;
                 FirstNode.Previous = LastNode;
             }
+            Count++;
         }
 
         public object RemoveFromFront()

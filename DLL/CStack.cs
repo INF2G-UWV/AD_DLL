@@ -3,6 +3,11 @@ using System.Linq;
 
 namespace DLL
 {
+    /// <summary>
+    ///     CStack
+    ///     Author: Xing Woo - INF2G
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class CStack<T> where T : IComparable
     {
         //Fields stack

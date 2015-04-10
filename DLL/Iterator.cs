@@ -3,9 +3,9 @@
 namespace DLL
 {
     /// <summary>
-    /// IteratorNode.
-    /// To be used in the Iterator and LinkedList class.
-    /// Author: Ferdi Smit - INF2G
+    ///     IteratorNode.
+    ///     To be used in the Iterator and LinkedList class.
+    ///     Author: Ferdi Smit - INF2G
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class IteratorNode<T>
@@ -15,7 +15,7 @@ namespace DLL
         public IteratorNode<T> link;
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="item">Item for Node</param>
         public IteratorNode(T item)
@@ -25,7 +25,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Empty constructor
+        ///     Empty constructor
         /// </summary>
         public IteratorNode()
         {
@@ -33,7 +33,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Link value
+        ///     Link value
         /// </summary>
         public IteratorNode<T> Link
         {
@@ -42,7 +42,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Item value
+        ///     Item value
         /// </summary>
         public T Item
         {
@@ -51,7 +51,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Custom ToString
+        ///     Custom ToString
         /// </summary>
         /// <returns>string - item</returns>
         public override string ToString()
@@ -65,8 +65,8 @@ namespace DLL
     }
 
     /// <summary>
-    /// LinkedList class.
-    /// Author: Ferdi Smit && Marcel Schoeber - INF2G
+    ///     LinkedList class.
+    ///     Author: Ferdi Smit && Marcel Schoeber - INF2G
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class LinkedList<T>
@@ -75,7 +75,7 @@ namespace DLL
         private readonly IteratorNode<T> header;
 
         /// <summary>
-        /// Constructor with item as header
+        ///     Constructor with item as header
         /// </summary>
         /// <param name="item">item</param>
         public LinkedList(T item)
@@ -84,7 +84,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Check if link is empty
+        ///     Check if link is empty
         /// </summary>
         /// <returns></returns>
         public bool IsEmpty()
@@ -93,7 +93,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Find an item within the LinkedList
+        ///     Find an item within the LinkedList
         /// </summary>
         /// <param name="item">item</param>
         /// <returns>IteratorNode</returns>
@@ -115,7 +115,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Insert an item after another item
+        ///     Insert an item after another item
         /// </summary>
         /// <param name="newItem">item to be inserted</param>
         /// <param name="after">previous item</param>
@@ -134,7 +134,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Get first node
+        ///     Get first node
         /// </summary>
         /// <returns>IteratorNode</returns>
         public IteratorNode<T> GetFirst()
@@ -143,7 +143,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Find the previous node
+        ///     Find the previous node
         /// </summary>
         /// <param name="n">item</param>
         /// <returns></returns>
@@ -158,7 +158,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Remove an item
+        ///     Remove an item
         /// </summary>
         /// <param name="n">item</param>
         public void Remove(T n)
@@ -171,7 +171,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Show a list of all nodes
+        ///     Show a list of all nodes
         /// </summary>
         public void ShowList()
         {
@@ -185,9 +185,9 @@ namespace DLL
     }
 
     /// <summary>
-    /// Iterator class.
-    /// Cycles through items in a LinkedList.
-    /// Author: Ferdi Smit - INF2G.
+    ///     Iterator class.
+    ///     Cycles through items in a LinkedList.
+    ///     Author: Ferdi Smit - INF2G.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class Iterator<T>
@@ -198,7 +198,7 @@ namespace DLL
         private IteratorNode<T> previous;
 
         /// <summary>
-        /// Constructor with LinkedList item
+        ///     Constructor with LinkedList item
         /// </summary>
         /// <param name="list">LinkedList</param>
         public Iterator(LinkedList<T> list)
@@ -209,7 +209,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Go to next link
+        ///     Go to next link
         /// </summary>
         public void NextLink()
         {
@@ -218,7 +218,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Get the current IteratorNode
+        ///     Get the current IteratorNode
         /// </summary>
         /// <returns></returns>
         public IteratorNode<T> GetCurrent()
@@ -227,7 +227,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Insert before the current node
+        ///     Insert before the current node
         /// </summary>
         /// <param name="item">item</param>
         public void InsertBefore(T item)
@@ -248,7 +248,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Insert after the current node
+        ///     Insert after the current node
         /// </summary>
         /// <param name="item">item</param>
         public void InsertAfter(T item)
@@ -259,7 +259,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Remove the previous node
+        ///     Remove the previous node
         /// </summary>
         public void Remove()
         {
@@ -267,7 +267,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Reset Iterator
+        ///     Reset Iterator
         /// </summary>
         public void Reset()
         {
@@ -276,7 +276,7 @@ namespace DLL
         }
 
         /// <summary>
-        /// Check if end is reached
+        ///     Check if end is reached
         /// </summary>
         /// <returns>bool</returns>
         public bool AtEnd()

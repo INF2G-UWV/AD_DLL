@@ -6,6 +6,7 @@ namespace DLL
     /// <summary>
     ///     Custom MinMax class.
     ///     Chapter 4 search
+    ///     Author: Xing Woo - INF2G
     /// </summary>
     /// <typeparam name="T">Generic Type</typeparam>
     public class MinMax<T> where T : IComparable

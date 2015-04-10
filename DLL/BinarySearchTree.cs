@@ -2,6 +2,11 @@
 
 namespace DLL
 {
+    /// <summary>
+    ///     Binary Search Tree
+    ///     Author: Xing Woo - INF2G
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class BinarySearchTree<T> where T : IComparable<T>
     {
         /// <summary>
@@ -17,6 +22,9 @@ namespace DLL
             root = new BtNode<T>(value);
         }
 
+        /// <summary>
+        ///     Get/Set value
+        /// </summary>
         public BtNode<T> Root
         {
             get { return root; }

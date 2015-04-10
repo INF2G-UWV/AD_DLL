@@ -5,6 +5,7 @@ namespace DLL
 {
     /// <summary>
     ///     QuadraticHash hashing class
+    ///     Uses quadratic probing
     ///     Author: Marcel Schoeber - INF2G
     /// </summary>
     public class QuadraticHash

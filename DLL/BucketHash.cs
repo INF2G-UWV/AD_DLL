@@ -6,6 +6,7 @@ namespace DLL
 {
     /// <summary>
     ///     BucketHash hashing class.
+    ///     Uses multiple ArrayLists for storage
     ///     Author: Marcel Schoeber - INF2G
     /// </summary>
     public class BucketHash
@@ -91,13 +92,16 @@ namespace DLL
         }
 
         /// <summary>
-        /// Get a dictionary list of items in buckethash.
+        ///     Get a dictionary list of items in buckethash.
         /// </summary>
         /// <returns>string,int - item, hashvalue</returns>
         public Dictionary<string, int> GetList()
         {
             //Fetch items
-            return (from itemlist in data where itemlist.Count > 0 from item in itemlist.Cast<object>().Where(item => item != null) select item).ToDictionary(item => item.ToString(), item => GetHashValue(item.ToString()));
+            return (from itemlist in data
+                where itemlist.Count > 0
+                from item in itemlist.Cast<object>().Where(item => item != null)
+                select item).ToDictionary(item => item.ToString(), item => GetHashValue(item.ToString()));
         }
 
         /// <summary>

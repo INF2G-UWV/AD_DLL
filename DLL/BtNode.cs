@@ -4,6 +4,7 @@ namespace DLL
 {
     /// <summary>
     ///     Custom binary tree node
+    ///     Author: INF2G
     /// </summary>
     /// <typeparam name="T">Specifies a generic type for the values</typeparam>
     public class BtNode<T> where T : IComparable<T>

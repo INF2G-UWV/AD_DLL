@@ -1,6 +1,14 @@
-﻿namespace DLL
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace DLL
 {
-    internal class LinearHash
+    /// <summary>
+    ///     LinearHash
+    ///     Uses linear probing
+    ///     Author: Marcel Schoeber - INF2G
+    /// </summary>
+    public class LinearHash
     {
         //fields
         private const int SIZE = 10007;
@@ -96,6 +104,15 @@
                 return data[hashValue].Contains(item);
             }
             return false;
+        }
+
+        /// <summary>
+        ///     Get a dictionary list of items in linearhash.
+        /// </summary>
+        /// <returns>string,int - item, hashvalue</returns>
+        public Dictionary<string, int> GetList()
+        {
+            return data.Where(t => t != null).ToDictionary(t => t, GetHashValue);
         }
 
         /// <summary>

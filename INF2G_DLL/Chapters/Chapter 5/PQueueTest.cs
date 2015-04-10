@@ -36,95 +36,95 @@ namespace DLL_Test.Chapters.Chapter_5
         ///     Priority Queue Test UI.
         ///     Test with UI and no time measurements.
         /// </summary>
-        public static void PQueueTestUI()
+        private static void PQueueTestUI()
         {
             // Two variables which choice stores the command pressed, and value typed in the input;
-            string choice, value1;
+            string value1;
             int value2;
-
+            Console.Clear();
             // Commands that are available;
-            Console.WriteLine("\nCommands to follow!");
+            Console.WriteLine("***************************");
+            Console.WriteLine("****Priority Queue Test****");
+            Console.WriteLine("***************************");
             Console.WriteLine("(1) Enqueue");
             Console.WriteLine("(2) Dequeue Highest Priority");
             Console.WriteLine("(3) Peek");
             Console.WriteLine("(4) Contains");
             Console.WriteLine("(5) Print Queue list");
             Console.WriteLine("(6) Clear");
-            Console.WriteLine("(7) Exit");
+            Console.WriteLine("(X) Exit");
 
             // While the console applications runs, the commands can be executed;
             var runProgram = true;
-            while (runProgram)
-            {
-                Console.Write("\nSelect command: ");
-                choice = Console.ReadLine();
-                if (choice != null)
-                {
-                    choice = choice.ToLower();
-                    if (choice == "1") // If pressed 1, add item to the Queue;
-                    {
-                        Console.WriteLine();
-                        Console.Write("Enter item to Enqeue: ");
-                        value1 = Console.ReadLine();
-                        Console.Write("Enter the Priority: ");
 
-                        if (int.TryParse(Console.ReadLine(), out value2))
-                        {
-                            rndWords.Enqueue(value1, value2);
-                            Console.WriteLine();
-                            Console.WriteLine("Item {0} with priority {1} added to the queue.", value1, value2);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid input!");
-                        }
-                    }
-                    else if (choice == "2") // If pressed 2, delete first Highest Priority in the Queue;
-                    {
-                        Console.WriteLine();
-                        Console.Write("{0}", rndWords.Dequeue());
-                        Console.WriteLine();
-                    }
-                    else if (choice == "3") // If pressed 3, peek at the first item in the Queue;
-                    {
-                        Console.WriteLine();
-                        Console.Write("{0}", rndWords.Peek());
-                        Console.WriteLine();
-                    }
-                    else if (choice == "4") // If pressed 4, check if the item Contains in the list;
-                    {
-                        Console.WriteLine();
-                        Console.Write("Enter item to check if it Contains in the List: ");
-                        value1 = Console.ReadLine();
-                        rndWords.Contains(value1);
-                        Console.WriteLine();
-                    }
-                    else if (choice == "5") // If pressed 5, display all the items in the Queue;
-                    {
-                        Console.WriteLine();
-                        rndWords.GetAllQueueItems();
-                        Console.WriteLine();
-                    }
-                    else if (choice == "6") // If pressed 6, clear the Queue list;
-                    {
-                        Console.WriteLine();
-                        rndWords.Clear();
-                        Console.WriteLine();
-                    }
-                    else if (choice == "7")
-                    {
-                        runProgram = false; // If pressed 7, close the Program;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.Write("Unknown command");
-                        Console.WriteLine();
-                    }
-                    Console.ReadKey();
-                    Console.Clear();
-                    PQueueTestUI();
+            Console.Write("\nSelect command: ");
+            var input = Console.ReadKey(true);
+
+            if (input.Key.Equals(ConsoleKey.D1)) // If pressed 1, add item to the Queue;
+            {
+                Console.WriteLine();
+                Console.Write("Enter item to Enqeue: ");
+                value1 = Console.ReadLine();
+                Console.Write("Enter the Priority: ");
+
+                if (int.TryParse(Console.ReadLine(), out value2))
+                {
+                    rndWords.Enqueue(value1, value2);
+                    Console.WriteLine();
+                    Console.WriteLine("Item {0} with priority {1} added to the queue.", value1, value2);
                 }
+                else
+                {
+                    Console.WriteLine("Invalid input!");
+                }
+            }
+            else if (input.Key.Equals(ConsoleKey.D2)) // If pressed 2, delete first Highest Priority in the Queue;
+            {
+                Console.WriteLine();
+                Console.Write("{0}", rndWords.Dequeue());
+                Console.WriteLine();
+            }
+            else if (input.Key.Equals(ConsoleKey.D3)) // If pressed 3, peek at the first item in the Queue;
+            {
+                Console.WriteLine();
+                Console.Write("{0}", rndWords.Peek());
+                Console.WriteLine();
+            }
+            else if (input.Key.Equals(ConsoleKey.D4)) // If pressed 4, check if the item Contains in the list;
+            {
+                Console.WriteLine();
+                Console.Write("Enter item to check if it Contains in the List: ");
+                value1 = Console.ReadLine();
+                rndWords.Contains(value1);
+                Console.WriteLine();
+            }
+            else if (input.Key.Equals(ConsoleKey.D5)) // If pressed 5, display all the items in the Queue;
+            {
+                Console.WriteLine();
+                rndWords.GetAllQueueItems();
+                Console.WriteLine();
+            }
+            else if (input.Key.Equals(ConsoleKey.D6)) // If pressed 6, clear the Queue list;
+            {
+                Console.WriteLine();
+                rndWords.Clear();
+                Console.WriteLine();
+            }
+            else if (input.Key.Equals(ConsoleKey.X) || input.Key.Equals(ConsoleKey.Backspace))
+            {
+                runProgram = false; // If pressed X, close the Program;
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.Write("Unknown command");
+                Console.WriteLine();
+            }
+            if (runProgram)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                PQueueTestUI();
             }
         }
 
@@ -136,7 +136,7 @@ namespace DLL_Test.Chapters.Chapter_5
         ///     Priority Queue Test Timer.
         ///     Test without UI, but with time measurements.
         /// </summary>
-        public static void PQueueTestTimer()
+        private static void PQueueTestTimer()
         {
             // Create a Generic Queue and Timer;
             var priorQueue = new PQueue<string>();

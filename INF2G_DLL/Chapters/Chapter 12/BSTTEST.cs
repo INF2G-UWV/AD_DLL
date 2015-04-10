@@ -12,9 +12,12 @@ namespace DLL_Test.Chapters.Chapter_12
         /// <summary>
         ///     Main test method.
         /// </summary>
-        /// <param name="args"></param>
-        public static void Run(string[] args)
+        public static void Run()
         {
+            Console.Clear();
+            Console.WriteLine("********************************");
+            Console.WriteLine("****Binary Search Tree Test****");
+            Console.WriteLine("*******************************");
             //Create new tree
             var tree =
                 new BinarySearchTree<int>(44);
@@ -23,17 +26,22 @@ namespace DLL_Test.Chapters.Chapter_12
             {
                 tree.Insert(i);
             }
+
+            Console.WriteLine("Current tree:");
             //Print
             tree.PrintTree();
             Console.WriteLine();
             Console.WriteLine(tree.Contains(25).ToString());
             Console.WriteLine();
+
+            Console.WriteLine("Removing values 25-29\n");
             //Remove values
             for (var j = 25; j < 30; j++)
             {
                 tree.Remove(j);
             }
             //Print
+            Console.WriteLine("New tree:");
             tree.PrintTree();
             Console.ReadLine();
         }

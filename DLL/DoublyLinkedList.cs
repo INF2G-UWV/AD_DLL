@@ -8,8 +8,6 @@ namespace DLL
     public class DoublyLinkedList<T> : ICollection<T>
     {
         private string listName;
-        public Node<T> FirstNode { get; private set; }
-        public Node<T> LastNode { get; private set; }
 
         public DoublyLinkedList(string listName)
         {
@@ -21,6 +19,9 @@ namespace DLL
         public DoublyLinkedList() : this("MyList")
         {
         }
+
+        public Node<T> FirstNode { get; private set; }
+        public Node<T> LastNode { get; private set; }
 
         public T this[int index]
         {
@@ -200,6 +201,7 @@ namespace DLL
                     FirstNode = node;
                 }
             }
+            Count++;
         }
 
         public void InsertAtBack(T item)
@@ -214,6 +216,7 @@ namespace DLL
                 LastNode.Next = node;
                 LastNode = node;
             }
+            Count++;
         }
 
         public object RemoveFromFront()

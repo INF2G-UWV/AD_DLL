@@ -9,37 +9,41 @@ namespace DLL_Test.Chapters.Chapter_3
     /// </summary>
     internal class Sort
     {
+        private static string strings;
+        private static string emptyString;
+        private static string[] stringArray;
+        private static string[] sortedArray;
+        private static Random random;
+        private static Sorting<string> sort;
+
         /// <summary>
         ///     Main execution.
         /// </summary>
-        /// <param name="args"></param>
-        public static void Run(string[] args)
+        public static void Run()
         {
+            BuildData();
             SortingProgram();
         }
 
-        /// <summary>
-        ///     Main sorting program.
-        /// </summary>
-        public static void SortingProgram()
+        private static void BuildData()
         {
             // String with letters and numbers
-            const string strings = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+            strings = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
 
             // empty string
-            var emptyString = "";
+            emptyString = "";
 
             // Original array with string
-            var stringArray = new string[10];
+            stringArray = new string[10];
 
             // Array where the original array is being copied to
-            var sortedArray = new string[10];
+            sortedArray = new string[10];
 
             // Random generator to create random strings
-            var random = new Random(100);
+            random = new Random(100);
 
             // Sorting class will be used to sort the arrays
-            var sort = new Sorting<string>(stringArray);
+            sort = new Sorting<string>(stringArray);
 
             // A double loop to generate 10 random  strings
             for (var i = 0; i < 10; i++)
@@ -51,97 +55,93 @@ namespace DLL_Test.Chapters.Chapter_3
                 stringArray.SetValue(emptyString, i);
                 emptyString = "";
             }
+        }
+
+        /// <summary>
+        ///     Main sorting program.
+        /// </summary>
+        private static void SortingProgram()
+        {
+            //Check if active
+            var running = true;
 
             // Copy of the original array
             stringArray.CopyTo(sortedArray, 0);
+            Console.Clear();
+            Console.WriteLine("********************");
+            Console.WriteLine("****Sorting Test****");
+            Console.WriteLine("********************");
+            Console.WriteLine("(1) Print a unsorted list.");
+            Console.WriteLine("(2) Print a list sorted with the BubbleSort algorithm.");
+            Console.WriteLine("(3) Print a list sorted with the SmartBubbleSort algorithm.");
+            Console.WriteLine("(4) Print a list sorted with the InsertionSort algorithm.");
+            Console.WriteLine("(X) Exit program");
 
-            // While true (program is active), display the following output
-            while (true)
+
+            // Reading input
+            var input = Console.ReadKey(true);
+
+            // Switch to perform several different actions
+            switch (input.Key)
             {
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine("Enter a key from the list: ");
-                Console.WriteLine("(p) Print a unsorted list.");
-                Console.WriteLine("(b) Print a list sorted with the BubbleSort algorithm.");
-                Console.WriteLine("(s) Print a list sorted with the SmartBubbleSort algorithm.");
-                Console.WriteLine("(i) Print a list sorted with the InsertionSort algorithm.");
-                Console.WriteLine("(c) Clear console");
-                Console.WriteLine("(x) Exit program");
-                Console.WriteLine();
-                Console.WriteLine();
-
-                // Reading input
-                var choice = Console.ReadLine();
-
-                // Convert input to lowercase
-                if (choice != null)
-                {
-                    choice = choice.ToLower();
-
-                    // Convert lowercase input to chararray
-                    var oneChar = choice.ToCharArray();
-
-                    // Switch to perform several different actions
-                    switch (oneChar[0])
+                // Printing the original array
+                case ConsoleKey.D1:
+                    Console.WriteLine("\nAn unsorted list\n");
+                    foreach (var singleString in stringArray)
                     {
-                        // Printing the original array
-                        case 'p':
-                            Console.WriteLine();
-                            Console.WriteLine("An unsorted list");
-                            Console.WriteLine();
-                            foreach (var singleString in stringArray)
-                            {
-                                Console.WriteLine(singleString);
-                            }
-                            break;
-
-                        // Sorting the original array with BubbleSort()
-                        case 'b':
-                            Console.WriteLine();
-                            Console.WriteLine("List sorted by the BubbleSort algorithm");
-                            Console.WriteLine();
-                            sort.BubbleSort(sortedArray);
-                            foreach (var singleString in sortedArray)
-                            {
-                                Console.WriteLine(singleString);
-                            }
-                            break;
-
-                        // Sorting copied array with BubbleSort()
-                        case 's':
-                            Console.WriteLine();
-                            Console.WriteLine("List sorted by the SmartBubbleSort algorithm");
-                            Console.WriteLine();
-                            sort.SmartBubbleSort(sortedArray);
-                            foreach (var singleString in sortedArray)
-                            {
-                                Console.WriteLine(singleString);
-                            }
-                            break;
-
-                        // Sorting copied array with InsertionSort()
-                        case 'i':
-                            Console.WriteLine();
-                            Console.WriteLine("List sorted by the InsertionSort algorithm");
-                            Console.WriteLine();
-                            sort.InsertionSort(sortedArray);
-                            foreach (var singleString in sortedArray)
-                            {
-                                Console.WriteLine(singleString);
-                            }
-                            break;
-
-                        // Clearing the console
-                        case 'c':
-                            Console.Clear();
-                            break;
-
-                        // Exiting the program
-                        case 'x':
-                            Environment.Exit(0);
-                            break;
+                        Console.WriteLine(singleString);
                     }
-                }
+                    Console.WriteLine("\nPress a key to continue");
+                    Console.ReadKey(true);
+                    break;
+
+                // Sorting the original array with BubbleSort()
+                case ConsoleKey.D2:
+                    Console.WriteLine("\nList sorted by the BubbleSort algorithm\n");
+                    sort.BubbleSort(sortedArray);
+                    foreach (var singleString in sortedArray)
+                    {
+                        Console.WriteLine(singleString);
+                    }
+                    Console.WriteLine("\nPress a key to continue");
+                    Console.ReadKey(true);
+                    break;
+
+                // Sorting copied array with BubbleSort()
+                case ConsoleKey.D3:
+                    Console.WriteLine("\nList sorted by the SmartBubbleSort algorithm\n");
+                    sort.SmartBubbleSort(sortedArray);
+                    foreach (var singleString in sortedArray)
+                    {
+                        Console.WriteLine(singleString);
+                    }
+                    Console.WriteLine("\nPress a key to continue");
+                    Console.ReadKey(true);
+                    break;
+
+                // Sorting copied array with InsertionSort()
+                case ConsoleKey.D4:
+                    Console.WriteLine("\nList sorted by the InsertionSort algorithm\n");
+                    sort.InsertionSort(sortedArray);
+                    foreach (var singleString in sortedArray)
+                    {
+                        Console.WriteLine(singleString);
+                    }
+                    Console.WriteLine("\nPress a key to continue");
+                    Console.ReadKey(true);
+                    break;
+
+                // Exiting the program
+                case ConsoleKey.X:
+                    running = false;
+                    break;
+                case ConsoleKey.Backspace:
+                    running = false;
+                    break;
+            }
+            if (running)
+            {
+                SortingProgram();
             }
         }
     }

@@ -5,6 +5,7 @@ namespace DLL
     /// <summary>
     ///     BinarySearch Class
     ///     Chapter 3
+    ///     Author: Selami Çetingüney - INF2G
     /// </summary>
     public class BinarySearch<T> where T : IComparable<T>
     {
