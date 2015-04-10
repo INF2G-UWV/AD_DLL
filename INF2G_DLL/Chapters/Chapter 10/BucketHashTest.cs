@@ -5,7 +5,7 @@ namespace DLL_Test.Chapters.Chapter_10
 {
     /// <summary>
     ///     Test for BucketHash
-    ///     Author: Marcel Schoeber - INF2G
+    ///     Author: Martijn Buurman & Marcel Schoeber - INF2G
     /// </summary>
     internal class BucketHashTest
     {
@@ -154,7 +154,7 @@ namespace DLL_Test.Chapters.Chapter_10
         /// </summary>
         private static void PrintList()
         {
-            Console.WriteLine("Contents of hashtable (item - hashvalue):");
+            Console.WriteLine("Contents of hashtable (hashvalue - item):");
             Console.WriteLine();
             //Fetch list
             var contents = bucketHash.GetList();
@@ -165,7 +165,7 @@ namespace DLL_Test.Chapters.Chapter_10
                 //Print list
                 foreach (var item in contents)
                 {
-                    Console.WriteLine("{0} - {1}", item.Key, item.Value);
+                    Console.WriteLine("\t{0} - {1}", item.Key, item.Value);
                 }
             }
             else

@@ -15,7 +15,7 @@ namespace DLL
         /// <summary>
         ///     Constructor with item
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">item</param>
         public ListNode(T item)
         {
             Item = item;
@@ -25,8 +25,8 @@ namespace DLL
         /// <summary>
         ///     Constructor with item and node
         /// </summary>
-        /// <param name="item"></param>
-        /// <param name="next"></param>
+        /// <param name="item">item</param>
+        /// <param name="next">next item</param>
         public ListNode(T item, ListNode<T> next)
         {
             Item = item;
@@ -46,7 +46,7 @@ namespace DLL
         /// <summary>
         ///     Overriding ToString to return a string value for the item in the node
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         public override string ToString()
         {
             if (Item == null)
@@ -57,6 +57,9 @@ namespace DLL
         }
     }
 
+    /// <summary>
+    ///     Insert before header exception handling
+    /// </summary>
     public class InsertBeforeHeaderException : ApplicationException
     {
         public InsertBeforeHeaderException(string message)
@@ -81,7 +84,7 @@ namespace DLL
         /// <summary>
         ///     Constructor with provided listname
         /// </summary>
-        /// <param name="strListName"></param>
+        /// <param name="strListName">string - listname</param>
         public SinglyLinkedList(string strListName)
         {
             this.strListName = strListName;
@@ -109,19 +112,23 @@ namespace DLL
         /// <summary>
         ///     Indexer to iterate through the list and fetch the item
         /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
+        /// <param name="index">index value</param>
+        /// <returns>item</returns>
         public T this[int index]
         {
             get
             {
+                //If index is out of bounds
                 if (index < 0)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
                 var currentNode = FirstNode;
+
+                //Loop through nodes
                 for (var i = 0; i < index; i++)
                 {
+                    //If node is null, throw error
                     if (currentNode.Next == null)
                     {
                         throw new ArgumentOutOfRangeException();
@@ -154,25 +161,30 @@ namespace DLL
         /// <summary>
         ///     Removes the input if exists and returns true else false
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
+        /// <param name="item">item</param>
+        /// <returns>is removed true/false</returns>
         public bool Remove(T item)
         {
+            //If its the first node
             if (FirstNode.Item.ToString().Equals(item.ToString()))
             {
                 RemoveFromFront();
                 return true;
             }
+            //If its the last node
             if (LastNode.Item.ToString().Equals(item.ToString()))
             {
                 RemoveFromBack();
                 return true;
             }
             var currentNode = FirstNode;
+
+            //If next node is not empty
             while (currentNode.Next != null)
             {
                 if (currentNode.Next.Item.ToString().Equals(item.ToString()))
                 {
+                    //Remove node
                     currentNode.Next = currentNode.Next.Next;
                     Count--;
                     if (currentNode.Next == null)
@@ -189,8 +201,8 @@ namespace DLL
         /// <summary>
         ///     Returns true if list contains the input item else false
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
+        /// <param name="item">item</param>
+        /// <returns>exists true/false</returns>
         public bool Contains(T item)
         {
             lock (this)
@@ -219,6 +231,10 @@ namespace DLL
 
         #region IEnumarable<T> Members
 
+        /// <summary>
+        ///     Get enumarator
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
             var currentNode = FirstNode;
@@ -233,6 +249,10 @@ namespace DLL
 
         #region IEnumerable Members
 
+        /// <summary>
+        ///     Members
+        /// </summary>
+        /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
@@ -240,11 +260,20 @@ namespace DLL
 
         #endregion
 
+        /// <summary>
+        ///     Add
+        /// </summary>
+        /// <param name="item"></param>
         void ICollection<T>.Add(T item)
         {
             InsertAtBack(item);
         }
 
+        /// <summary>
+        ///     Copy to different array index
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="arrayIndex"></param>
         public void CopyTo(T[] array, int arrayIndex)
         {
             if (array == null)
@@ -254,7 +283,7 @@ namespace DLL
 
             if (arrayIndex < 0 || arrayIndex > array.Length)
             {
-                throw new ArgumentOutOfRangeException("Buiten de array index");
+                throw new ArgumentOutOfRangeException("Out of bounds");
             }
 
             if (array.Length - arrayIndex < Count)
@@ -273,6 +302,9 @@ namespace DLL
             }
         }
 
+        /// <summary>
+        ///     Check if is readonly
+        /// </summary>
         bool ICollection<T>.IsReadOnly
         {
             get { return false; }
@@ -495,6 +527,9 @@ namespace DLL
             }
         }
 
+        /// <summary>
+        ///     Operator to print list
+        /// </summary>
         public void ShowList()
         {
             var current = FirstNode;

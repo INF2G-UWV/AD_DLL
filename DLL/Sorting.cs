@@ -2,16 +2,23 @@
 
 namespace DLL
 {
+    /// <summary>
+    ///     Sorting class.
+    ///     Provides various sorting algorithms.
+    ///     Author: INF2G.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Sorting<T>
     {
         private readonly Comparer comparer;
         private T[] array;
 
         /// <summary>
-        ///     Het aanmaken van een sorting class. Een array moet als parameter meegegeven worden.
-        ///     Het maakt niet uit van welk type object, doordat de class generiek is.
+        ///     Constructor.
+        ///     Create the sorting class.
+        ///     Uses a generic array for storage.
         /// </summary>
-        /// <param name="array"></param>
+        /// <param name="array">Generic array</param>
         public Sorting(T[] array)
         {
             this.array = array;
@@ -19,16 +26,19 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Het sorteren van een Array op alfabetische volgorde. Alle mogelijke objecten kunnen erin.
-        ///     Van strings tot integers.
+        ///     Bubblesort.
+        ///     Sorts the array alfabetically. Every data type is supported.
         /// </summary>
-        /// <param name="array"></param>
+        /// <param name="array">Generic array</param>
         public void BubbleSort(T[] array)
         {
+            //Outer loop
             for (var outer = array.Length - 1; outer > 1; outer--)
             {
+                //Inner loop
                 for (var inner = 0; inner < outer; inner++)
                 {
+                    //Compare values
                     if (comparer.Compare(array[inner], array[inner + 1]) > 0)
                     {
                         var temp = array[inner];
@@ -41,9 +51,9 @@ namespace DLL
 
         /// <summary>
         ///     Smart Bubble Sort.
-        ///     Functions the same as Bubble Sort, but now stops searching once no more changes in a certain pass are made.
+        ///     Functions the same as Bubble Sort, but now stops searching when no more changes in a certain pass were made.
         /// </summary>
-        /// <param name="array"></param>
+        /// <param name="array">Generic array</param>
         public void SmartBubbleSort(T[] array)
         {
             for (var outer = array.Length - 1; outer > 1; outer--)
@@ -67,19 +77,23 @@ namespace DLL
         }
 
         /// <summary>
-        ///     Het sorteren van een Array op alfabetische volgorde. Alle mogelijke objecten kunnen erin.
-        ///     Van strings tot integers.
+        ///     InsertionSort.
+        ///     Sorts the generic array alfabetically.
         /// </summary>
-        /// <param name="array"></param>
+        /// <param name="array">Generic array</param>
         public void InsertionSort(T[] array)
         {
+            //variables
             int inner;
             T temp;
 
+            //Outer loop
             for (var outer = 1; outer <= array.Length - 1; outer++)
             {
+                //Temp
                 temp = array[outer];
                 inner = outer;
+                //Inner loop
                 while (inner > 0 && comparer.Compare(array[inner - 1], temp) > 0)
                 {
                     array[inner] = array[inner - 1];

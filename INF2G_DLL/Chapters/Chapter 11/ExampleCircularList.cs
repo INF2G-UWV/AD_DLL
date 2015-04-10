@@ -190,6 +190,9 @@ namespace DLL_Test.Chapters.Chapter_11
                     case ConsoleKey.Backspace:
                         runAgain = false;
                         break;
+                    default:
+                        Console.WriteLine("\nUnrecognized input!");
+                        break;
                 }
                 if (runAgain)
                 {

@@ -17,6 +17,7 @@ namespace DLL
     /// <summary>
     ///     HighResolutionTimer.
     ///     Powerful timer for accurate measurements.
+    ///     Author: INF2G.
     /// </summary>
     public class HighResolutionTimer
     {

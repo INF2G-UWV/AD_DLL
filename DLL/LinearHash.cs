@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace DLL
 {
@@ -109,10 +108,18 @@ namespace DLL
         /// <summary>
         ///     Get a dictionary list of items in linearhash.
         /// </summary>
-        /// <returns>string,int - item, hashvalue</returns>
-        public Dictionary<string, int> GetList()
+        /// <returns>int, string - hashvalue, item</returns>
+        public Dictionary<int, string> GetList()
         {
-            return data.Where(t => t != null).ToDictionary(t => t, GetHashValue);
+            var tempList = new Dictionary<int, string>();
+            for (var i = 0; i < data.Length; i++)
+            {
+                if (data[i] != null)
+                {
+                    tempList.Add(i, data[i]);
+                }
+            }
+            return tempList;
         }
 
         /// <summary>

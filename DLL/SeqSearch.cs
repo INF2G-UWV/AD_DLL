@@ -17,8 +17,10 @@
         /// <returns>Is found</returns>
         public bool Search<T>(T[] arr, T sValue)
         {
+            //Loop through items
             for (var index = 0; index < arr.Length - 1; index++)
             {
+                //If match is found, return true
                 if (arr[index].Equals(sValue))
                 {
                     return true;

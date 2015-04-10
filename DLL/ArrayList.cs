@@ -95,7 +95,7 @@ namespace DLL
 
         public void InsertAt(int index, T item)
         {
-            if (index <= Length())
+            if (index <= Length() && index >= 0)
             {
                 list[index] = item;
             }

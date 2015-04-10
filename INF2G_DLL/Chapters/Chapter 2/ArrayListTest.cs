@@ -86,8 +86,15 @@ namespace DLL_Test.Chapters.Chapter_2
                         int value3;
                         if (int.TryParse(value2, out value3))
                         {
-                            myList.InsertAt(value3, value1);
-                            Console.WriteLine("\nItem {0} added", value1);
+                            if (myList.Length() - 1 >= value3 && value3 >= 0)
+                            {
+                                myList.InsertAt(value3, value1);
+                                Console.WriteLine("\nItem {0} added", value1);
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nIndex out of range!");
+                            }
                         }
                         else
                         {
@@ -102,7 +109,15 @@ namespace DLL_Test.Chapters.Chapter_2
                         int value4;
                         if (int.TryParse(value1, out value4))
                         {
-                            myList.RemoveAt(value4);
+                            if (myList.Length() - 1 >= value4 && value4 >= 0)
+                            {
+                                myList.RemoveAt(value4);
+                                Console.WriteLine("\nItem removed");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nIndex out of range!");
+                            }
                         }
                         else
                         {
@@ -166,6 +181,10 @@ namespace DLL_Test.Chapters.Chapter_2
                         break;
                     case ConsoleKey.X:
                         runAgain = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("\nUnrecognized input!");
                         break;
                 }
                 if (runAgain)

@@ -130,7 +130,7 @@ namespace DLL_Test.Chapters.Chapter_11
                         int value3;
                         if (int.TryParse(value2, out value3))
                         {
-                            if (myList.Count - 1 >= value3)
+                            if (myList.Count - 1 >= value3 && value3 >= 0)
                             {
                                 myList.InsertAt(value3, value1);
                                 Console.WriteLine("\nItem {0} added", value1);
@@ -155,9 +155,10 @@ namespace DLL_Test.Chapters.Chapter_11
                         int value4;
                         if (int.TryParse(value1, out value4))
                         {
-                            if (myList.Count - 1 >= value4)
+                            if (myList.Count - 1 >= value4 && value4 >= 0)
                             {
                                 myList.RemoveAt(value4);
+                                Console.WriteLine("\nItem removed");
                             }
                             else
                             {
@@ -242,6 +243,9 @@ namespace DLL_Test.Chapters.Chapter_11
                         break;
                     case ConsoleKey.Backspace:
                         runAgain = false;
+                        break;
+                    default:
+                        Console.WriteLine("\nUnrecognized input!");
                         break;
                 }
                 if (runAgain)

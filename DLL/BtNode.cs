@@ -148,6 +148,11 @@ namespace DLL
             return node;
         }
 
+        /// <summary>
+        ///     Remove node
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="root"></param>
         public void Remove(BtNode<T> node, BtNode<T> root)
         {
             // Case 3: If the node has two children.

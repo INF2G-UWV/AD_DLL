@@ -94,14 +94,15 @@ namespace DLL
         /// <summary>
         ///     Get a dictionary list of items in buckethash.
         /// </summary>
-        /// <returns>string,int - item, hashvalue</returns>
-        public Dictionary<string, int> GetList()
+        /// <returns>int, string - hashvalue, item</returns>
+        public Dictionary<int, string> GetList()
         {
             //Fetch items
-            return (from itemlist in data
-                where itemlist.Count > 0
-                from item in itemlist.Cast<object>().Where(item => item != null)
-                select item).ToDictionary(item => item.ToString(), item => GetHashValue(item.ToString()));
+            return
+                (from itemlist in data
+                    where itemlist.Count > 0
+                    from o in itemlist.Cast<object>().Where(item => item != null)
+                    select o).ToDictionary(o => GetHashValue(o.ToString()), o => o.ToString());
         }
 
         /// <summary>

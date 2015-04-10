@@ -30,6 +30,7 @@ namespace DLL_Test.Chapters.Chapter_11
             Console.WriteLine("*********************");
             Console.WriteLine("****Iterator Test****");
             Console.WriteLine("*********************\n");
+            Console.WriteLine("Iterate trough list of random generated numbers:\n");
 
             //Iterate through items
             while (!iterator.AtEnd())
