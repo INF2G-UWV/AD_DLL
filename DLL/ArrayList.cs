@@ -93,6 +93,11 @@ namespace DLL
             Array.Resize(ref list, list.Length - 1);
         }
 
+        /// <summary>
+        /// Insert at given index
+        /// </summary>
+        /// <param name="index">index</param>
+        /// <param name="item">item</param>
         public void InsertAt(int index, T item)
         {
             if (index <= Length() && index >= 0)
@@ -166,11 +171,20 @@ namespace DLL
             RemoveAt(from);
         }
 
+        /// <summary>
+        /// Check if ArrayList is empty
+        /// </summary>
+        /// <returns>is empty true/false</returns>
         public bool IsEmpty()
         {
             return Length() <= 0;
         }
 
+        /// <summary>
+        /// Update one item with another
+        /// </summary>
+        /// <param name="one">first item</param>
+        /// <param name="two">second item</param>
         public void Update(T one, T two)
         {
             var indexOne = IndexOf(one);
